@@ -1,0 +1,60 @@
+<h2>Exploracion Fisica</h2>
+
+<div class='col-lg'>
+ 
+        <form  (submit)="onSubmit($event, newForm)" #newForm="ngForm">
+          
+            <div class="form-row">
+                <div class="form-group col-sm-2">
+                    <label for="taDerecho">T.A. (derecho)</label>                    
+                    <input class="form-control" type="text" name="taDerecho">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label for="taIzquierdo">T.A. (izquierdo)</label>                    
+                    <input class="form-control" type="text" name="taIzquierdo">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label for="freqC">F.C.</label>                    
+                    <input class="form-control" type="text" name="freqC" >
+                </div>
+                <div class="form-group col-sm-2">
+                    <label for="freqR">Frec. Resp.</label>                    
+                    <input class="form-control" type="text" name="freqR" >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-sm-2">
+                    <label for="temp">Temp.</label>                    
+                    <input class="form-control" type="text" name="temp">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label for="weight">Peso</label>                    
+                    <input class="form-control" type="text" name="weight">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label for="talla">Talla</label>                    
+                    <input class="form-control" type="text" name="talla" >
+                </div>
+                <div class="form-group col-sm-2">
+                    <label for="imc">IMC</label>                    
+                    <input class="form-control" type="text" name="imc" >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg">
+                    <label for="reason">Cabeza Y Cuello</label>
+                    
+                    <textarea class="form-control"  name="comments" cols="3" rows="3"></textarea>
+            
+                </div>
+    
+            </div>
+            <br>
+            <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Add</button>
+            <button class="btn btn-danger btn-sm" [routerLink]="['/home']">Cancel</button>
+            
+        </form>
+        <br>
+    
+    </div>
+    

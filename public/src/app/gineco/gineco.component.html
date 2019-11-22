@@ -1,0 +1,100 @@
+<h2>Antecedentes Gineco-obstetricos</h2>
+
+<div class='col-lg'>
+ 
+    <form  (submit)="onSubmit($event, newForm)" #newForm="ngForm">
+      
+        <div class="form-row">
+            <div class="form-group col-sm-2">
+                <label for="menarquia">Menarquia</label>                    
+                <input class="form-control" type="text" name="menarquia">
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="ritmo">Ritmo</label>                    
+                <input class="form-control" type="text" name="ritmo" >
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="fum">F.U.M</label>                    
+                <input class="form-control" type="text" name="fum">
+            </div>
+            <div class="form-group col-md-1">
+                <label for="g">G</label>
+                <select class="form-control" name="g">
+                    <option></option>
+                    <option>Si</option>
+                    <option>No</option>
+                    
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="p">P</label>
+                <select class="form-control" name="p">
+                    <option></option>
+                    <option>Si</option>
+                    <option>No</option>
+                    
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="c">C</label>
+                <select class="form-control" name="c">
+                    <option></option>
+                    <option>Si</option>
+                    <option>No</option>
+                    
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="ivsa">I.V.S.A</label>
+                <select class="form-control" name="ivsa">
+                    <option></option>
+                    <option>Si</option>
+                    <option>No</option>
+                    
+                </select>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-lg">
+                <label for="reason">Commentarios</label>
+                
+                <textarea class="form-control"  name="comments" cols="3" rows="3"></textarea>
+        
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" >Uso de Metodos anticonceptivos</label>
+            </div>
+            <div class="form-check form-check-inline">            
+                <input class="form-check-input" type="radio" name="concept" value="true">
+                <label class="form-check-label" for="concept">Si</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="concept" value="false">
+                <label class="form-check-label" for="concept">No</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" >Cuales?</label>
+            </div>
+            <div class="form-group col-lg">                
+                <textarea class="form-control"  name="cuales" cols="2" rows="2"></textarea>
+        
+            </div>
+    
+
+
+        </div>   
+        
+        <br>
+        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Add</button>
+        <button class="btn btn-danger btn-sm" [routerLink]="['/home']">Cancel</button>
+        
+    </form>
+    <br>
+
+</div>
+
+

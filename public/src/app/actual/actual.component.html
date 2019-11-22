@@ -1,0 +1,76 @@
+<h2>Problema Actual</h2>
+
+
+<div class='col-lg' *ngIf="show">
+    <br>
+    <form  #actualForm="ngForm" (submit)="actualPacient(pat, actualForm)" >
+        <div class="form-row">
+            <div class="form-group col-lg">
+                <label for="consulta">Motivo de Consulta</label>
+                
+                <textarea class="form-control"  name="consulta" ([ngModel])="actual.consulta" cols="5" rows="5" ></textarea>
+        
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-lg">
+                <label for="enfermedad">Enfermedad Actual</label>
+                <input type="text" name="enfermedad" ([ngModel])="actual.enfermedad" class="form-control" >
+        
+            </div>
+
+        </div>
+        
+        
+        
+
+        
+        <button  class="btn btn-primary btn-sm">Añadir</button>
+        <button class="btn btn-danger btn-sm" [routerLink]="['/home']">Cancelar</button>
+        
+    </form>
+    <br>
+
+</div>
+
+<div  *ngIf="!show" >
+    <div class='col-lg' *ngFor="let list of pat.actual">
+        <br>
+        <form  #actualForm="ngForm" (submit)="onSubmit(actualForm)" >
+            <div class="form-row">
+                <div class="form-group col-lg">
+                    <label for="consulta">Motivo de Consulta</label>
+                    
+                    <textarea class="form-control"  name="consulta" [ngModel]="list.consulta"  cols="5" rows="5"></textarea>
+            
+                </div>
+    
+            </div>
+    
+            <div class="form-row">
+                <div class="form-group col-lg">
+                    <label for="enfermedad">Enfermedad Actual</label>
+                    <input type="text" name="enfermedad" [ngModel]="list.enfermedad" class="form-control">
+            
+                </div>
+    
+            </div>
+            <input type="hidden" name="_id" [ngModel]="list._id" class="form-control">
+            <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">
+            
+            
+            
+    
+            
+            <button  class="btn btn-primary btn-sm">Editar</button>
+            <button class="btn btn-danger btn-sm" [routerLink]="['/home']">Cancelar</button>
+            
+        </form>
+        <br>
+
+    </div>
+    
+
+</div>

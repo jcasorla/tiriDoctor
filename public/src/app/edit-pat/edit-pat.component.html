@@ -1,0 +1,137 @@
+<div *ngIf="errors">
+    <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
+</div>
+
+<div class='col-lg'>
+    <br>
+    <form  (submit)="onSubmit($event, newForm)" #newForm="ngForm">
+        <div class="form-row">
+                
+            <div class="form-group col-md-4">
+                <label for="firstName">Primer Nombre</label>                    
+                <input type="text" name="firstName"
+                required
+                minlength="3" 
+                [(ngModel)]="editPatient.firstName"
+                #firstName="ngModel" 
+                class="form-control" >
+                <div *ngIf="(firstName.touched || firstName.dirty) && firstName.errors">
+                    <div *ngIf="firstName?.errors?.required" class="alert alert-danger">
+                        debes ingresar el primer nombre
+                    </div>
+                    <div *ngIf="firstName?.errors?.minlength" class="alert alert-danger">
+                        el primer nombre debe tener
+                        {{ firstName?.errors?.minlength.requiredLength }} letras
+                    </div>
+                </div>
+        
+            </div>
+            
+            <div class="form-group col-md-4">
+                <label for="lastName">Apellido</label>
+                <input type="text" name="lastName" [(ngModel)]="editPatient.lastName" class="form-control"
+                required
+                minlength="3" 
+                #lastName="ngModel" 
+                >
+            <div *ngIf="(lastName.touched || lastName.dirty) && lastName.errors">
+                <div *ngIf="lastName?.errors?.required" class="alert alert-danger">
+                    debes ingresar el apellido
+                </div>
+                <div *ngIf="lastName?.errors?.minlength" class="alert alert-danger">
+                    el primer appellido debe tener
+                    {{ lastName?.errors?.minlength.requiredLength }} letras
+                </div>
+                
+            </div>
+        
+            </div>
+            <div class="form-group col-md-4">
+                <label for="sLastName">Segundo Apellido</label>
+                <input type="text" name="sLastName" [(ngModel)]="editPatient.sLastName" class="form-control" 
+                required
+                minlength="3"  
+                #sLastName="ngModel" 
+                >
+                
+                <div *ngIf="(sLastName.touched || sLastName.dirty) && sLastName.errors">
+                    <div *ngIf="sLastName?.errors?.required" class="alert alert-danger">
+                        debes ingresar el segundo apellido
+                    </div>
+                    <div *ngIf="sLastName?.errors?.minlength" class="alert alert-danger">
+                        el primer appellido debe tener
+                        {{ sLastName?.errors?.minlength.requiredLength }} letras
+                    </div>
+                    
+                </div>
+            </div>
+
+
+        </div>
+        <div class="form-row">
+                <div class="form-group col-md-1">
+                    <label for="sex">Sexo</label>
+                    <select class="form-control" name="sexo" [(ngModel)]="editPatient.sex">
+                        <option>O</option>
+                        <option>M</option>
+                        <option>F</option>
+                        
+                    </select>
+                </div>
+                <div class="form-group col-md-1">
+                    <label for="age">Edad</label>
+                    <input type="number" class="form-control"  name="age" [(ngModel)]="editPatient.age">
+                </div>
+                
+                <div class="form-group col-md-3">
+                    <label for="cuarto">Telefono</label>
+                    <input type="text" class="form-control"  name="cuarto">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="sala">Correo</label>
+                    <input type="text" class="form-control"  name="sala">
+                </div>
+                <div class="form-group col-lg">
+                    <label for="ocupation">ocupacion</label>
+                    <input type="text" name="ocupation" class="form-control" [(ngModel)]="editPatient.occupation">
+            
+                </div>
+            </div>
+        
+        <div class="form-row">        
+                        
+            <div class="form-group col-md-3">
+                <label for="address">Dirreccion</label>                    
+                <input class="form-control" type="text" name="address">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="colonia">Colonia</label>                    
+                <input class="form-control" type="text" name="colonia" >
+            </div>
+            
+            <div class="form-group col-sm-2">
+                <label for="ciudad">Ciudad</label>                    
+                <input class="form-control" type="text" name="ciudad" value="">
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="state">Estado</label>                    
+                <input class="form-control" type="text" name="state" value="">
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="zipcode">Codigo Postal</label>                    
+                <input class="form-control" type="text" name="zipcode" value="">
+            </div>
+        </div>
+        
+        
+
+        
+        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Editar</button>
+        <button class="btn btn-danger btn-sm" [routerLink]="['/home']">Cancelar</button>
+        
+    </form>
+    <br>
+
+    </div>
+        
+    

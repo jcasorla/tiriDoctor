@@ -1,0 +1,11 @@
+
+.outline{
+    outline: 1px solid blue;
+    color: gray;
+    
+}
+
+.scroll{
+    height:300px;
+    overflow-y: scroll;
+}

@@ -1,0 +1,183 @@
+<div *ngIf="errors">
+    <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
+</div>
+
+<div class='col-lg'>
+    <br>
+    <form  (submit)="onSubmit($event, newForm)" #newForm="ngForm">
+        <div class="form-row">
+                
+            <div class="form-group col-md-4">
+                <label for="firstName">Primer Nombre</label>                    
+                <input type="text" name="firstName"
+                required
+                minlength="3" 
+                [(ngModel)]="newpatient.firstName"
+                #firstName="ngModel" 
+                class="form-control" >
+                <div *ngIf="(firstName.touched || firstName.dirty) && firstName.errors">
+                    <div *ngIf="firstName?.errors?.required" class="alert alert-danger">
+                        debes ingresar el primer nombre
+                    </div>
+                    <div *ngIf="firstName?.errors?.minlength" class="alert alert-danger">
+                        el primer nombre debe tener
+                        {{ firstName?.errors?.minlength.requiredLength }} letras
+                    </div>
+                </div>
+        
+            </div>
+            
+            <div class="form-group col-md-4">
+                <label for="lastName">Apellido</label>
+                <input type="text" name="lastName" [(ngModel)]="newpatient.lastName" class="form-control"
+                required
+                minlength="3" 
+                #lastName="ngModel" 
+                >
+                <div *ngIf="(lastName.touched || lastName.dirty) && lastName.errors">
+                    <div *ngIf="lastName?.errors?.required" class="alert alert-danger">
+                        debes ingresar el apellido
+                    </div>
+                    <div *ngIf="lastName?.errors?.minlength" class="alert alert-danger">
+                        el primer appellido debe tener
+                        {{ lastName?.errors?.minlength.requiredLength }} letras
+                    </div>
+                    
+                </div>
+        
+            </div>
+            <div class="form-group col-md-4">
+                <label for="sLastName">Segundo Apellido</label>
+                <input type="text" name="sLastName" [(ngModel)]="newpatient.sLastName" class="form-control" 
+                required
+                minlength="3"  
+                #sLastName="ngModel" 
+                >
+                
+                <div *ngIf="(sLastName.touched || sLastName.dirty) && sLastName.errors">
+                    <div *ngIf="sLastName?.errors?.required" class="alert alert-danger">
+                        debes ingresar el segundo apellido
+                    </div>
+                    <div *ngIf="sLastName?.errors?.minlength" class="alert alert-danger">
+                        el primer appellido debe tener
+                        {{ sLastName?.errors?.minlength.requiredLength }} letras
+                    </div>
+                    
+                </div>
+            </div>
+
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-1">
+                <label for="sex">Sexo</label>
+                <select class="form-control" name="sexo" [(ngModel)]="newpatient.sex" required #sex="ngModel" >
+                    <option></option>
+                    <option>M</option>
+                    <option>F</option>
+                    
+                </select>
+                <div *ngIf="(sex.touched || sex.dirty) && sex.errors">
+                    <div *ngIf="sex?.errors?.required" class="alert alert-danger">
+                        ingresa el sexo
+                    </div>                
+                    
+                </div>
+            </div>
+           
+            <div class="form-group col-md-1">
+                <label for="age">Edad</label>
+                <input type="text" class="form-control"  name="age" [(ngModel)]="newpatient.age" required #age="ngModel">
+                <div *ngIf="(age.touched || age.dirty) && age.errors">
+                    <div *ngIf="age?.errors?.required" class="alert alert-danger">
+                        ingresa la edad
+                    </div>                
+                    
+                </div>
+            </div>
+           
+            
+            <div class="form-group col-md-3">
+                <label for="phone">Telefono</label>
+                <input type="text" class="form-control"  name="phone" [(ngModel)]="newpatient.phone"
+                required
+                minlength="7"  
+                #phone="ngModel">
+
+                <div *ngIf="(phone.touched || phone.dirty) && phone.errors">
+                    <div *ngIf="phone?.errors?.required" class="alert alert-danger">
+                        debes ingresar el telefono
+                    </div>
+                    <div *ngIf="phone?.errors?.minlength" class="alert alert-danger">
+                        el telefono debe tener
+                        {{ phone?.errors?.minlength.requiredLength }} digitos
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="email">Correo</label>
+                <input type="email" class="form-control"  name="email" [(ngModel)]="newpatient.email">
+            </div>
+            <div class="form-group col-lg">
+                <label for="ocupation">ocupacion</label>
+                <input type="text" name="ocupation" class="form-control" [(ngModel)]="newpatient.occupation">
+        
+            </div>
+        </div>
+        <div class="form-row">        
+                        
+            <div class="form-group col-md-3">
+                <label for="address">Dirreccion</label>                    
+                <input class="form-control" type="text" name="address" [(ngModel)]="newpatient.address">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="colonia">Colonia</label>                    
+                <input class="form-control" type="text" name="colonia" [(ngModel)]="newpatient.colonia">
+            </div>
+            
+            <div class="form-group col-sm-2">
+                <label for="ciudad">Ciudad</label>                    
+                <input class="form-control" type="text" name="ciudad" [(ngModel)]="newpatient.city"
+                required
+                minlength="4"  
+                #city="ngModel">
+
+                <div *ngIf="(city.touched || city.dirty) && city.errors">
+                    <div *ngIf="city?.errors?.required" class="alert alert-danger">
+                        debes ingresar la ciudad
+                    </div>
+                    <div *ngIf="city?.errors?.minlength" class="alert alert-danger">
+                        la ciudad debe tener
+                        {{ city?.errors?.minlength.requiredLength }} digitos
+                    </div>
+                    
+                </div>
+
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="state">Estado</label>                    
+                <input class="form-control" type="text" name="state" [(ngModel)]="newpatient.state" required #state="ngModel">
+                <div *ngIf="(state.touched || state.dirty) && state.errors">
+                    <div *ngIf="state?.errors?.required" class="alert alert-danger">
+                        debes ingresar el estado
+                    </div>
+                   
+                    
+                </div>
+    
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="zipcode">Codigo Postal</label>                    
+                <input class="form-control" type="text" name="zipcode" [(ngModel)]="newpatient.zip">
+            </div>
+        </div>
+        
+        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Añadir</button>
+        <button class="btn btn-danger btn-sm" [routerLink]="['/list']">Cancelar</button>
+        
+    </form>
+    <br>
+
+    </div>
+    

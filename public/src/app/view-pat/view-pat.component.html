@@ -1,0 +1,100 @@
+
+<br>
+<h4>{{selectedpat.firstName}} {{selectedpat.lastName}} {{selectedpat.sLastName}}</h4>
+<div class="form-row">
+    <div class="form-group col-sm-1">
+        <label for="id">ID</label>                    
+        <input class="form-control" type="text" name="id" readonly value="{{selectedpat.id}}">
+    </div>
+                    
+    <div class="form-group col-md-3">
+        <label for="nombre">occupacion</label>                    
+        <input class="form-control" type="text" name="nombre" readonly value="{{selectedpat.occupation}}">
+    </div>
+    <div class="form-group col-sm-1">
+        <label for="sex">Sexo</label>                    
+        <input class="form-control" type="text" name="sex" readonly value="{{selectedpat.sex}}">
+    </div>
+    <div class="form-group col-sm-1">
+        <label for="age">Edad</label>                    
+        <input class="form-control" type="text" name="age" readonly value="{{selectedpat.age}}">
+    </div>
+    <div class="form-group col-sm-3">
+        <label for="phone">Telefono</label>                    
+        <input class="form-control" type="text" name="phone" readonly value="{{selectedpat.phone}}">
+    </div>
+    
+    <div class="form-group col-sm-3">
+        <label for="email">Correo</label>                    
+        <input class="form-control" type="text" name="email" readonly value="{{selectedpat.email}}">
+    </div>
+</div>
+
+<div class="form-row">
+        
+                        
+        <div class="form-group col-md-3">
+            <label for="address">Dirreccion</label>                    
+            <input class="form-control" type="text" name="address" readonly value="{{selectedpat.address}}">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="colonia">Colonia</label>                    
+            <input class="form-control" type="text" name="colonia" readonly value="{{selectedpat.colonia}}">
+        </div>
+        
+        <div class="form-group col-sm-2">
+            <label for="ciudad">Ciudad</label>                    
+            <input class="form-control" type="text" name="ciudad" readonly value="{{selectedpat.city}}">
+        </div>
+        <div class="form-group col-sm-2">
+            <label for="state">Estado</label>                    
+            <input class="form-control" type="text" name="state" readonly value="{{selectedpat.state}}">
+        </div>
+        <div class="form-group col-sm-2">
+            <label for="zipcode">Codigo Postal</label>                    
+            <input class="form-control" type="text" name="zipcode" readonly value="{{selectedpat.zip}}">
+        </div>
+    </div>
+    
+    
+
+
+
+<br>
+
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <form class="form-inline">
+        <button class="btn btn-outline-primary" type="button" (click)="showActual()">Problema Actual</button>
+        <button class="btn btn-outline-primary" type="button" (click)="showPatologico(pat)">Patologicos</button>
+        <button class="btn btn-outline-primary" type="button" (click)="showNoPatologico(pat)">No Patologicos</button>
+        <button class="btn btn-outline-primary" type="button" (click)="showFamiliar(pat)">Familiar</button>
+        <button class="btn btn-outline-primary" type="button" (click)="showGineco(pat)">Gineco</button>               
+        <button class="btn btn-outline-primary" type="button" (click)="showFisico(pat)">Fisico</button>
+        <button class="btn btn-outline-primary" type="button">Problemas</button>
+        <button class="btn btn-outline-primary" type="button">Laboratorio</button>        
+    </form>
+</nav>
+
+<div *ngIf='displayIllness'>     
+    <app-actual [pat]=selectedpat></app-actual>    
+</div>
+<div *ngIf='displayFamiliar'>
+    <app-familiar [displayFamiliar]=displayFamiliar></app-familiar>    
+</div>
+
+<div *ngIf='displayPatologico'> 
+    <app-patologico [displayPatologico]=displayPatologico></app-patologico>    
+</div>
+
+<div *ngIf='displayNoPatologico'> 
+    <app-no-patologicos [displayNoPatologico]=displayNoPatologico></app-no-patologicos>    
+</div>
+
+<div *ngIf='displayGineco'> 
+    <app-gineco [displayGineco]=displayGineco></app-gineco>    
+</div>
+
+<div *ngIf='displayFisico'> 
+    <app-fisico [displayFisico]=displayFisico></app-fisico>    
+</div>
+

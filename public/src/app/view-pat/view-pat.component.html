@@ -69,7 +69,7 @@
         <button class="btn btn-outline-primary" type="button" (click)="showPatologico(pat)">Patologicos</button>
         <button class="btn btn-outline-primary" type="button" (click)="showNoPatologico(pat)">No Patologicos</button>
         <button class="btn btn-outline-primary" type="button" (click)="showFamiliar(pat)">Familiar</button>
-        <button class="btn btn-outline-primary" type="button" (click)="showGineco(pat)">Gineco</button>               
+        <button *ngIf="selectedpat.sex === 'F'" class="btn btn-outline-primary" type="button" (click)="showGineco(pat)">Gineco</button>               
         <button class="btn btn-outline-primary" type="button" (click)="showFisico(pat)">Fisico</button>
         <button class="btn btn-outline-primary" type="button">Problemas</button>
         <button class="btn btn-outline-primary" type="button">Laboratorio</button>        

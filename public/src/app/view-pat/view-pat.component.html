@@ -1,7 +1,17 @@
 
 <br>
-<h4>{{selectedpat.firstName}} {{selectedpat.lastName}} {{selectedpat.sLastName}}</h4>
-<button class="btn btn-danger btn-sm" (click)="refresh()">refresh</button>
+
+<div class="row">
+    <div class="col-lg">
+        <h4>{{selectedpat.firstName}} {{selectedpat.lastName}} {{selectedpat.sLastName}}</h4>
+    </div>
+    <div class="col-sm">
+        <button class="btn btn-outline-primary btn-sm" (click)="refresh()">refresh</button>
+    </div>
+
+</div>
+
+
 <div class="form-row">
     <div class="form-group col-sm-1">
         <label for="id">ID</label>                    

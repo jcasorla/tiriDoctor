@@ -125,6 +125,7 @@ module.exports = {
     },
 
     updatePatologico: (req, res) => {
+        // console.log("in controller")
         // console.log(req.body._id2);
         Patologico.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
             .then((data) => {

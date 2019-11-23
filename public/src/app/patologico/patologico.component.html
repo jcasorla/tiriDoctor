@@ -70,38 +70,38 @@
 <div *ngIf="!show">
     <div class='col-lg' *ngFor="let list of pat.patologico">
             <br>
-            <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)" >
+            <form  #upForm="ngForm" (submit)="onUpdate( upForm)" >
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" name="cardiovascular" value="true" [ngModel]="list.cardiovascular">
                     <label class="form-check-label" for="carviovascular">Cardiovasculares</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="pulomonar" value="true" [ngModel]="patologico.pulmonar">
+                    <input class="form-check-input" type="checkbox" name="pulomonar" value="true" [ngModel]="list.pulmonar">
                     <label class="form-check-label" for="pulmonar">Pulmonares</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="digestivo" value="true" [ngModel]="patologico.digestivo">
+                    <input class="form-check-input" type="checkbox" name="digestivo" value="true" [ngModel]="list.digestivo">
                     <label class="form-check-label" for="digestivo">Digestivos</label>
                 </div>
                 
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="diabetes" value="true" [ngModel]="patologico.diabetes">
+                    <input class="form-check-input" type="checkbox" name="diabetes" value="true" [ngModel]="list.diabetes">
                     <label class="form-check-label" for="diabetes">Diabetes</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="renal" value="true" [ngModel]="patologico.renal"> 
+                    <input class="form-check-input" type="checkbox" name="renal" value="true" [ngModel]="list.renal"> 
                     <label class="form-check-label" for="renal">Renales</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="quirurgico" value="true" [ngModel]="patologico.quirurgico">
+                    <input class="form-check-input" type="checkbox" name="quirurgico" value="true" [ngModel]="list.quirurgico">
                     <label class="form-check-label" for="quirurgico">Quirurgicos</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="alergico" value="true" [ngModel]="patologico.alergico">
+                    <input class="form-check-input" type="checkbox" name="alergico" value="true" [ngModel]="list.alergico">
                     <label class="form-check-label" for="alergico">Alergicos</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="transfucion" value="true" [ngModel]="patologico.transfucion">
+                    <input class="form-check-input" type="checkbox" name="transfucion" value="true" [ngModel]="list.transfucion">
                     <label class="form-check-label" for="transfusion">Transfuciones</label>
                 </div>
                 <br>
@@ -112,17 +112,19 @@
                     <div class="form-group col-lg">
                         <label for="medications">Medicamentos</label>
                         
-                        <textarea class="form-control"  name="medications" cols="5" rows="5" [ngModel]="patologico.medications"></textarea>
+                        <textarea class="form-control"  name="medications" cols="5" rows="5" [ngModel]="list.medications"></textarea>
                 
                     </div>
                     <div class="form-group col-lg">
                         <label for="comment">Especifique</label>
                         
-                        <textarea class="form-control"  name="comment" cols="5" rows="5" [ngModel]="patologico.comment"></textarea>
+                        <textarea class="form-control"  name="comment" cols="5" rows="5" [ngModel]="list.comment"></textarea>
                 
                     </div>
         
-                </div>     
+                </div>
+                <input type="hidden" name="_id" [ngModel]="list._id" class="form-control">
+                <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">
                 
                 
                 <button class="btn btn-primary btn-sm">Editar</button>

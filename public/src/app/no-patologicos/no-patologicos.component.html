@@ -1,75 +1,140 @@
 <h2>Antecedentes Personales No Patologicos</h2>
 
-<div class='col-lg'>
+<div class='col-lg' *ngIf="show">
     <br>
-    <form  (submit)="onSubmit($event, newForm)" #newForm="ngForm">
+    <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)">
        
 
         <div class="form-group col-lg">
             <div class="form-check form-check-inline ">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
+                <input class="form-check-input" type="checkbox" value="true" name="alcohol" [ngModel]="nopatologico.alcohol">
+                <label class="form-check-label" for="alcohol">
                     Alcohol
                 </label>
             </div>           
-            <input type="text" class="form-control"  name="alcoholContent">
+            <input type="text" class="form-control"  name="alcoholContent" [ngModel]="nopatologico.alcoholContent">
         </div>
         <div class="form-group col-lg">
             <div class="form-check form-check-inline ">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                <input class="form-check-input" type="checkbox" value="true" name="tabacco" [ngModel]="nopatologico.tabacco">
                 <label class="form-check-label" for="defaultCheck1">
                     Tabaquismo
                 </label>
             </div>           
-            <input type="text" class="form-control"  name="tabaccoContent">
+            <input type="text" class="form-control"  name="tabaccoContent" [ngModel]="nopatologico.tabaccoContent">
         </div>
         <div class="form-group col-lg">
             <div class="form-check form-check-inline ">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
+                <input class="form-check-input" type="checkbox" value="true" name="droga" [ngModel]="nopatologico.droga">
+                <label class="form-check-label" for="drugs">
                     Drogas
                 </label>
             </div>           
-            <input type="text" class="form-control"  name="drugContent">
+            <input type="text" class="form-control"  name="drugContent" [ngModel]="nopatologico.drugContent">
         </div>
         <div class="form-group col-lg">
             <div class="form-check form-check-inline ">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
+                <input class="form-check-input" type="checkbox" value="true" name="imunno" [ngModel]="nopatologico.imunno">
+                <label class="form-check-label" for="imunno">
                     Immunizaciones
                 </label>
             </div>           
-            <input type="text" class="form-control"  name="immunoContent">
+            <input type="text" class="form-control"  name="immunoContent" [ngModel]="nopatologico.immunoContent">
         </div>
 
         
-       
-       
-        <br>
-
-      
-        <div class="form-row">
+        <div class="row">
             <div class="form-group col-lg">
-                <label for="fatherContent">Otros</label>
+                <label for="otro">Otros</label>
                 
-                <textarea class="form-control"  name="fatherContent" cols="5" rows="5"></textarea>
+                <textarea class="form-control"  name="otro" cols="5" rows="5" [ngModel]="nopatologico.otro"></textarea>
         
             </div>
             <div class="form-group col-lg">
-                <label for="fatherContent">Comentarios</label>
+                <label for="comment">Comentarios</label>
                 
-                <textarea class="form-control"  name="fatherContent" cols="5" rows="5"></textarea>
+                <textarea class="form-control"  name="comment" cols="5" rows="5" [ngModel]="nopatologico.comment"></textarea>
         
             </div>
 
         </div>     
         
         
-        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Add</button>
-        <button class="btn btn-danger btn-sm" [routerLink]="['/home']">Cancel</button>
+        <button class="btn btn-primary btn-sm">Añadir</button>
+        <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
         
     </form>
     <br>
+</div>
+
+<div *ngIf="!show">
+    <div class='col-lg' *ngFor="let list of pat.nopatologico">
+        <form  #upForm="ngForm" (submit)="onUpdate(upForm)">
+            
+    
+            <div class="form-group col-lg">
+                <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="checkbox" value="true" name="alcohol" [ngModel]="list.alcohol">
+                    <label class="form-check-label" for="alcohol">
+                        Alcohol
+                    </label>
+                </div>           
+                <input type="text" class="form-control"  name="alcoholContent" [ngModel]="list.alcoholContent">
+            </div>
+            <div class="form-group col-lg">
+                <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="checkbox" value="true" name="tabacco" [ngModel]="list.tabacco">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Tabaquismo
+                    </label>
+                </div>           
+                <input type="text" class="form-control"  name="tabaccoContent" [ngModel]="list.tabaccoContent">
+            </div>
+            <div class="form-group col-lg">
+                <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="checkbox" value="true" name="droga" [ngModel]="list.droga">
+                    <label class="form-check-label" for="drugs">
+                        Drogas
+                    </label>
+                </div>           
+                <input type="text" class="form-control"  name="drugContent" [ngModel]="list.drugContent">
+            </div>
+            <div class="form-group col-lg">
+                <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="checkbox" value="true" name="imunno" [ngModel]="list.imunno">
+                    <label class="form-check-label" for="imunno">
+                        Immunizaciones
+                    </label>
+                </div>           
+                <input type="text" class="form-control"  name="immunoContent" [ngModel]="list.immunoContent">
+            </div>
+    
+            
+            <div class="row">
+                <div class="form-group col-lg">
+                    <label for="other">Otros</label>
+                    
+                    <textarea class="form-control"  name="other" cols="5" rows="5" [ngModel]="list.otro"></textarea>
+            
+                </div>
+                <div class="form-group col-lg">
+                    <label for="coment">Comentarios</label>
+                    
+                    <textarea class="form-control"  name="comment" cols="5" rows="5" [ngModel]="list.comment"></textarea>
+            
+                </div>
+    
+            </div>
+            <input type="hidden" name="_id" [ngModel]="list._id" class="form-control">
+            <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">   
+            
+            
+            <button class="btn btn-primary btn-sm">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+            
+        </form>
+        <br>
+    </div>
 
 </div>
 

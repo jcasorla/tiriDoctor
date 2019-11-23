@@ -46,9 +46,7 @@ export class PatologicoComponent implements OnInit {
     });
 
   }
-  run(){
-    console.log("works?")
-  }
+  
 
   onCreate(pat, form: NgForm): void { 
     console.log("onCreate");

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Paciente = mongoose.model('Paciente');
 const Actual = mongoose.model('Actual');
 const Patologico = mongoose.model('Patologico');
+const NoPatologico = mongoose.model('NoPatologico');
 
 module.exports = {
 
@@ -102,13 +103,13 @@ module.exports = {
                 res.status(422).json(errors )});
     },
 
-    createPatologico: function(req,res){//very important if you are going to copy and past this code make sure to rename Product to appropiate
+    createPatologico: function(req,res){
         Patologico.create(req.body, function(err, data){
             if (err){
                 const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
                 res.status(422).json(errors );
             }
-            else{//note it may remove the $push. be sure to add it before : {comment: data}}
+            else{
                 Paciente.findOneAndUpdate({_id:req.params.id}, {$push : {patologico: data}}, {runValidators: true, new: true}, function(err, data){
                     if (err){
                         const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
@@ -136,6 +137,54 @@ module.exports = {
                     { 
                         "$set": {
                             "patologico": req.body
+                        },
+                       
+                    },
+                    function(err,doc) {
+                
+                    }
+                );
+                
+            })
+            .catch(err => {
+                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                res.status(422).json(errors )});
+    },
+
+    createNoPatologico: function(req,res){
+        NoPatologico.create(req.body, function(err, data){
+            if (err){
+                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                res.status(422).json(errors );
+            }
+            else{
+                Paciente.findOneAndUpdate({_id:req.params.id}, {$push : {nopatologico: data}}, {runValidators: true, new: true}, function(err, data){
+                    if (err){
+                        const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                        res.status(422).json(errors );
+                    }
+                    else{
+                       res.json(data)
+                    }
+                })
+               
+                
+            }
+        })
+    },
+
+    updateNoPatologico: (req, res) => {
+        // console.log("in controller")
+        // console.log(req.body._id2);
+        NoPatologico.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
+            .then((data) => {
+                res.json({updatedNoPatologico: data});
+               
+                Paciente.findOneAndUpdate(
+                    { "_id": req.body._id2, "nopatologico._id": req.params.id },
+                    { 
+                        "$set": {
+                            "nopatologico": req.body
                         },
                        
                     },

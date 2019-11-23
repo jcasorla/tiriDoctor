@@ -1,6 +1,6 @@
 <h2>Antecedentes Personales Patologicos</h2>
 
-<div class='col-lg'>
+<div class='col-lg' *ngIf="show">
     <br>
     <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)" >
         <div class="form-check form-check-inline">
@@ -58,16 +58,85 @@
         
         
         <button class="btn btn-primary btn-sm">Añadir</button>
-        <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
-            
+        <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>         
         
-        <!-- <button class="btn btn-danger btn-sm" [routerLink]="['/list']">Cancelar</button> -->
         
     </form>
 
     <br>
 
 </div>
+
+<div *ngIf="!show">
+    <div class='col-lg' *ngFor="let list of pat.patologico">
+            <br>
+            <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)" >
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="cardiovascular" value="true" [ngModel]="list.cardiovascular">
+                    <label class="form-check-label" for="carviovascular">Cardiovasculares</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="pulomonar" value="true" [ngModel]="patologico.pulmonar">
+                    <label class="form-check-label" for="pulmonar">Pulmonares</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="digestivo" value="true" [ngModel]="patologico.digestivo">
+                    <label class="form-check-label" for="digestivo">Digestivos</label>
+                </div>
+                
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="diabetes" value="true" [ngModel]="patologico.diabetes">
+                    <label class="form-check-label" for="diabetes">Diabetes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="renal" value="true" [ngModel]="patologico.renal"> 
+                    <label class="form-check-label" for="renal">Renales</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="quirurgico" value="true" [ngModel]="patologico.quirurgico">
+                    <label class="form-check-label" for="quirurgico">Quirurgicos</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="alergico" value="true" [ngModel]="patologico.alergico">
+                    <label class="form-check-label" for="alergico">Alergicos</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="transfucion" value="true" [ngModel]="patologico.transfucion">
+                    <label class="form-check-label" for="transfusion">Transfuciones</label>
+                </div>
+                <br>
+                <br>
+        
+                
+                <div class="form-row">
+                    <div class="form-group col-lg">
+                        <label for="medications">Medicamentos</label>
+                        
+                        <textarea class="form-control"  name="medications" cols="5" rows="5" [ngModel]="patologico.medications"></textarea>
+                
+                    </div>
+                    <div class="form-group col-lg">
+                        <label for="comment">Especifique</label>
+                        
+                        <textarea class="form-control"  name="comment" cols="5" rows="5" [ngModel]="patologico.comment"></textarea>
+                
+                    </div>
+        
+                </div>     
+                
+                
+                <button class="btn btn-primary btn-sm">Editar</button>
+                <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>         
+                
+                
+            </form>
+        
+            <br>
+        
+        </div>
+
+</div>
+
 
 
 

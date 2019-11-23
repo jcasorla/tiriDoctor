@@ -58,7 +58,7 @@ export class PatologicoComponent implements OnInit {
       // form.reset();
       this.refresh();
 
-      // this.show=false;
+      this.show=false;
       
     });
   }

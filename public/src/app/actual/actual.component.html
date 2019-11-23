@@ -3,12 +3,12 @@
 
 <div class='col-lg' *ngIf="show">
     <br>
-    <form  #actualForm="ngForm" (submit)="actualPacient(pat, actualForm)" >
+    <form  #actualForm="ngForm" (submit)="onCreate(pat, actualForm)" >
         <div class="form-row">
             <div class="form-group col-lg">
                 <label for="consulta">Motivo de Consulta</label>
                 
-                <textarea class="form-control"  name="consulta" ([ngModel])="actual.consulta" cols="5" rows="5" ></textarea>
+                <textarea class="form-control"  name="consulta" [ngModel]="actual.consulta" cols="5" rows="5" ></textarea>
         
             </div>
 
@@ -17,7 +17,7 @@
         <div class="form-row">
             <div class="form-group col-lg">
                 <label for="enfermedad">Enfermedad Actual</label>
-                <input type="text" name="enfermedad" ([ngModel])="actual.enfermedad" class="form-control" >
+                <input type="text" name="enfermedad" [ngModel]="actual.enfermedad" class="form-control" >
         
             </div>
 
@@ -28,7 +28,8 @@
 
         
         <button  class="btn btn-primary btn-sm">Añadir</button>
-        <button class="btn btn-danger btn-sm" [routerLink]="['/home']">Cancelar</button>
+        <button class="btn btn-danger btn-sm" (submit)="refresh()">Cancelar</button>
+        <!-- <button class="btn btn-danger btn-sm" [routerLink]="['/list']">Cancelar</button> -->
         
     </form>
     <br>
@@ -38,7 +39,7 @@
 <div  *ngIf="!show" >
     <div class='col-lg' *ngFor="let list of pat.actual">
         <br>
-        <form  #actualForm="ngForm" (submit)="onSubmit(actualForm)" >
+        <form  #actualForm="ngForm" (submit)="onUpdate(actualForm)" >
             <div class="form-row">
                 <div class="form-group col-lg">
                     <label for="consulta">Motivo de Consulta</label>
@@ -65,7 +66,8 @@
     
             
             <button  class="btn btn-primary btn-sm">Editar</button>
-            <button class="btn btn-danger btn-sm" [routerLink]="['/home']">Cancelar</button>
+            <button class="btn btn-danger btn-sm" (submit)="refresh()">Cancelar</button>
+            <!-- <button class="btn btn-danger btn-sm" [routerLink]="['/list']">Cancelar</button> -->
             
         </form>
         <br>

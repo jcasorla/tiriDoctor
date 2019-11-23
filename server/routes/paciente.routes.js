@@ -9,5 +9,7 @@ router.get('/', pacientes.all)
     .delete('/:id', pacientes.delete)
     .post('/:id/actual', pacientes.createActual)
     .put('/actual/:id', pacientes.updateActual)
+    .post('/:id/patologico', pacientes.createPatologico)
+    .put('/patologico/:id', pacientes.updatePatologico)
 
 module.exports = router;

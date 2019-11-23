@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const autoIncrementModelID = require('./counterModel');
 const actualSchema = mongoose.model('Actual').schema;
+const patologicoSchema = mongoose.model('Patologico').schema;
+
 
 const PacienteSchema = new mongoose.Schema({
     id: { type: Number, unique: true, min: 1 },
@@ -65,8 +67,9 @@ const PacienteSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    actual: [actualSchema],   
-    
+    actual: [actualSchema],
+    patologico: [patologicoSchema],
+        
 }, {timestamps: true });
 
 PacienteSchema.pre('save', function (next) {

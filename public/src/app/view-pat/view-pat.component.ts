@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './../http.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-view-pat',
@@ -21,7 +22,8 @@ export class ViewPatComponent implements OnInit {
   constructor(
     private _httpService: HttpService, 
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private _location: Location
   ) { }
 
   ngOnInit() {
@@ -30,6 +32,14 @@ export class ViewPatComponent implements OnInit {
       let id=params['id'];
       this.findPatient(id)
   });
+  }
+
+  refresh(){
+    //refresh trick that did work to refresh @Input data
+    this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
+      this._router.navigate([decodeURI(this._location.path())]);
+    });
+
   }
 
   findPatient(id) {

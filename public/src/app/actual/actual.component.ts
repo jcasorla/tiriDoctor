@@ -71,30 +71,36 @@ export class ActualComponent implements OnInit {
     
   }
 
-  actualPacient(pat, form: NgForm): void { 
+  refresh(){
+    //refresh trick that did work to refresh @Input data
+    this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
+      this._router.navigate([decodeURI(this._location.path())]);
+    });
+
+  }
+
+  onCreate(pat, form: NgForm): void { 
     // console.log("in actual");
     // console.log(pat);
     // console.log(form.value);
    
     this._httpService.actual(pat, form.value).subscribe((data)=>{
-      form.reset();
-      // console.log("I am in actual: ", data);
+      // form.reset();
+      
+      this.refresh();
       this.show=false;
       
     });
   }
 
-  onSubmit(form: NgForm) {
+  onUpdate(form: NgForm) {
     // console.log("printing on submit");
     // console.log(form.value);
     
     this._httpService.updateActual(this.pat,form.value).subscribe({
       next: (data)=>{
         
-        //refresh trick that did work to refresh @Input data
-        this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
-          this._router.navigate([decodeURI(this._location.path())]);
-        });
+        this.refresh();
        
       
       },

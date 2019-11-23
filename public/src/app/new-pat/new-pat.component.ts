@@ -27,9 +27,9 @@ export class NewPatComponent implements OnInit {
     this._httpService.addPatient(this.newpatient).subscribe({
       next: (data)=>{
       
-      console.log("I am in add: ", data);
+      // console.log("I am in add: ", data);
       form.reset();
-      this._router.navigate(['/home']);
+      this._router.navigate(['/list']);
       // this.router.navigateByUrl('/');
 
 

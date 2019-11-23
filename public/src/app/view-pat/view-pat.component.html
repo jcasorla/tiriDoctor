@@ -1,6 +1,7 @@
 
 <br>
 <h4>{{selectedpat.firstName}} {{selectedpat.lastName}} {{selectedpat.sLastName}}</h4>
+<button class="btn btn-danger btn-sm" (submit)="refresh()">refresh</button>
 <div class="form-row">
     <div class="form-group col-sm-1">
         <label for="id">ID</label>                    
@@ -78,16 +79,18 @@
 <div *ngIf='displayIllness'>     
     <app-actual [pat]=selectedpat></app-actual>    
 </div>
-<div *ngIf='displayFamiliar'>
-    <app-familiar [displayFamiliar]=displayFamiliar></app-familiar>    
-</div>
+
 
 <div *ngIf='displayPatologico'> 
-    <app-patologico [displayPatologico]=displayPatologico></app-patologico>    
+    <app-patologico [pat]=selectedpat></app-patologico>    
 </div>
 
 <div *ngIf='displayNoPatologico'> 
     <app-no-patologicos [displayNoPatologico]=displayNoPatologico></app-no-patologicos>    
+</div>
+
+<div *ngIf='displayFamiliar'>
+    <app-familiar [displayFamiliar]=displayFamiliar></app-familiar>    
 </div>
 
 <div *ngIf='displayGineco'> 

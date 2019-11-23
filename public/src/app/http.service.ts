@@ -45,6 +45,24 @@ updateActual(pat,actual){
   return this._http.put(url,actual);
 }
 
+patologico(pat,data){
+  let url='/api/pacientes/' + pat._id + '/patologico/';
+  console.log("I am in service");
+  console.log(data);
+  
+  return this._http.post(url,data);
+}
+
+updatePatologico(pat,data){
+  // let url='/api/pacientes/' + pat._id + '/actual/'; 
+  let url='/api/pacientes/patologico/' +data._id; 
+  // console.log("I am in update actual in service");
+  // console.log(actual);
+  // console.log(url);
+
+  return this._http.put(url,data);
+}
+
 
 
 }

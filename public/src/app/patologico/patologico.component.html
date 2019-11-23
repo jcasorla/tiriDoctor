@@ -2,7 +2,7 @@
 
 <div class='col-lg'>
     <br>
-    <!-- <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)" >
+    <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)" >
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="cardiovascular" value="true" [ngModel]="patologico.cardiovascular">
             <label class="form-check-label" for="carviovascular">Cardiovasculares</label>
@@ -58,15 +58,16 @@
         
         
         <button class="btn btn-primary btn-sm">Añadir</button>
+        <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
             
         
-        <button class="btn btn-danger btn-sm" [routerLink]="['/list']">Cancelar</button>
+        <!-- <button class="btn btn-danger btn-sm" [routerLink]="['/list']">Cancelar</button> -->
         
-    </form> -->
+    </form>
 
     <br>
 
 </div>
 
-<button class="btn btn-danger btn-sm" (submit)="refresh()">Cancelar</button>
+
 

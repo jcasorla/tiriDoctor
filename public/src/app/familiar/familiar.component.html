@@ -53,7 +53,7 @@
                 
         </div>
         <div class="form-check form-check-inline ">
-            <input class="col-sm-6" type="number" name="cuantos">         
+            <input class="col-sm-6" type="text" name="cuantos">         
                 
         </div>
         <div class="form-check form-check-inline">
@@ -81,8 +81,8 @@
 
         
         
-        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Add</button>
-        <button class="btn btn-danger btn-sm" [routerLink]="['/home']">Cancel</button>
+        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Añadir</button>
+        <button class="btn btn-danger btn-sm" [routerLink]="['/home']">Cancelar</button>
         
     </form>
     <br>

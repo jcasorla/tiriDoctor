@@ -2,9 +2,14 @@ const mongoose = require('mongoose');
 
 const familiarSchema = new mongoose.Schema({
     
-    padreVivo: { 
+    padreVivoSi: { 
         type: Boolean,
-        required: true
+        required: false
+
+    },
+    padreVivoNo: { 
+        type: Boolean,
+        required: false
 
     },
     commentPadre: { 
@@ -12,9 +17,14 @@ const familiarSchema = new mongoose.Schema({
         required: true
 
     },
-    madreViva: { 
+    madreVivaSi: { 
         type: Boolean,
-        required: true
+        required: false
+
+    },
+    madreVivaNo: { 
+        type: Boolean,
+        required: false
 
     },
     commentMadre: { 
@@ -27,7 +37,12 @@ const familiarSchema = new mongoose.Schema({
         required: true
 
     },
-    hermanosVivos: { 
+    hermanosVivosSi: { 
+        type: Boolean,
+        required: false
+
+    },
+    hermanosVivosNo: { 
         type: Boolean,
         required: false
 

@@ -25,6 +25,7 @@ export class FamiliarComponent implements OnInit {
 
   ngOnInit() {
     this.hideActual();
+    console.log(this.pat.familiar[0]);
   }
 
 

@@ -1,17 +1,17 @@
 <h2>Antecedentes Familiares</h2>
 
-<div class='col-lg'>
+<div class='col-lg' *ngIf="show">
     <br>
-    <form  (submit)="onSubmit($event, newForm)" #newForm="ngForm">
+    <form  #newForm="ngForm" (submit)="onCreate(pat,newForm)" >
         <div class="form-check form-check-inline">
             <label class="form-check-label" >Padre Vivos?</label>
         </div>
         <div class="form-check form-check-inline">            
-            <input class="form-check-input" type="radio" name="padreVivoSi" id="padreVivoSi" value="true">
+            <input class="form-check-input" type="radio" name="padreVivo" value="true" [ngModel]="familiar.padreVivo">
             <label class="form-check-label" for="padreVivoSi">Si</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="padreVivoNo" id="padreVivoNo" value="false">
+            <input class="form-check-input" type="radio" name="padreVivo" value="false" [ngModel]="familiar.padreVivo">
             <label class="form-check-label" for="padreVivoNo">No</label>
         </div>
         
@@ -20,7 +20,7 @@
             <div class="form-group col-lg">
                 <label for="fatherContent">Enfermedades que Padece</label>
                 
-                <textarea class="form-control"  name="fatherContent" cols="3" rows="3"></textarea>
+                <textarea class="form-control"  name="commentPadre" cols="3" rows="3" [ngModel]="familiar.commentPadre"></textarea>
         
             </div>
 
@@ -30,11 +30,11 @@
             <label class="form-check-label" >Madre Vivos?</label>
         </div>
         <div class="form-check form-check-inline">            
-            <input class="form-check-input" type="radio" name="madreVivoSi" id="madreVivoSi" value="true">
+            <input class="form-check-input" type="radio" name="madreViva" value="true" [ngModel]="familiar.madreViva">
             <label class="form-check-label" for="madreVivoSi">Si</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="madreVivoNo" id="madreVivoNo" value="false">
+            <input class="form-check-input" type="radio" name="madreViva" value="false" [ngModel]="familiar.madreViva">
             <label class="form-check-label" for="madreVivoNo">No</label>
         </div>
         
@@ -43,7 +43,7 @@
             <div class="form-group col-lg">
                 <label for="motherContent">Enfermedades que Padece</label>
                 
-                <textarea class="form-control"  name="motherContent" cols="3" rows="3"></textarea>
+                <textarea class="form-control"  name="commentMadre" cols="3" rows="3" [ngModel]="familiar.commentMadre"></textarea>
         
             </div>
 
@@ -53,18 +53,18 @@
                 
         </div>
         <div class="form-check form-check-inline ">
-            <input class="col-sm-6" type="text" name="cuantos">         
+            <input class="col-sm-6" type="text" name="hermanos" [ngModel]="familiar.hermanos">         
                 
         </div>
         <div class="form-check form-check-inline">
             <label class="form-check-label" >Vivos?</label>
         </div>
         <div class="form-check form-check-inline">            
-            <input class="form-check-input" type="radio" name="broVivoSi" id="broVivoSi" value="true">
+            <input class="form-check-input" type="radio" name="hermanosVivos" value="true" [ngModel]="familiar.hermanosVivos">
             <label class="form-check-label" for="broVivoSi">Si</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="broVivoNo" id="briVivoNo" value="false">
+            <input class="form-check-input" type="radio" name="hermanosVivos" value="false" [ngModel]="familiar.hermanosVivos">
             <label class="form-check-label" for="broVivoNo">No</label>
         </div>
         <br>
@@ -73,7 +73,7 @@
             <div class="form-group col-lg">
                 <label for="broContent">Enfermedades que Padecen</label>
                 
-                <textarea class="form-control"  name="motherContent" cols="3" rows="3"></textarea>
+                <textarea class="form-control"  name="commentHermanos" cols="3" rows="3" [ngModel]="familiar.commentHermanos"></textarea>
         
             </div>
 
@@ -81,10 +81,104 @@
 
         
         
-        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Añadir</button>
-        <button class="btn btn-danger btn-sm" [routerLink]="['/home']">Cancelar</button>
+        <button class="btn btn-primary btn-sm">Añadir</button>
+        <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>  
         
     </form>
     <br>
+
+</div>
+
+<div *ngIf="!show">
+    <div class='col-lg' *ngFor="let list of pat.familiar">
+        <br>
+        <form  #upForm="ngForm" (submit)="onUpdate(upForm)" >
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" >Padre Vivos?</label>
+            </div>
+            <div class="form-check form-check-inline">            
+                <input class="form-check-input" type="radio" name="padreVivo" value="true" [ngModel]="list.padreVivo">
+                <label class="form-check-label" for="padreVivoSi">Si</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="padreVivo" value="false" [ngModel]="list.padreVivo">
+                <label class="form-check-label" for="padreVivoNo">No</label>
+            </div>
+            
+            <br>
+            <div class="form-row">
+                <div class="form-group col-lg">
+                    <label for="fatherContent">Enfermedades que Padece</label>
+                    
+                    <textarea class="form-control"  name="commentPadre" cols="3" rows="3" [ngModel]="list.commentPadre"></textarea>
+            
+                </div>
+
+            </div>
+
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" >Madre Vivos?</label>
+            </div>
+            <div class="form-check form-check-inline">            
+                <input class="form-check-input" type="radio" name="madreVivo" value="true" [ngModel]="list.madreViva">
+                <label class="form-check-label" for="madreVivoSi">Si</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="madreVivo" value="false" [ngModel]="list.madreViva">
+                <label class="form-check-label" for="madreVivoNo">No</label>
+            </div>
+            
+            <br>
+            <div class="form-row">
+                <div class="form-group col-lg">
+                    <label for="motherContent">Enfermedades que Padece</label>
+                    
+                    <textarea class="form-control"  name="commentMadre" cols="3" rows="3" [ngModel]="list.commentMadre"></textarea>
+            
+                </div>
+
+            </div>
+            <div class="form-check form-check-inline ">
+                <label class="form-check-label" >Hermanos Cuantos?</label>
+                    
+            </div>
+            <div class="form-check form-check-inline ">
+                <input class="col-sm-6" type="text" name="hermanos" [ngModel]="list.hermanos">         
+                    
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" >Vivos?</label>
+            </div>
+            <div class="form-check form-check-inline">            
+                <input class="form-check-input" type="radio" name="broVivo" value="true" [ngModel]="list.hermanosVivos">
+                <label class="form-check-label" for="broVivoSi">Si</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="broVivo" value="false" [ngModel]="list.hermanosVivos">
+                <label class="form-check-label" for="broVivoNo">No</label>
+            </div>
+            <br>
+            
+            <div class="form-row">
+                <div class="form-group col-lg">
+                    <label for="broContent">Enfermedades que Padecen</label>
+                    
+                    <textarea class="form-control"  name="commentHermanos" cols="3" rows="3" [ngModel]="list.commentHermanos"></textarea>
+            
+                </div>
+
+            </div>
+            <input type="hidden" name="_id" [ngModel]="list._id" class="form-control">
+            <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">
+    
+            
+            
+            <button class="btn btn-primary btn-sm">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>  
+                
+            </form>
+            <br>
+        
+        </div>
 
 </div>

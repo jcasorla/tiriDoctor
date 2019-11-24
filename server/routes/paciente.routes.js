@@ -13,5 +13,7 @@ router.get('/', pacientes.all)
     .put('/patologico/:id', pacientes.updatePatologico)
     .post('/:id/nopatologico', pacientes.createNoPatologico)
     .put('/nopatologico/:id', pacientes.updateNoPatologico)
+    .post('/:id/familiar', pacientes.createFamiliar)
+    .put('/familiar/:id', pacientes.updateFamiliar)
 
 module.exports = router;

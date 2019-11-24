@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const antecedenteFamiliarSchema = new mongoose.Schema({
+const familiarSchema = new mongoose.Schema({
     
     padreVivo: { 
         type: Boolean,
@@ -24,7 +24,7 @@ const antecedenteFamiliarSchema = new mongoose.Schema({
     },
     hermanos: { 
         type: Number,
-        required: false
+        required: true
 
     },
     hermanosVivos: { 
@@ -34,19 +34,9 @@ const antecedenteFamiliarSchema = new mongoose.Schema({
     },
     commentHermanos: { 
         type: String,
-        required: true
+        required: false
 
     },
-    
-    otro: { 
-        type: String,
-        required: true
-
-    },
-    comment: { 
-        type: String,
-        required: true
-
-    },    
+        
 }, {timestamps: true });
-mongoose.model('antecedenteFamiliar', antecedenteFamiliarSchema);
+mongoose.model('Familiar', familiarSchema);

@@ -3,6 +3,7 @@ const Paciente = mongoose.model('Paciente');
 const Actual = mongoose.model('Actual');
 const Patologico = mongoose.model('Patologico');
 const NoPatologico = mongoose.model('NoPatologico');
+const Familiar = mongoose.model('Familiar');
 
 module.exports = {
 
@@ -185,6 +186,54 @@ module.exports = {
                     { 
                         "$set": {
                             "nopatologico": req.body
+                        },
+                       
+                    },
+                    function(err,doc) {
+                
+                    }
+                );
+                
+            })
+            .catch(err => {
+                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                res.status(422).json(errors )});
+    },
+
+    createFamiliar: function(req,res){
+        Familiar.create(req.body, function(err, data){
+            if (err){
+                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                res.status(422).json(errors );
+            }
+            else{
+                Paciente.findOneAndUpdate({_id:req.params.id}, {$push : {familiar: data}}, {runValidators: true, new: true}, function(err, data){
+                    if (err){
+                        const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                        res.status(422).json(errors );
+                    }
+                    else{
+                       res.json(data)
+                    }
+                })
+               
+                
+            }
+        })
+    },
+
+    updateFamiliar: (req, res) => {
+        // console.log("in controller")
+        // console.log(req.body._id2);
+        Familiar.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
+            .then((data) => {
+                res.json({updatedFamiliar: data});
+               
+                Paciente.findOneAndUpdate(
+                    { "_id": req.body._id2, "familiar._id": req.params.id },
+                    { 
+                        "$set": {
+                            "familiar": req.body
                         },
                        
                     },

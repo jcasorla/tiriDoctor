@@ -3,3 +3,7 @@
 body {
     background-image: url(./assets/img/medical-back5.jpg);
 }
+label.required::after {
+    content: " *";
+    color: red;
+}

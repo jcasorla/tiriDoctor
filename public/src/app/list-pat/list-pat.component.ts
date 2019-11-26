@@ -33,7 +33,8 @@ export class ListPatComponent implements OnInit {
 
   onClickDelete(pat) {
     if(confirm("Estas seguro de eliminar a " +pat.firstName + " " +pat.lastName + " " + pat.sLastName)){
-      const observable = this._httpService.deletePatient(pat.id);
+      const observable = this._httpService.deletePatient(pat._id);
+      
       observable.subscribe(data => {
         // console.log(data);
         this.getAllPacients();

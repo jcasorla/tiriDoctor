@@ -46,6 +46,7 @@ module.exports = {
     },
 	
     delete: (req, res) => {
+        console.log(req.params.id);
         Paciente.findOneAndDelete({ _id : req.params.id })
             .then((data) => {
                 res.json(data);

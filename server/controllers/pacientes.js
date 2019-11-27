@@ -4,6 +4,7 @@ const Actual = mongoose.model('Actual');
 const Patologico = mongoose.model('Patologico');
 const NoPatologico = mongoose.model('NoPatologico');
 const Familiar = mongoose.model('Familiar');
+const Gineco = mongoose.model('Gineco');
 
 module.exports = {
 
@@ -235,6 +236,54 @@ module.exports = {
                     { 
                         "$set": {
                             "familiar": req.body
+                        },
+                       
+                    },
+                    function(err,doc) {
+                
+                    }
+                );
+                
+            })
+            .catch(err => {
+                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                res.status(422).json(errors )});
+    },
+
+    createGineco: function(req,res){
+        Gineco.create(req.body, function(err, data){
+            if (err){
+                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                res.status(422).json(errors );
+            }
+            else{
+                Paciente.findOneAndUpdate({_id:req.params.id}, {$push : {gineco: data}}, {runValidators: true, new: true}, function(err, data){
+                    if (err){
+                        const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                        res.status(422).json(errors );
+                    }
+                    else{
+                       res.json(data)
+                    }
+                })
+               
+                
+            }
+        })
+    },
+
+    updateGineco: (req, res) => {
+        // console.log("in controller")
+        // console.log(req.body._id2);
+        Gineco.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
+            .then((data) => {
+                res.json({updatedGineco: data});
+               
+                Paciente.findOneAndUpdate(
+                    { "_id": req.body._id2, "gineco._id": req.params.id },
+                    { 
+                        "$set": {
+                            "gineco": req.body
                         },
                        
                     },

@@ -27,10 +27,6 @@ export class FamiliarComponent implements OnInit {
     this.hideActual();
   }
 
-
-  
-
-
   hideActual(){
     // console.log(this.pat.actual);
     if(this.pat.familiar.length >0){
@@ -42,7 +38,7 @@ export class FamiliarComponent implements OnInit {
 
   refresh(){
     //refresh trick that did work to refresh @Input data
-    console.log("in refresh");
+    // console.log("in refresh");
     this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
       this._router.navigate([decodeURI(this._location.path())]);
     });
@@ -51,8 +47,8 @@ export class FamiliarComponent implements OnInit {
   
 
   onCreate(pat, form: NgForm): void { 
-    console.log("onCreate");
-    console.log(form.value);
+    // console.log("onCreate");
+    // console.log(form.value);
    
     this._httpService.familiar(pat, form.value).subscribe((data)=>{
       // form.reset();

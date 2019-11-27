@@ -83,21 +83,30 @@ updateNoPatologico(pat,data){
 
 familiar(pat,data){
   let url='/api/pacientes/' + pat._id + '/familiar/';
-  // console.log("I am in service");
-  // console.log(data);
   
   return this._http.post(url,data);
 }
 
 updateFamiliar(pat,data){
-  // let url='/api/pacientes/' + pat._id + '/actual/'; 
   let url='/api/pacientes/familiar/' +data._id; 
-  // console.log("I am in update in service");
-  // console.log(data);
-  // console.log(url);
+
 
   return this._http.put(url,data);
 }
+
+gineco(pat,data){
+  let url='/api/pacientes/' + pat._id + '/gineco/';
+  
+  return this._http.post(url,data);
+}
+
+updateGineco(pat,data){
+  let url='/api/pacientes/gineco/' +data._id; 
+
+
+  return this._http.put(url,data);
+}
+
 
 
 

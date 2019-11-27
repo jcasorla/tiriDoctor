@@ -4,6 +4,7 @@ const actualSchema = mongoose.model('Actual').schema;
 const patologicoSchema = mongoose.model('Patologico').schema;
 const noPatologicoSchema = mongoose.model('NoPatologico').schema;
 const familiarSchema = mongoose.model('Familiar').schema;
+const ginecoSchema = mongoose.model('Gineco').schema;
 
 
 const PacienteSchema = new mongoose.Schema({
@@ -73,6 +74,7 @@ const PacienteSchema = new mongoose.Schema({
     patologico: [patologicoSchema],
     nopatologico: [noPatologicoSchema],
     familiar: [familiarSchema],
+    gineco: [ginecoSchema],
         
 }, {timestamps: true });
 

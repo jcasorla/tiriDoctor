@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const antecedenteGinecoSchema = new mongoose.Schema({
+const ginecoSchema = new mongoose.Schema({
     
     menarquia: { 
         type: String,
@@ -27,18 +27,23 @@ const antecedenteGinecoSchema = new mongoose.Schema({
         required: true
 
     },
-    a: { 
-        type: String,
-        required: true
-
-    },
     c: { 
         type: String,
         required: true
 
     },
+    ivsa: { 
+        type: String,
+        required: true
+
+    },
+    comment: { 
+        type: String,
+        required: false
+
+    },
     anticonceptivo: { 
-        type: Boolean,
+        type: String,
         required: true
 
     },
@@ -48,4 +53,4 @@ const antecedenteGinecoSchema = new mongoose.Schema({
 
     },    
 }, {timestamps: true });
-mongoose.model('antecedenteGineco', antecedenteGinecoSchema);
+mongoose.model('Gineco', ginecoSchema);

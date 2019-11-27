@@ -17,5 +17,7 @@ router.get('/', pacientes.all)
     .put('/familiar/:id', pacientes.updateFamiliar)
     .post('/:id/gineco', pacientes.createGineco)
     .put('/gineco/:id', pacientes.updateGineco)
+    .post('/:id/fisico', pacientes.createFisico)
+    .put('/fisico/:id', pacientes.updateFisico)
 
 module.exports = router;

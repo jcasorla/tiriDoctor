@@ -1,20 +1,20 @@
 const mongoose = require('mongoose');
 
 const fisicoSchema = new mongoose.Schema({
-    signosVitales: { 
-        type: String,
-        required: true      
-
-    },
-    ta: {
+  
+    taDerecho: {
         type: String,
         required: true 
     },
-    fc: {
+    taIzquierdo: {
+        type: String,
+        required: true 
+    },
+    freqC: {
         type: String,
         required: true
     },
-    frecResp: {
+    freqR: {
         type: String,
         required: true
     },
@@ -41,4 +41,4 @@ const fisicoSchema = new mongoose.Schema({
     
   
 }, { timestamps: true });
-mongoose.model('fisico', fisicoSchema);
+mongoose.model('Fisico', fisicoSchema);

@@ -1,60 +1,124 @@
 <h2>Exploracion Fisica</h2>
 
-<div class='col-lg'>
+<div class='col-lg' *ngIf="show">
  
-        <form  (submit)="onSubmit($event, newForm)" #newForm="ngForm">
-          
+    <form  #newForm="ngForm" (submit)="onCreate(pat,newForm)">
+        
+        <div class="form-row">
+            <div class="form-group col-sm-2">
+                <label for="taDerecho">T.A. (derecho)</label>                    
+                <input class="form-control" type="text" name="taDerecho" [ngModel]="fisico.taDerecho">
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="taIzquierdo">T.A. (izquierdo)</label>                    
+                <input class="form-control" type="text" name="taIzquierdo" [ngModel]="fisico.taIzquierdo">
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="freqC">F.C.</label>                    
+                <input class="form-control" type="text" name="freqC" [ngModel]="fisico.freqC">
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="freqR">Frec. Resp.</label>                    
+                <input class="form-control" type="text" name="freqR" [ngModel]="fisico.freqR">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-sm-2">
+                <label for="temp">Temp.</label>                    
+                <input class="form-control" type="text" name="temp" [ngModel]="fisico.temp">
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="peso">Peso</label>                    
+                <input class="form-control" type="text" name="peso" [ngModel]="fisico.peso">
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="talla">Talla</label>                    
+                <input class="form-control" type="text" name="talla" [ngModel]="fisico.talla">
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="imc">IMC</label>                    
+                <input class="form-control" type="text" name="imc" [ngModel]="fisico.imc">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-lg">
+                <label for="cabeza">Cabeza Y Cuello</label>
+                
+                <textarea class="form-control"  name="cabeza" cols="3" rows="3" [ngModel]="fisico.cabeza"></textarea>
+        
+            </div>
+
+        </div>
+        <br>
+        <button class="btn btn-primary btn-sm">Añadir</button>
+        <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+        
+    </form>
+    <br>
+    
+</div>
+
+<div *ngIf="!show">
+    <div class='col-lg' *ngFor="let list of pat.fisico">
+
+        <form  #upForm="ngForm" (submit)="onUpdate(upForm)">
+            
             <div class="form-row">
                 <div class="form-group col-sm-2">
                     <label for="taDerecho">T.A. (derecho)</label>                    
-                    <input class="form-control" type="text" name="taDerecho">
+                    <input class="form-control" type="text" name="taDerecho" [ngModel]="list.taDerecho">
                 </div>
                 <div class="form-group col-sm-2">
                     <label for="taIzquierdo">T.A. (izquierdo)</label>                    
-                    <input class="form-control" type="text" name="taIzquierdo">
+                    <input class="form-control" type="text" name="taIzquierdo" [ngModel]="list.taIzquierdo">
                 </div>
                 <div class="form-group col-sm-2">
                     <label for="freqC">F.C.</label>                    
-                    <input class="form-control" type="text" name="freqC" >
+                    <input class="form-control" type="text" name="freqC" [ngModel]="list.freqC">
                 </div>
                 <div class="form-group col-sm-2">
                     <label for="freqR">Frec. Resp.</label>                    
-                    <input class="form-control" type="text" name="freqR" >
+                    <input class="form-control" type="text" name="freqR" [ngModel]="list.freqR">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-sm-2">
                     <label for="temp">Temp.</label>                    
-                    <input class="form-control" type="text" name="temp">
+                    <input class="form-control" type="text" name="temp" [ngModel]="list.temp">
                 </div>
                 <div class="form-group col-sm-2">
-                    <label for="weight">Peso</label>                    
-                    <input class="form-control" type="text" name="weight">
+                    <label for="peso">Peso</label>                    
+                    <input class="form-control" type="text" name="peso" [ngModel]="list.peso">
                 </div>
                 <div class="form-group col-sm-2">
                     <label for="talla">Talla</label>                    
-                    <input class="form-control" type="text" name="talla" >
+                    <input class="form-control" type="text" name="talla" [ngModel]="list.talla">
                 </div>
                 <div class="form-group col-sm-2">
                     <label for="imc">IMC</label>                    
-                    <input class="form-control" type="text" name="imc" >
+                    <input class="form-control" type="text" name="imc" [ngModel]="list.imc">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-lg">
-                    <label for="reason">Cabeza Y Cuello</label>
+                    <label for="cabeza">Cabeza Y Cuello</label>
                     
-                    <textarea class="form-control"  name="comments" cols="3" rows="3"></textarea>
+                    <textarea class="form-control"  name="cabeza" cols="3" rows="3" [ngModel]="list.cabeza"></textarea>
             
                 </div>
     
             </div>
+            <input type="hidden" name="_id" [ngModel]="list._id" class="form-control">
+            <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">
+                
             <br>
-            <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Añadir</button>
-            <button class="btn btn-danger btn-sm" [routerLink]="['/home']">Cancelar</button>
+            <button class="btn btn-primary btn-sm">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
             
         </form>
         <br>
-    
+        
     </div>
-    
+
+
+</div>

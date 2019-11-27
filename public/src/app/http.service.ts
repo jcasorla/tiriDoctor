@@ -107,6 +107,19 @@ updateGineco(pat,data){
   return this._http.put(url,data);
 }
 
+fisico(pat,data){
+  let url='/api/pacientes/' + pat._id + '/fisico/';
+  
+  return this._http.post(url,data);
+}
+
+updateFisico(pat,data){
+  let url='/api/pacientes/fisico/' +data._id; 
+
+
+  return this._http.put(url,data);
+}
+
 
 
 

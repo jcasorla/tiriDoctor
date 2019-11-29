@@ -17,6 +17,7 @@ export class ViewPatComponent implements OnInit {
   displayNoPatologico: any;
   displayGineco: any;
   displayFisico: any;
+  displayProblemas: any;
   
 
   constructor(
@@ -66,6 +67,7 @@ export class ViewPatComponent implements OnInit {
     this.displayNoPatologico = null;
     this.displayFisico = null;
     this.displayGineco = null;
+    this.displayProblemas = null;
   }
   showFamiliar(data): void { 
     // console.log("in familiar");
@@ -76,6 +78,7 @@ export class ViewPatComponent implements OnInit {
     this.displayNoPatologico = null;
     this.displayFisico = null;
     this.displayGineco = null;
+    this.displayProblemas = null;
   }
   showPatologico(data): void { 
     // console.log("in patologico");
@@ -85,6 +88,7 @@ export class ViewPatComponent implements OnInit {
     this.displayNoPatologico = null;
     this.displayFisico = null;
     this.displayGineco = null;
+    this.displayProblemas = null;
   }
   showNoPatologico(data): void { 
     // console.log("in no patologico");
@@ -94,6 +98,7 @@ export class ViewPatComponent implements OnInit {
     this.displayIllness=null;
     this.displayFisico = null;
     this.displayGineco = null;
+    this.displayProblemas = null;
   }
 
   showGineco(data): void { 
@@ -105,6 +110,7 @@ export class ViewPatComponent implements OnInit {
     this.displayIllness=null;
     this.displayNoPatologico = null;
     this.displayFisico = null;
+    this.displayProblemas = null;
   }
 
   showFisico(data): void { 
@@ -115,6 +121,17 @@ export class ViewPatComponent implements OnInit {
     this.displayFamiliar = null;
     this.displayIllness=null;
     this.displayGineco = null;
+    this.displayProblemas = null;
+  }
+  showProblemas(data): void { 
+    // console.log("in fisico");
+    this.displayProblemas = true;
+    this.displayNoPatologico = null;
+    this.displayPatologico = null;
+    this.displayFamiliar = null;
+    this.displayIllness=null;
+    this.displayGineco = null;
+    this.displayFisico = null;
   }
 
 }

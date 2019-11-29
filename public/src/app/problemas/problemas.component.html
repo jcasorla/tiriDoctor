@@ -1,0 +1,94 @@
+<h2>Lista de Problemas</h2>
+
+<!-- <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)">
+    <div class="form-row">
+        <div class="form-group col-lg-8">
+            <label for="nombre">Problema</label>
+            
+            <input type="text" name="nombre" [ngModel]="newproblem.nombre" class="form-control" >
+    
+        </div>
+        <div class="form-group col-sm-2">
+            <label for="activo">Activo</label>
+            <select class="form-control" name="activo" [ngModel]="newproblem.activo">
+                <option></option>
+                <option>Si</option>
+                <option>No</option>
+                
+            </select>
+    
+        </div>
+
+    </div>
+
+    
+    <button  class="btn btn-primary btn-sm">Añadir</button>
+    <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+    
+</form>
+<br> -->
+<div class="row">
+   
+    <div class="col-xl">
+        <table class="table table-light" > 
+            <thead class="table-primary">
+                <tr><th>Problemas</th><th>Activos</th><th>Actiones</th></tr>  
+            </thead>
+        
+            <tbody *ngFor="let list of pat.problema">
+                
+                <tr>
+                    <td>{{list.nombre}}</td>
+                    <td>{{list.activo}}</td>
+                    
+                
+                </tr> 
+        
+            </tbody>
+            
+            
+        </table>
+
+        
+
+    </div>
+
+    <div class="col-md">
+        <br>
+        <button *ngIf="!shownew" class="btn btn-outline-primary btn-sm" (click)="showNew()">nuevo</button>
+        <div *ngIf="shownew">
+            <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)" >
+                <div class="form-row">
+                    <div class="form-group col-lg-8">
+                        <label for="nombre">Problema</label>
+                        
+                        <input type="text" name="nombre" [ngModel]="newproblem.nombre" class="form-control" >
+                
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="activo">Activo</label>
+                        <select class="form-control" name="activo" [ngModel]="newproblem.activo">
+                            <option></option>
+                            <option>Si</option>
+                            <option>No</option>
+                            
+                        </select>
+                
+                    </div>
+        
+                </div>
+        
+                
+                <button  class="btn btn-primary btn-sm">Añadir</button>
+                <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+                
+            </form>
+            <br>
+
+        </div>
+        
+        
+
+    </div>
+
+</div>

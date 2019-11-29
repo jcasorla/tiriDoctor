@@ -8,10 +8,10 @@ const problemaSchema = new mongoose.Schema({
 
     },
     activo: { 
-        type: Boolean,
+        type: String,
         required: true
     },
     
   
 }, { timestamps: true });
-mongoose.model('problema', problemaSchema);
+mongoose.model('Problema', problemaSchema);

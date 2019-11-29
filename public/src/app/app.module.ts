@@ -17,6 +17,7 @@ import { PatologicoComponent } from './patologico/patologico.component';
 import { FisicoComponent } from './fisico/fisico.component';
 import { GinecoComponent } from './gineco/gineco.component';
 import { RefreshComponent } from './refresh/refresh.component';
+import { ProblemasComponent } from './problemas/problemas.component';
 
 
 // import { CakeComponent } from './cake/cake.component'; // <-- import FormsModule.
@@ -37,6 +38,7 @@ import { RefreshComponent } from './refresh/refresh.component';
     FisicoComponent,
     GinecoComponent,
     RefreshComponent,
+    ProblemasComponent,
     // CakeComponent
   ],
   providers: [

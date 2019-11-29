@@ -6,6 +6,7 @@ const NoPatologico = mongoose.model('NoPatologico');
 const Familiar = mongoose.model('Familiar');
 const Gineco = mongoose.model('Gineco');
 const Fisico = mongoose.model('Fisico');
+const Problema = mongoose.model('Problema');
 
 module.exports = {
 
@@ -333,6 +334,55 @@ module.exports = {
                     { 
                         "$set": {
                             "fisico": req.body
+                        },
+                       
+                    },
+                    function(err,doc) {
+                
+                    }
+                );
+                
+            })
+            .catch(err => {
+                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                res.status(422).json(errors )});
+    },
+
+    createProblema: function(req,res){
+        
+        Problema.create(req.body, function(err, data){
+            if (err){
+                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                res.status(422).json(errors );
+            }
+            else{
+                Paciente.findOneAndUpdate({_id:req.params.id}, {$push : {problema: data}}, {runValidators: true, new: true}, function(err, data){
+                    if (err){
+                        const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                        res.status(422).json(errors );
+                    }
+                    else{
+                       res.json(data)
+                    }
+                })
+               
+                
+            }
+        })
+    },
+
+    updateProblema: (req, res) => {
+        // console.log("in controller")
+        // console.log(req.body._id2);
+        Problema.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
+            .then((data) => {
+                res.json({updatedProblema: data});
+               
+                Paciente.findOneAndUpdate(
+                    { "_id": req.body._id2, "problema._id": req.params.id },
+                    { 
+                        "$set": {
+                            "problema": req.body
                         },
                        
                     },

@@ -120,6 +120,19 @@ updateFisico(pat,data){
   return this._http.put(url,data);
 }
 
+problema(pat,data){
+  let url='/api/pacientes/' + pat._id + '/problemas/';
+   
+  return this._http.post(url,data);
+}
+
+updateProblema(pat,data){
+  let url='/api/pacientes/problemas/' +data._id; 
+
+
+  return this._http.put(url,data);
+}
+
 
 
 

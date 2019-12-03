@@ -12,8 +12,10 @@ import {Location} from '@angular/common';
 export class ProblemasComponent implements OnInit {
 
   newproblem: any = {};
+  editproblem: any ={};
   errors:any;
   shownew= false;
+  showedit= false;
   show=true;
 
   constructor(
@@ -40,6 +42,15 @@ export class ProblemasComponent implements OnInit {
 
   showNew(){
     this.shownew=true;
+    this.showedit=false;
+  }
+
+  showEdit(list){
+    // console.log(list);
+    this.editproblem=list;
+    console.log(this.editproblem);
+    this.showedit=true;
+    this.shownew=false;
   }
 
   refresh(){
@@ -66,10 +77,10 @@ export class ProblemasComponent implements OnInit {
   onUpdate(form: NgForm) {
     // console.log("printing on submit");
     // console.log(form.value);
-    
+    console.log(this.pat.problema);
     this._httpService.updateProblema(this.pat,form.value).subscribe({
       next: (data)=>{
-        
+                
        this.refresh();
        
       

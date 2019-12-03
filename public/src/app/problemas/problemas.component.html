@@ -1,61 +1,48 @@
-<h2>Lista de Problemas</h2>
 
-<!-- <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)">
-    <div class="form-row">
-        <div class="form-group col-lg-8">
-            <label for="nombre">Problema</label>
-            
-            <input type="text" name="nombre" [ngModel]="newproblem.nombre" class="form-control" >
-    
-        </div>
-        <div class="form-group col-sm-2">
-            <label for="activo">Activo</label>
-            <select class="form-control" name="activo" [ngModel]="newproblem.activo">
-                <option></option>
-                <option>Si</option>
-                <option>No</option>
-                
-            </select>
-    
-        </div>
-
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Lista de Problemas</h2>
+    </div>
+    <div class="col-sm-1">
+        <button *ngIf="!shownew" class="btn btn-outline-primary btn-sm" (click)="showNew()">Nuevo</button>
     </div>
 
-    
-    <button  class="btn btn-primary btn-sm">Añadir</button>
-    <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
-    
-</form>
-<br> -->
+</div>
+
+
 <div class="row">
    
-    <div class="col-xl">
-        <table class="table table-light" > 
-            <thead class="table-primary">
-                <tr><th>Problemas</th><th>Activos</th><th>Actiones</th></tr>  
-            </thead>
-        
-            <tbody *ngFor="let list of pat.problema">
-                
-                <tr>
-                    <td>{{list.nombre}}</td>
-                    <td>{{list.activo}}</td>
+    <div class="col-xl-7">
+        <div class="container-fluid">
+            <table class="table table-light" > 
+                <thead class="table-primary">
+                    <tr class="d-flex"><th class="col-sm-7">Problemas</th><th class="col-sm-2">Activos</th><th class="col-sm-3">Actiones</th></tr>  
+                </thead>
+            
+                <tbody *ngFor="let list of pat.problema">
                     
+                    <tr class="d-flex">
+                        <td class="col-sm-7">{{list.nombre}}</td>
+                        <td class="col-sm-2">{{list.activo}}</td>
+                        <td class="col-sm-3"><button class="btn btn-outline-primary btn-sm" (click)="showEdit(list)">Editar</button><button class="btn btn-outline-danger btn-sm" (click)="showNew()">Eliminar</button></td>
+                        
+                    
+                    </tr> 
+            
+                </tbody>
                 
-                </tr> 
-        
-            </tbody>
-            
-            
-        </table>
+                
+            </table>
+           
+        </div>    
 
         
 
     </div>
 
-    <div class="col-md">
+    <div class="col-md-5">
         <br>
-        <button *ngIf="!shownew" class="btn btn-outline-primary btn-sm" (click)="showNew()">nuevo</button>
+        <!-- <button *ngIf="!shownew" class="btn btn-outline-primary btn-sm" (click)="showNew()">Nuevo</button> -->
         <div *ngIf="shownew">
             <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)" >
                 <div class="form-row">
@@ -65,7 +52,7 @@
                         <input type="text" name="nombre" [ngModel]="newproblem.nombre" class="form-control" >
                 
                     </div>
-                    <div class="form-group col-sm-2">
+                    <div class="form-group col-sm-3">
                         <label for="activo">Activo</label>
                         <select class="form-control" name="activo" [ngModel]="newproblem.activo">
                             <option></option>
@@ -80,6 +67,40 @@
         
                 
                 <button  class="btn btn-primary btn-sm">Añadir</button>
+                <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+                
+            </form>
+            <br>
+
+        </div>
+
+        <div *ngIf="showedit">
+            <h4>edit</h4>
+            <form  #upForm="ngForm" (submit)="onUpdate(upForm)" >
+                <div class="form-row">
+                    <div class="form-group col-lg-8">
+                        <label for="nombre">Problema</label>
+                        
+                        <input type="text" name="nombre" [ngModel]="editproblem.nombre" class="form-control" >
+                
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="activo">Activo</label>
+                        <select class="form-control" name="activo" [ngModel]="editproblem.activo">
+                            <option></option>
+                            <option>Si</option>
+                            <option>No</option>
+                            
+                        </select>
+                
+                    </div>        
+                </div>
+                <input type="hidden" name="_id" [ngModel]="editproblem._id" class="form-control">
+                <input type="hidden" name="created_at" [ngModel]="editproblem.createdAt" class="form-control">
+                <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">
+        
+                
+                <button  class="btn btn-primary btn-sm">Editar</button>
                 <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
                 
             </form>

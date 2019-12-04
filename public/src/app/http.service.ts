@@ -133,6 +133,16 @@ updateProblema(pat,data){
   return this._http.put(url,data);
 }
 
+deleteProblema(pat,data){
+  // console.log("is pat empty?");
+  // console.log(pat);
+  // console.log(data);
+  let url='/api/pacientes/problemas/delete/' +data._id; 
+
+
+  return this._http.put(url,pat);
+}
+
 
 
 

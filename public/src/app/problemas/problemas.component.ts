@@ -94,4 +94,15 @@ export class ProblemasComponent implements OnInit {
     });
   }
 
+  onClickDelete(data) {
+    if(confirm("Estas seguro de eliminar a " +data.nombre)){
+      const observable = this._httpService.deleteProblema(this.pat,data);
+      
+      observable.subscribe(data => {
+        this.refresh();
+      });
+    }
+    
+  }
+
 }

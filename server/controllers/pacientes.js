@@ -396,6 +396,36 @@ module.exports = {
             res.status(422).json(errors )});
     },
 
+    deleteProblema: (req, res) => {
+        // console.log(req.body._id);
+        // console.log(req.params.id);
+        
+        Problema.findOneAndDelete({ _id : req.params.id })
+        .then((data) => {
+            res.json(data);
+
+            Paciente.findById({ _id : req.body._id })
+            .then((paciente) => {
+                // res.json({paciente: paciente})
+                paciente.problema.id(req.params.id).remove();            
+                paciente.save(function (err) {
+                if (err) return handleError(err);
+                console.log('the subdocs were removed');
+            })
+            // .catch(err => res.json(err));
+
+            
+        });
+        })
+        .catch(err => {
+            res.json(err);
+        });        
+
+    },
+
+    
+    
+
 //another way of updating child documents
 //     updateProblema: (req, res) => {
 //         console.log(req.body._id);

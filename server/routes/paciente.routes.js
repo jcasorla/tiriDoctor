@@ -21,5 +21,6 @@ router.get('/', pacientes.all)
     .put('/fisico/:id', pacientes.updateFisico)
     .post('/:id/problemas', pacientes.createProblema)
     .put('/problemas/:id', pacientes.updateProblema)
+    .put('/problemas/delete/:id/', pacientes.deleteProblema)
 
 module.exports = router;

@@ -371,95 +371,64 @@ module.exports = {
         })
     },
 
+    //best way to update chile documents
     updateProblema: (req, res) => {
-        // console.log("in controller")
-        console.log(req.body._id);
-        console.log("match this id")
-        console.log(req.params.id);
+    Problema.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
+        .then((data) => {
+            res.json({updatedProblema: data});
+           
+            Paciente.findOneAndUpdate(
+                { "_id": req.body._id2, "problema._id": req.params.id },
+                { 
+                    "$set": {
+                        "problema.$.nombre": req.body.nombre,"problema.$.activo": req.body.activo
+                    },
+                                    
+                },
+                function(err,doc) {
+            
+                }
+            );
+            
+        })
+        .catch(err => {
+            const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+            res.status(422).json(errors )});
+    },
+
+//another way of updating child documents
+//     updateProblema: (req, res) => {
+//         console.log(req.body._id);
+//         console.log("match this id")
+//         console.log(req.params.id);
         
-        Problema.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
-            .then((data) => {
-                res.json({updatedProblema: data});
+//         Problema.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
+//             .then((data) => {
+//                 res.json({updatedProblema: data});
 
-                Paciente.findById({ _id : req.body._id2 })
-                .then((data) => {
-                    // res.json({paciente: data})
-
-                    for(let i=0; i<data.problema.length; i++){
-                        // console.log(data.problema[i]);
-                        // console.log(data.problema[i]._id);
-                        if(data.problema[i]._id==req.params.id){
+//                 Paciente.findById({ _id : req.body._id2 })
+//                 .then((data) => {
+//                     for(let i=0; i<data.problema.length; i++){
+                      
+//                         if(data.problema[i]._id==req.params.id){
                             
-                            data.problema[i].activo=req.body.activo;
-                            data.problema[i].nombre=req.body.nombre;
-                            console.log("match");
-                            console.log(data.problema[i]);
-                        }
-                    }
-                    data.save();
-                    // .then((data) => {
-                    //     res.json({editPaciente: data});
-                    //     console.log(data);
-                    // })
-                    // .catch(err => {
-                    //     // console.log(data);
-                    //     //const errors = Object.keys(err.errors).map(key => err.errors[key].message)
-                    //     //console.log(errors); 
-                    //     //res.status(422).json(errors )
-                    // });
-                    })
-                .catch(err => res.json(err));
-                // })
-                    
-
-               
-                // Paciente.findOneAndUpdate(req.body._id2, req.body)
-                // .then((data) => {
-                //     res.json({updatedPaciente: data});
-                // })
-                // .catch(err => {
-                //     const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
-                //     res.status(422).json(errors )});
-                // //     { 
-                // //         "$set": {"problema": req.body},
-                       
-                // //     },
-                // //     function(err,doc) {
-                
-                // //     }
-                // // );
-                
-            })
-            .catch(err => {
-                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
-                res.status(422).json(errors )});
-    }
+//                             data.problema[i].activo=req.body.activo;
+//                             data.problema[i].nombre=req.body.nombre;
+//                             console.log("match");
+//                             console.log(data.problema[i]);
+//                         }
+//                     }
+//                     data.save();
+                   
+//                     })
+//                 .catch(err => res.json(err));
+                                
+//             })
+//             .catch(err => {
+//                 const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+//                 res.status(422).json(errors )});
+//     }
 	
 }
 
-// updateFisico: (req, res) => {
-//     // console.log("in controller")
-//     // console.log(req.body);
-//     Fisico.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
-//         .then((data) => {
-//             res.json({updatedGineco: data});
-           
-//             Paciente.findOneAndUpdate(
-//                 { "_id": req.body._id2, "fisico._id": req.params.id },
-//                 { 
-//                     "$set": {
-//                         "fisico.$.taDerecho": req.body.taDerecho,"fisico.$.taIzquierdo": req.body.taIzquierdo
-//                     },
-                                    
-//                 },
-//                 function(err,doc) {
-            
-//                 }
-//             );
-            
-//         })
-//         .catch(err => {
-//             const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
-//             res.status(422).json(errors )});
-// },
 

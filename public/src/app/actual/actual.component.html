@@ -1,7 +1,7 @@
 <h2>Problema Actual</h2>
 
 
-<div class='col-lg' *ngIf="show">
+<div class='col-lg scroll scrollbar-primary' *ngIf="show">
     <br>
     <form  #actualForm="ngForm" (submit)="onCreate(pat, actualForm)" >
         <div class="form-row">
@@ -37,7 +37,7 @@
 </div>
 
 <div  *ngIf="!show" >
-    <div class='col-lg' *ngFor="let list of pat.actual">
+    <div class='col-lg scroll scrollbar-primary' *ngFor="let list of pat.actual">
         <br>
         <form  #actualForm="ngForm" (submit)="onUpdate(actualForm)" >
             <div class="form-row">

@@ -1,6 +1,6 @@
 <h2>Antecedentes Personales No Patologicos</h2>
 
-<div class='col-lg' *ngIf="show">
+<div class='col-lg scroll scrollbar-primary' *ngIf="show">
     <br>
     <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)">
        
@@ -68,7 +68,7 @@
 </div>
 
 <div *ngIf="!show">
-    <div class='col-lg' *ngFor="let list of pat.nopatologico">
+    <div class='col-lgscroll scrollbar-primary ' *ngFor="let list of pat.nopatologico">
         <form  #upForm="ngForm" (submit)="onUpdate(upForm)">
             
     

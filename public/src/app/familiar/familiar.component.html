@@ -1,6 +1,6 @@
 <h2>Antecedentes Familiares</h2>
 
-<div class='col-lg' *ngIf="show">
+<div class='col-lg scroll scrollbar-primary' *ngIf="show">
     <br>
     <form  #newForm="ngForm" (submit)="onCreate(pat,newForm)" >
         <div class="form-check form-check-inline">
@@ -90,7 +90,7 @@
 </div>
 
 <div *ngIf="!show">
-    <div class='col-lg' *ngFor="let list of pat.familiar">
+    <div class='col-lg scroll scrollbar-primary' *ngFor="let list of pat.familiar">
         <br>
         <form  #upForm="ngForm" (submit)="onUpdate(upForm)">
             <div class="form-check form-check-inline">

@@ -1,23 +1,29 @@
 
-<div class="col-xl scroll scrollbar-primary">
-    <table class="table table-light" > 
-        <thead class="table-primary">
-            <tr><th>#</th><th>Pacientes</th><th>Actiones Disponibles</th></tr>  
-        </thead>
+<div class="col-xl">
+    <input type="text" [(ngModel)]="name" (input)="search()" placeholder="Busqueda" aria-label="Search">
+    <div class="scroll scrollbar-primary mt-2">    
     
-        <tbody *ngFor="let pat of patients">
+        <table class="table table-light" > 
+            <thead class="table-primary">
+                <tr><th>#</th><th>Pacientes</th><th>Actiones Disponibles</th></tr>  
+            </thead>
+        
+            <tbody *ngFor="let pat of patients">
+                
+                <tr>
+                    <th scope="row">{{pat.id}}</th>
+                    <td><button [routerLink]="['/view/' + pat._id]" type="button" class="btn btn-link btn-sm">{{pat.firstName}} {{pat.lastName}} {{pat.sLastName}}</button></td>   
+                    <td> <button [routerLink]="['/edit/' + pat._id]" type="button" class="btn btn-link btn-sm">Editar</button> | <button (click)="onClickDelete(pat)" type="button" class="btn btn-link btn-sm">Eliminar</button> </td>
+                
+                </tr> 
+        
+            </tbody>
             
-            <tr>
-                <th scope="row">{{pat.id}}</th>
-                <td><button [routerLink]="['/view/' + pat._id]" type="button" class="btn btn-link btn-sm">{{pat.firstName}} {{pat.lastName}} {{pat.sLastName}}</button></td>   
-                <td> <button [routerLink]="['/edit/' + pat._id]" type="button" class="btn btn-link btn-sm">Editar</button> | <button (click)="onClickDelete(pat)" type="button" class="btn btn-link btn-sm">Eliminar</button> </td>
             
-            </tr> 
+        </table>
+                
     
-        </tbody>
-        
-        
-    </table>
-            
+        </div>
 
 </div>
+

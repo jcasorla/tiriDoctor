@@ -409,7 +409,11 @@ module.exports = {
                 // res.json({paciente: paciente})
                 paciente.problema.id(req.params.id).remove();            
                 paciente.save(function (err) {
-                if (err) return handleError(err);
+                if (err){
+                    const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                    res.status(422).json(errors);
+                }
+                // if (err) return handleError(err);
                 console.log('the subdocs were removed');
             })
             // .catch(err => res.json(err));

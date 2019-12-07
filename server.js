@@ -5,6 +5,15 @@ const session = require('express-session');
 const path = require('path');
 const bp = require('body-parser');
 const router = require('./server/routes');
+
+//added
+app.use('/img',express.static( path.join(__dirname, './static/img')));
+// app.use('/css',express.static(__dirname + "./static/css"));
+
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+//end
+
 app.use(express.urlencoded({extended: true}));
 app.use(bp.urlencoded({ extended: false }))
 app.use(bp.json())

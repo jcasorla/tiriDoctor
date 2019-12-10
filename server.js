@@ -18,12 +18,12 @@ app.use(express.urlencoded({extended: true}));
 app.use(bp.urlencoded({ extended: false }))
 app.use(bp.json())
 app.use(express.static( path.join(__dirname, './public/dist/public')));
-app.use(session({
-    secret: 'at76uhcltpee8foi',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 60000 }
-}));
+// app.use(session({
+//     secret: 'at76uhcltpee8foi',
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { maxAge: 60000 }
+// }));
 app.use(router);
 
 app.listen(8000, () => console.log('listening on port 8000'));

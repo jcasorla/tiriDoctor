@@ -1,35 +1,175 @@
-const Paciente = require('mongoose').model('Paciente');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
-var Q = require('q');
-var request = require('request');
+// var Q = require('q');
+// var request = require('request');
+
 
 module.exports = {
 
-    authenticateUser(req, res) {
-        userService.authenticate(req.body.username, req.body.password)
-            .then(function (token) {
-                if (token) {
-                    // authentication successful
-                    res.send({ token: token });
-                } else {
-                    // authentication failed
-                    res.status(401).send('Username or password is incorrect');
+    login(req, res) {
+        console.log(" req.body: ", req.body);
+
+        if(req.body.email <2){
+            req.flash()
+        }
+    
+        User.findOne({email:req.body.email}, (err, user) => {
+            if (err) {
+                for(var key in err.errors){
+                    req.flash("qform", err.errors[key].message);
+                    console.log("checking validation errors!!!!!!!")
                 }
-            })
-            .catch(function (err) {
-                res.status(400).send(err);
-            });
+                res.redirect("/")
+            }
+            else {
+    
+                bcrypt.compare('req.body.password', 'password')
+                .then(result => {
+                    req.session.user_id = user._id;
+                    req.session.name= user.first_name + " " + user.last_name;
+                    req.session.email = user.email;
+                    res.redirect("/login")
+                    
+                })
+                .catch(error => {
+                    // for(var key in err.errors){
+                    //     req.flash("qform", err.errors[key].message);
+                    //     // console.log("checking validation errors!!!!!!!")
+                    // }
+    
+                    req.flash("qform", "Unable to login");
+                    res.redirect("/")
+                    
+                })
+    
+                // Code...
+                
+            }
+        })
+
+
+        // userService.authenticate(req.body.username, req.body.password)
+        //     .then(function (token) {
+        //         if (token) {
+        //             // authentication successful
+        //             res.send({ token: token });
+        //         } else {
+        //             // authentication failed
+        //             res.status(401).send('Username or password is incorrect');
+        //         }
+        //     })
+        //     .catch(function (err) {
+        //         res.status(400).send(err);
+        //     });
     },
     
-    registerUser(req, res) {
-        userService.create(req.body)
-            .then(function () {
-                res.sendStatus(200);
-            })
-            .catch(function (err) {
-                res.status(400).send(err);
-            });
+    register(req, res) {
+        console.log("in register");
+        console.log(" req.body: ", req.body);
+        // req.session.email=req.body.email;
+        // var display=false;
+    
+        if(req.body.cpwd ==""){
+            req.flash("qform", "confirm Password canot be blank!");
+            console.log("in if");
+            res.redirect("/register")     
+    
+        }
+        
+        else if(req.body.password!=req.body.cpwd){
+            req.flash("qform", "Passwords do not match!");
+            console.log("do not match");
+            res.redirect("/register")
+    
+        }
+    
+       else{
+        // var username= req.body.firstName + req.body.lastName;
+        console.log("this is username: " + username);  
+        // var salt = bcrypt.genSaltSync(10);  
+
+        let hash = bcrypt.hashSync(req.body.password, 10);
+        console.log(hash);
+        if (bcrypt.compareSync(req.body.password, hash)) {
+            console.log("password hashed ");
+                var user = new User({email: req.body.email , firstName: req.body.firstName, lastName: req.body.lastName, password: hash, username: username});
+                user.save()
+                .then((data) => {
+                    res.redirect("/login");
+                })
+                .catch((err => {
+                    console.log("in error");
+                    for(var key in err.errors){
+                        req.flash("qform", err.errors[key].message);
+                    } 
+                    res.redirect("/register")
+                })
+                // .then((data => {
+                //     res.redirect("/login");
+                   
+                // })
+                // .catch(err =>{
+            
+                //     for(var key in err.errors){
+                //         req.flash("qform", err.errors[key].message);
+                //     } 
+                //     res.redirect("/register")
+            
+                // })
+                    
+            
+            );
+
+          } 
+        //   else {
+        //     // Passwords don't match
+        //     console.log("Passwords don't match");
+        //   }
+    
+        // bcrypt.hashSync(req.body.password, 10, function(err, hash) {
+        //     if(err){
+        //         for(var key in err.errors){
+        //             req.flash("qform", err.errors[key].message);
+        //         }
+        //         res.redirect("/register")
+                
+        //     }
+        //     else{
+        //         console.log("password hashed ");
+        //         var user = new User({email: req.body.email , firstName: req.body.firstName, lastName: req.body.lastName, password: hash});
+        //         user.save()
+        //         .then((data => {
+        //             res.redirect("/login");
+                   
+        //         })
+        //         .catch(err =>{
+            
+        //             for(var key in err.errors){
+        //                 req.flash("qform", err.errors[key].message);
+        //             } 
+        //             res.redirect("/register")
+            
+        //         })
+                    
+            
+        //         );
+
+        //     }
+        //   }); 
+
+       }
+     
+     
+
+        // userService.create(req.body)
+        //     .then(function () {
+        //         res.sendStatus(200);
+        //     })
+        //     .catch(function (err) {
+        //         res.status(400).send(err);
+        //     });
     },
 }
 

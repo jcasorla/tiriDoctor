@@ -54,6 +54,7 @@ module.exports = {
                 if (bcrypt.compareSync(req.body.password, user.password)) {
                     // Passwords match
                     console.log("Passwords match");
+                    res.redirect("/");
                 } else {
                     // Passwords don't match
                     console.log("Passwords don't match");

@@ -5,29 +5,29 @@ const UserSchema = new mongoose.Schema({
     id: { type: Number, unique: true, min: 1 },
     firstName: { 
         type: String,
-        required: true,
-        minlength: [3, 'At least 3 characters long']
+        required: [true, "Debes ingresar el primer nombre"],
+        minlength: [3, 'el primer nombre debe tener por lo menos 3 letras']
 
     },
     lastName: { 
         type: String,
-        required: true,
-        minlength: [3, 'At least 3 characters long']
+        required: [true, "Debes ingresar el apellido"],
+        minlength: [3, 'el apellido debe tener por lo menos 3 letras']
 
     },
     username: { 
         type: String,
-        required: true,
-        minlength: [3, 'At least 3 characters long']
+        required: [true, "username cannot be blank"],
+        minlength: [3, 'username must have atleast 3 chars']
 
     },     
     email: {
         type: String,
-        required: false
+        required: [true, "debes ingresar el correo electronico"],
     },
     password: {
         type: String,
-        required: false
+        required: [true, "debes ingresar la contraseña"],
     },
     
         

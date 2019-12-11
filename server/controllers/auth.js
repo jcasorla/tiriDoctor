@@ -4,50 +4,139 @@ var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 // var Q = require('q');
 // var request = require('request');
+// Promise = require('bluebird');
+// mongoose.Promise = Promise;
 
-
+function validateEmail(mail) 
+{
+if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+{
+    return (true)
+}
+    return (false)
+}
 module.exports = {
+
 
     login(req, res) {
         console.log(" req.body: ", req.body);
 
-        if(req.body.email <2){
-            req.flash()
+        // if(req.body.email <2){
+        //     req.flash()
+        // }
+
+        if(req.body.username.includes("@")){
+            console.log("email");
+        }else{
+            console.log("username");
         }
-    
-        User.findOne({email:req.body.email}, (err, user) => {
-            if (err) {
-                for(var key in err.errors){
-                    req.flash("qform", err.errors[key].message);
-                    console.log("checking validation errors!!!!!!!")
+
+        // if (bcrypt.compareSync("myPassword", hash)) {
+        //     // Passwords match
+        //     console.log("Passwords match");
+        //   } else {
+        //     // Passwords don't match
+        //     console.log("Passwords don't match");
+        //   }
+          
+        // Paciente.findById({ _id : req.params.id })
+        //     .then((data) => {
+        //         res.json({paciente: data})
+        //     })
+        //     .catch(err => res.json(err));        
+
+        console.log(req.body.username);
+        User.findOne({email:req.body.username})
+            .then((user) => {
+                console.log("email found");
+                console.log(user);
+                console.log("nada");
+                if (bcrypt.compareSync(req.body.password, user.password)) {
+                    // Passwords match
+                    console.log("Passwords match");
+                } else {
+                    // Passwords don't match
+                    console.log("Passwords don't match");
+                    req.flash("qform", "No se puede aceder");
                 }
-                res.redirect("/")
-            }
-            else {
+                // async function run() {
+                //     const saltValue = await bcrypt.genSalt(10);
+                //     bcrypt
+                //       .compareSync(req.body.password, user.password)
+                //       .then(result => console.log(result))
+                //       .catch(error => console.log(error));
+                //   }
+                // run();
+               
     
-                bcrypt.compare('req.body.password', 'password')
-                .then(result => {
-                    req.session.user_id = user._id;
-                    req.session.name= user.first_name + " " + user.last_name;
-                    req.session.email = user.email;
-                    res.redirect("/login")
+                // bcrypt.compareSync('password',req.body.password)
+                // .then(result => {
+                //     // req.session.user_id = user._id;
+                //     // req.session.name= user.first_name + " " + user.last_name;
+                //     // req.session.email = user.email;
+                //     res.redirect("/")
                     
-                })
-                .catch(error => {
-                    // for(var key in err.errors){
-                    //     req.flash("qform", err.errors[key].message);
-                    //     // console.log("checking validation errors!!!!!!!")
-                    // }
-    
-                    req.flash("qform", "Unable to login");
-                    res.redirect("/")
+                // })
+                // .catch(error => {
+                       
+                //     req.flash("qform", "Unable to login");
+                //     res.redirect("/login")
                     
-                })
+                // })
+            })
+            .catch(err =>{
+                req.flash("qform", "No se puede aceder");
+                res.redirect("/login")
+            });
+        // , (err, user) => {
+        //     if (err) {
+        //         // for(var key in err.errors){
+        //         //     req.flash("qform", err.errors[key].message);
+        //         //     console.log("checking validation errors!!!!!!!")
+        //         // }
+        //         req.flash("qform", "No se puede aceder");
+        //         res.redirect("/login")
+        //     }
+        //     else {
+        //         console.log("email found");
+        //         // console.log(user);
+        //         if (bcrypt.compareSync(req.body.password, user.password)) {
+        //             // Passwords match
+        //             console.log("Passwords match");
+        //         } else {
+        //             // Passwords don't match
+        //             console.log("Passwords don't match");
+        //             req.flash("qform", "No se puede aceder");
+        //         }
+        //         // async function run() {
+        //         //     const saltValue = await bcrypt.genSalt(10);
+        //         //     bcrypt
+        //         //       .compareSync(req.body.password, user.password)
+        //         //       .then(result => console.log(result))
+        //         //       .catch(error => console.log(error));
+        //         //   }
+        //         // run();
+               
     
-                // Code...
+        //         // bcrypt.compareSync('password',req.body.password)
+        //         // .then(result => {
+        //         //     // req.session.user_id = user._id;
+        //         //     // req.session.name= user.first_name + " " + user.last_name;
+        //         //     // req.session.email = user.email;
+        //         //     res.redirect("/")
+                    
+        //         // })
+        //         // .catch(error => {
+                       
+        //         //     req.flash("qform", "Unable to login");
+        //         //     res.redirect("/login")
+                    
+        //         // })
+    
+        //         // Code...
                 
-            }
-        })
+        //     }
+        // })
 
 
         // userService.authenticate(req.body.username, req.body.password)
@@ -70,8 +159,16 @@ module.exports = {
         console.log(" req.body: ", req.body);
         // req.session.email=req.body.email;
         // var display=false;
+        
+        var result=validateEmail(req.body.email);
+
+        if(!result){
+            req.flash("qform", "Correo Electronico no es valido");
+            console.log("in email check");
+            res.redirect("/register")     
+        }
     
-        if(req.body.cpwd ==""){
+        else if(req.body.cpwd ==""){
             req.flash("qform", "confirm Password canot be blank!");
             console.log("in if");
             res.redirect("/register")     
@@ -86,78 +183,89 @@ module.exports = {
         }
     
        else{
-        // var username= req.body.firstName + req.body.lastName;
-        console.log("this is username: " + username);  
-        // var salt = bcrypt.genSaltSync(10);  
 
-        let hash = bcrypt.hashSync(req.body.password, 10);
-        console.log(hash);
-        if (bcrypt.compareSync(req.body.password, hash)) {
-            console.log("password hashed ");
+       
+        if(!req.body.firstName || !req.body.lastName){
+            username='';
+        }
+        else{
+            var first= req.body.firstName;
+            var first=first.toLowerCase();
+            firstS=first.split('');
+            var firstI=firstS[0];
+            var last=req.body.lastName;        
+            last=last.toLowerCase();
+            username=firstI+last;
+        }
+        
+        
+
+        console.log("this is username: " + username);  
+
+        async function run() {
+            const saltValue = await bcrypt.genSalt(10);
+            bcrypt
+              .hash(req.body.password, saltValue)
+              .then(hash =>{
+                console.log(hash)
                 var user = new User({email: req.body.email , firstName: req.body.firstName, lastName: req.body.lastName, password: hash, username: username});
                 user.save()
-                .then((data) => {
+                .then(result =>{
                     res.redirect("/login");
                 })
-                .catch((err => {
-                    console.log("in error");
-                    for(var key in err.errors){
-                        req.flash("qform", err.errors[key].message);
-                    } 
-                    res.redirect("/register")
-                })
-                // .then((data => {
-                //     res.redirect("/login");
-                   
-                // })
-                // .catch(err =>{
-            
+                // ,  function(err) {
+                //     console.log("in error");
                 //     for(var key in err.errors){
                 //         req.flash("qform", err.errors[key].message);
                 //     } 
                 //     res.redirect("/register")
-            
-                // })
-                    
-            
-            );
 
-          } 
-        //   else {
-        //     // Passwords don't match
-        //     console.log("Passwords don't match");
-        //   }
-    
-        // bcrypt.hashSync(req.body.password, 10, function(err, hash) {
-        //     if(err){
-        //         for(var key in err.errors){
-        //             req.flash("qform", err.errors[key].message);
-        //         }
-        //         res.redirect("/register")
+                // };
+                .catch(err =>{
+                    console.log("in error");
+                    for(var key in err.errors){
+                        req.flash("qform", err.errors[key].message);
+                    } 
+                    res.redirect("/register");
+
+                });
                 
-        //     }
-        //     else{
-        //         console.log("password hashed ");
-        //         var user = new User({email: req.body.email , firstName: req.body.firstName, lastName: req.body.lastName, password: hash});
+                // res.redirect("/login");
+              })
+              .catch(err =>{
+                console.log(err);
+                for(var key in err.errors){
+                    req.flash("qform", err.errors[key].message);
+                } 
+                res.redirect("/register")
+
+              });
+          }
+          run();
+        // var salt = bcrypt.genSaltSync(10);  
+
+        // let hash = bcrypt.hashSync(req.body.password, 10);
+        // console.log(hash);
+        // if (bcrypt.compareSync(req.body.password, hash)) {
+        //     console.log("password hashed ");
+        //         var user = new User({email: req.body.email , firstName: req.body.firstName, lastName: req.body.lastName, password: hash, username: username});
         //         user.save()
-        //         .then((data => {
+        //         .then((data) => {
         //             res.redirect("/login");
-                   
         //         })
-        //         .catch(err =>{
-            
+        //         .catch((err => {
+        //             console.log("in error");
         //             for(var key in err.errors){
         //                 req.flash("qform", err.errors[key].message);
         //             } 
         //             res.redirect("/register")
-            
         //         })
-                    
+               
             
-        //         );
+        //     );
 
-        //     }
-        //   }); 
+        //   } 
+  
 
        }
      

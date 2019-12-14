@@ -50,7 +50,7 @@ import { ProblemasComponent } from './problemas/problemas.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  // providers: [],
+  // providers: [],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

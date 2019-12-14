@@ -1,9 +1,10 @@
 // import { HttpService } from './http.service';
 // import { Component, OnInit } from '@angular/core';
 
-import { Component, OnInit, ComponentFactory } from '@angular/core';
-import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import { Component, OnInit, OnChanges, ComponentFactory } from '@angular/core';
+import { ActivatedRoute, Params, Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 import { AuthService } from './auth.service';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -15,24 +16,58 @@ import { AuthService } from './auth.service';
 
 
 // Implement OnInit.
-export class AppComponent implements OnInit {
-    // title='app';
-    // newfield: any = {};
+export class AppComponent implements OnInit, OnChanges {
+    title='TiriDoctor';
     mytoken: any;
-    // field: any= [];
+    loggedin;
+    
     constructor(
       private _authService: AuthService,
-      private router: Router
-      ){}
+      private _route: ActivatedRoute,
+      private _router: Router,
+      private _location: Location
+      ){
+    
+        // const observable = this._authService.getAuth();
+        // observable.subscribe(data => {
+        //   console.log(data);
+        //   if(!data){
+        //     this.express();
+        //   }
+        
+        // });
+        // this.loggedin= this._authService.getAuth();
+        // _router.events.subscribe((event: Event) => {
+        //   if (event instanceof NavigationStart) {
+        //     this.loggedin= this._authService.getAuth();
+        //     if (!this.loggedin) {
+        //       window.location.href = '/login';
+        //       window.location.reload(true)
+        //     }
+           
+        //   }
+        // });
+       
+      }
     // ngOnInit will run when the component is initialized, after the constructor method.
     ngOnInit(){
-      this.getToken();
-      // window.location.href = '/login';
-     
+      // this.getToken();     
     }
 
-    getToken() {
-    
+    ngOnChanges(){
+      // this.getToken();
+    }
+
+    refresh(){
+      //refresh trick that did work to refresh @Input data
+      this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
+        this._router.navigate([decodeURI(this._location.path())]);
+      });
+  
+    }
+ 
+
+    getToken() {    
       const observable = this._authService.getAuth();
       observable.subscribe(data => {
         console.log(data);
@@ -45,15 +80,10 @@ export class AppComponent implements OnInit {
 
     express(){
       window.location.href = '/login';
+      window.location.reload(true)
       
      
     }
-
-
-
- 
-
- 
     
 }
 

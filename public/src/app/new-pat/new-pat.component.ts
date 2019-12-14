@@ -29,7 +29,7 @@ export class NewPatComponent implements OnInit {
       
       // console.log("I am in add: ", data);
       form.reset();
-      this._router.navigate(['/list']);
+      this._router.navigate(['/app/list']);
       // this.router.navigateByUrl('/');
 
 

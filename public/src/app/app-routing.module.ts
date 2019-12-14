@@ -8,16 +8,15 @@ import {ViewPatComponent} from './view-pat/view-pat.component'
 import { EditPatComponent } from './edit-pat/edit-pat.component';
 import { RefreshComponent } from './refresh/refresh.component';
 
-//if you want to turn back remove app from routes
+
 const routes: Routes = [
 { path: 'app/home',component: HomeComponent },
 { path: 'refresh',component: RefreshComponent },
-{ path: 'list',component: ListPatComponent },
-  { path: 'new-pat',component: NewPatComponent },
+{ path: 'app/list',component: ListPatComponent },
+  { path: 'app/new-pat',component: NewPatComponent },
   // use a colon and parameter name to include a parameter in the url
-  { path: 'edit/:id', component: EditPatComponent },
-  { path: 'view/:id', component: ViewPatComponent },
-//   // redirect to /alpha if there is nothing in the url
+  { path: 'app/edit/:id', component: EditPatComponent },
+  { path: 'app/view/:id', component: ViewPatComponent },
   { path: 'app', pathMatch: 'full', redirectTo: 'app/home' },
   
  

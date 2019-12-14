@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { HttpService } from './../http.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {Location} from '@angular/common';
@@ -8,7 +8,7 @@ import {Location} from '@angular/common';
   templateUrl: './view-pat.component.html',
   styleUrls: ['./view-pat.component.css']
 })
-export class ViewPatComponent implements OnInit {
+export class ViewPatComponent implements OnInit{
   selectedpat: any = {};
   errors:any;
   displayIllness: any;
@@ -34,7 +34,7 @@ export class ViewPatComponent implements OnInit {
       this.findPatient(id)
   });
   }
-
+ 
   refresh(){
     //refresh trick that did work to refresh @Input data
     this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
@@ -55,7 +55,7 @@ export class ViewPatComponent implements OnInit {
     const observable = this._httpService.deletePatient(id);
     observable.subscribe(data => {
       // console.log(data);
-      this._router.navigate(['/list']);
+      this._router.navigate(['/app/list']);
     });
   }
   showActual(): void { 

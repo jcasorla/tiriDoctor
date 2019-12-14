@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { HttpService } from './../http.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -37,7 +37,7 @@ export class EditPatComponent implements OnInit {
     
     this._httpService.updatePatient(this.editPatient).subscribe({
       next: (data)=>{
-        this._router.navigate(['/list'])
+        this._router.navigate(['/app/list'])
       
       },
         error: error => {

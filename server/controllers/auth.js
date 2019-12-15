@@ -7,7 +7,6 @@ var config = require('../../config.json');
 // var request = require('request');
 
 
-var saveToken;
 module.exports = {
 
     // sendHome(req, res){
@@ -16,17 +15,21 @@ module.exports = {
     
 
     login(req, res) {
+        var type;
         console.log(" req.body: ", req.body);
      
         if(req.body.username.includes("@")){
+            type='email';
             console.log("email");
         }else{
+            type='username';
             console.log("username");
         }
   
 
         console.log(req.body.username);
-        User.findOne({email:req.body.username})
+        if(type==='email'){
+            User.findOne({email:req.body.username})
             .then((user) => {
                 console.log("email found");
                 console.log(user);
@@ -52,13 +55,42 @@ module.exports = {
                     // Passwords don't match
                     console.log("Passwords don't match");
                     req.flash("qform", "No se puede aceder");
+                    res.redirect("/login");
                 }
                 
             })
             .catch(err =>{
                 req.flash("qform", "No se puede aceder");
-                res.redirect("/login")
+                res.redirect("/login");
             });
+
+        }
+        
+
+            if(type==='username'){
+                User.findOne({username:req.body.username})
+                .then((user) => {
+                    
+                    if (bcrypt.compareSync(req.body.password, user.password)) {
+                        
+                        const token = jwt.sign({uid: user._id, isValid: true}, config.secret, { expiresIn: '110m' });
+                        req.session.token = token;
+                        
+
+                        res.redirect("/");
+                    } else {
+                        // Passwords don't match
+                        console.log("Passwords don't match");
+                        req.flash("qform", "No se puede aceder");
+                        res.redirect("/login");
+                    }
+                    
+                })
+                .catch(err =>{
+                    req.flash("qform", "No se puede aceder");
+                    res.redirect("/login");
+                });
+            }
       
     },
 
@@ -79,7 +111,10 @@ module.exports = {
         console.log(" req.body: ", req.body);
         // req.session.email=req.body.email;
 
-        
+        if(req.body.code!=config.invite){
+            req.flash("qform", "Codigo no es valido");
+            res.redirect("/register")     
+        }
         var result=validateEmail(req.body.email);
 
         if(!result){

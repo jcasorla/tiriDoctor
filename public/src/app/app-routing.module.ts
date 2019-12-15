@@ -23,7 +23,8 @@ const routes: Routes = [
   
  
 //   // the ** will catch anything that did not match any of the above routes
-  // { path: '**', component: PageNotFoundComponent }
+{  path: '**',  redirectTo: 'app/home',  pathMatch: 'full',
+},
 
 ];
 

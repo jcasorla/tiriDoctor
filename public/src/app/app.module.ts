@@ -18,6 +18,7 @@ import { FisicoComponent } from './fisico/fisico.component';
 import { GinecoComponent } from './gineco/gineco.component';
 import { RefreshComponent } from './refresh/refresh.component';
 import { ProblemasComponent } from './problemas/problemas.component';
+import {AuthGuard} from '../app/auth.guard';
 
 
 // import { CakeComponent } from './cake/cake.component'; // <-- import FormsModule.
@@ -38,19 +39,18 @@ import { ProblemasComponent } from './problemas/problemas.component';
     FisicoComponent,
     GinecoComponent,
     RefreshComponent,
-    ProblemasComponent,
-    // CakeComponent
+    ProblemasComponent,    
   ],
   providers: [
-    HttpService
+    HttpService,
+    AuthGuard
   ],
   imports: [
     BrowserModule,
     FormsModule, // <-- register FormsModule with our app.
     HttpClientModule,
     AppRoutingModule
-  ],
-  // providers: [],  
+  ],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

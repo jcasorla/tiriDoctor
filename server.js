@@ -23,7 +23,7 @@ app.set('views', __dirname + '/views');
 
 
 // use JWT auth to secure the api
-app.use(session({ secret: config.secret, resave: false, saveUninitialized: true, cookie: { maxAge: 260000 } }));
+app.use(session({ secret: config.secret, resave: false, saveUninitialized: true, cookie: {  maxAge: Date.now() + (5400 * 1000)  } }));
 // app.use('/api/pacientes', expressJwt({ secret: config.secret }).unless({ path: ['/login', '/register'] }));
 
 app.use('/api/pacientes', expressJwt({ secret: config.secret,

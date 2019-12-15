@@ -36,7 +36,7 @@ module.exports = {
                     console.log("Passwords match");
                     // let token=jwt.sign({ sub: user._id }, config.secret);
                     //     const token = jwt.sign({ eid : employee._id, cid : company._id, isOwner : (company.owner.email == employee.email), isManager : employee.isManager, isValid: true }, req.app.get('secretKey'), { expiresIn: '2h' })
-                    const token = jwt.sign({uid: user._id, isValid: true}, config.secret, { expiresIn: '100m' });
+                    const token = jwt.sign({uid: user._id, isValid: true}, config.secret, { expiresIn: '110m' });
                     req.session.token = token;
                     saveToken=token;
                     console.log(saveToken);

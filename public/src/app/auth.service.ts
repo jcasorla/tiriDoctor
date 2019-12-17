@@ -20,7 +20,7 @@ export class AuthService {
     return this._http.get('/api/auth/send').pipe(tap(res => {
       try {
         console.log("setting token");
-        // console.log(res['user']);        
+        console.log(res['user']);        
         localStorage.setItem('access_token', res['data']['token']);
         localStorage.setItem('user', JSON.stringify(res['user']));         
       } catch (err) {

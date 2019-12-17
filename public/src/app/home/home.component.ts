@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Event, NavigationStart, NavigationEnd, NavigationError  } from '@angular/router';
 import { AuthService } from '../auth.service';
 import {Location} from '@angular/common';
+import { PreloadProvider } from '../preload';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +12,19 @@ import {Location} from '@angular/common';
 export class HomeComponent implements OnInit {
   user ={firstName: '', lastName: ''}
   user2 : any;
+  user3: any;
 
   constructor(
     private _authService: AuthService,    
       private _route: ActivatedRoute,
       private _router: Router,
-      private _location: Location
+      private _location: Location,
+      private preload: PreloadProvider
       ) {
-
+        this.user3=preload.getUser();
+        console.log('user3')
+        console.log(this.user3);
+        console.log('user3')
         this._authService.user$.subscribe(user=>{
           this.user.firstName=user.firstName;
           this.user.lastName=user.lastName;

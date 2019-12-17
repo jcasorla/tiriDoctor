@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { HttpService } from './http.service';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,10 +19,14 @@ import { GinecoComponent } from './gineco/gineco.component';
 import { RefreshComponent } from './refresh/refresh.component';
 import { ProblemasComponent } from './problemas/problemas.component';
 import {AuthGuard} from '../app/auth.guard';
+import {PreloadProvider} from './preload'
 
 
 // import { CakeComponent } from './cake/cake.component'; // <-- import FormsModule.
 
+export function preloadProviderFactory(provider: PreloadProvider) {
+  return () => provider.load();
+}
 
 @NgModule({
   declarations: [
@@ -42,6 +46,8 @@ import {AuthGuard} from '../app/auth.guard';
     ProblemasComponent,    
   ],
   providers: [
+    PreloadProvider, 
+    { provide: APP_INITIALIZER, useFactory: preloadProviderFactory, deps: [PreloadProvider], multi: true },
     HttpService,
     AuthGuard
   ],
@@ -54,3 +60,4 @@ import {AuthGuard} from '../app/auth.guard';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

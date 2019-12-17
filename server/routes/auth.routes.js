@@ -11,6 +11,8 @@ module.exports = router.get("/login", (req, res) => {
   })
   .post('/register', authController.register)
   .post('/login', authController.login)
-  .get('/send', authController.send);
+  .get('/send', authController.send)
+  .get('/logout', authController.logout);
+  // .get('/user/:id', authController.getOneById);
   // .post('/logout', authController.logout)
   // .post('/verify', authController.verify)

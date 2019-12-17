@@ -37,7 +37,8 @@
                 <a class="nav-link" [routerLink]="['/app/list']">Mi Cuenta</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/app/list']">Cerrar</a>
+                <button type="button" class="btn btn-outline-info btn-sm" (click)="logout()">Cerrar</button>
+                <!-- <a class="nav-link" (click)="logout()">Cerrar</a> -->
               </li>
                           
             </ul>

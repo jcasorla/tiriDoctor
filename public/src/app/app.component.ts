@@ -1,8 +1,8 @@
 // import { HttpService } from './http.service';
 // import { Component, OnInit } from '@angular/core';
 
-import { Component, OnInit, OnChanges, ComponentFactory } from '@angular/core';
-import { ActivatedRoute, Params, Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import { Component, OnInit, OnChanges, ComponentFactory} from '@angular/core';
+import { ActivatedRoute, Router, Event, NavigationStart, NavigationEnd, NavigationError  } from '@angular/router';
 import { AuthService } from './auth.service';
 import {Location} from '@angular/common';
 
@@ -21,69 +21,75 @@ export class AppComponent implements OnInit, OnChanges {
     mytoken: any;
     loggedin;
     
-    constructor(
-      private _authService: AuthService,
+    constructor(  
+      private _authService: AuthService,    
       private _route: ActivatedRoute,
       private _router: Router,
       private _location: Location
       ){
-    
-        // const observable = this._authService.getAuth();
-        // observable.subscribe(data => {
-        //   console.log(data);
-        //   if(!data){
-        //     this.express();
-        //   }
-        
-        // });
-        // this.loggedin= this._authService.getAuth();
-        // _router.events.subscribe((event: Event) => {
-        //   if (event instanceof NavigationStart) {
-        //     this.loggedin= this._authService.getAuth();
-        //     if (!this.loggedin) {
-        //       window.location.href = '/login';
-        //       window.location.reload(true)
-        //     }
+      
+        // this.getToken();
+        _router.events.subscribe((event: Event) => {
+          if (event instanceof NavigationStart) {
+            // this.getToken();
+            // if(!localStorage.getItem('access_token')){
+            //   this.getToken();
+            //   _router.navigateByUrl('/app/home');
+            // }
+            console.log("how many times");
            
-        //   }
-        // });
-       
+          }
+        });
+        
+        // this.getToken();
       }
+
     // ngOnInit will run when the component is initialized, after the constructor method.
     ngOnInit(){
-      // this.getToken();     
+      // this.getToken();
+
     }
 
     ngOnChanges(){
-      // this.getToken();
+      
     }
 
-    refresh(){
-      //refresh trick that did work to refresh @Input data
-      this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
-        this._router.navigate([decodeURI(this._location.path())]);
+    logout(){
+      console.log("loggin out");
+        const observable = this._authService.logout();
+      observable.subscribe(data => {
+        window.location.href = '/login';
       });
-  
-    }
- 
 
+
+    }
+
+    // refresh(){
+    //   //refresh trick that did work to refresh @Input data
+    //   this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
+    //     this._router.navigate([decodeURI(this._location.path())]);
+    //   });
+  
+    // }
+    
+ 
     getToken() {    
       const observable = this._authService.getAuth();
       observable.subscribe(data => {
-        console.log(data);
-        if(!data){
-          this.express();
-        }
+        // console.log(data);
+        // if(!data){
+        //   this.express();
+        // }
        
       });
     }
 
-    express(){
-      window.location.href = '/login';
-      window.location.reload(true)
+    // express(){
+    //   window.location.href = '/login';
+    //   window.location.reload(true)
       
      
-    }
+    // }
     
 }
 

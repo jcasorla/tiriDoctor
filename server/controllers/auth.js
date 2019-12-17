@@ -9,10 +9,13 @@ var config = require('../../config.json');
 
 module.exports = {
 
-    // sendHome(req, res){
-    //     res.redirect('/login');
+    // getOneById: (req, res) => {
+    //     User.findById({ _id : req.params.id })
+    //         .then((data) => {
+    //             res.json({user: data})
+    //         })
+    //         .catch(err => res.json(err));
     // },
-    
 
     login(req, res) {
         var type;
@@ -39,12 +42,10 @@ module.exports = {
                     console.log("Passwords match");
                     // let token=jwt.sign({ sub: user._id }, config.secret);
                     //     const token = jwt.sign({ eid : employee._id, cid : company._id, isOwner : (company.owner.email == employee.email), isManager : employee.isManager, isValid: true }, req.app.get('secretKey'), { expiresIn: '2h' })
-                    const token = jwt.sign({uid: user._id, isValid: true}, config.secret, { expiresIn: '110m' });
-                    req.session.token = token;
-                    saveToken=token;
-                    console.log(saveToken);
+                    const token = jwt.sign({uid: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username, isValid: true}, config.secret, { expiresIn: '110m' });
+                    req.session.token = token;                   
                     console.log("end token");
-                    // req.session.firstName=user.firstName;
+                    req.session.user=user;
                     // req.session.lastName=user.lastName;
                     // req.session.id=user._id;
                     // req.session.email=user.email;
@@ -95,14 +96,9 @@ module.exports = {
     },
 
     send(req, res){
-        // console.log(saveToken);
-        // if(!saveToken){
-        //     res.json({uid: 3, isValid: true}, config.secret, { expiresIn: '1m' })
-        // }else{
-        //     res.json(saveToken);
-        // }
-
-        res.json(req.session.token);
+    
+        // res.json(req.session.token);
+        res.json({user: req.session.user, status: 'success', message: 'Logged in', data: {token: req.session.token }})
         
     },
     
@@ -193,21 +189,27 @@ module.exports = {
      
             
     },
-    /**
-   * Performs JWT logout
-   * @param {Request} req Request instance
-   * @param {Response} res Response instance
-   */
-  logout: async (req, res) => {
-    const invalidatedToken = await invalidateToken(req, res, req.body.token);
-    res.json(invalidatedToken);
-  },
-  /**
-   * Verifies the validity of a given token.
-   */
-  verify: (req, res) => {
-    verifyToken(req, res, req.body.token);
-  }
+
+    logout(req,res){
+        req.session.destroy();
+        res.json({status: 'success', message: 'Logged out'})
+    }
+
+//     /**
+//    * Performs JWT logout
+//    * @param {Request} req Request instance
+//    * @param {Response} res Response instance
+//    */
+//   logout: async (req, res) => {
+//     const invalidatedToken = await invalidateToken(req, res, req.body.token);
+//     res.json(invalidatedToken);
+//   },
+//   /**
+//    * Verifies the validity of a given token.
+//    */
+//   verify: (req, res) => {
+//     verifyToken(req, res, req.body.token);
+//   }
 }
 
 function validateEmail(mail) 
@@ -236,16 +238,16 @@ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
 //     return {status: 'success', message: 'Logged in', data: { employee: employee, token: token }};
 //   }
   
-  function verifyToken(req, res, token) {
-    try {
-      const verifiedToken = jwt.verify(token, config.secret);
-      res.json(verifiedToken);
-    } catch (err) {
-      res.json(err);
-    }
-  }
+//   function verifyToken(req, res, token) {
+//     try {
+//       const verifiedToken = jwt.verify(token, config.secret);
+//       res.json(verifiedToken);
+//     } catch (err) {
+//       res.json(err);
+//     }
+//   }
   
-  function invalidateToken(req, res, token) {
-    const decoded = jwt.decode(token);    
-    return jwt.sign({ uid : decoded.uid, isValid: false }, config.secret, { expiresIn: '1s' });
-  }
+//   function invalidateToken(req, res, token) {
+//     const decoded = jwt.decode(token);    
+//     return jwt.sign({ uid : decoded.uid, isValid: false }, config.secret, { expiresIn: '1s' });
+//   }

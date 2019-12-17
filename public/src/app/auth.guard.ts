@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router,CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 // import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -47,8 +48,9 @@ export class AuthGuard implements CanActivate {
      
     const observable = this._authService.getAuth();
     observable.subscribe(data => {
-      console.log(data);
-      if(!data){
+      console.log(data['data']['token']);
+      if(!data['data']['token']){
+        localStorage.removeItem('access_token');
         this.express();
         this.status=false;
       }else{

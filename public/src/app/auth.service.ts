@@ -3,16 +3,62 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import * as jwt_decode from 'jwt-decode';
+import {Subject} from 'rxjs' // make data to subscribe
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   // private readonly base = '/auth';
+  user$ = new Subject<any>();  // subscribe to read
+  // hand$ = new Subject<string>();
 
   constructor(private _http: HttpClient) { }
   getAuth() {
-    return this._http.get('/api/auth/send');
+    // return this._http.get('/api/auth/send');
+
+    return this._http.get('/api/auth/send').pipe(tap(res => {
+      try {
+        console.log("setting token");
+        // console.log(res['user']);        
+        localStorage.setItem('access_token', res['data']['token']);
+        localStorage.setItem('user', JSON.stringify(res['user']));         
+      } catch (err) {
+        console.log('Login failed!');
+      }
+    }));
+  }
+  logout(){
+    localStorage.removeItem('access_token');
+    console.log('logout service');
+    return this._http.get('/api/auth/logout');
+  }
+
+  getUser(){
+    // let temp=this.getDecodedAccessToken();
+    console.log('getting user');
+    // let temp: any;
+    let temp=JSON.parse(localStorage.getItem('user'));
+    console.log(temp);
+    // console.log(localStorage.getItem('user'));
+
+    // let id : string;
+    // id=temp._id;
+    // console.log(id);
+    
+    this.user$.next(temp);
+    // return this._http.get('/api/auth/user/' + id);
+
+  }
+ 
+  
+
+  getDecodedAccessToken(token: string = localStorage.getItem('access_token')): any {
+    try {
+      return jwt_decode(token);
+    } catch (err) {
+      return null;
+    }
   }
  
 

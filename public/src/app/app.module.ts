@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core'; // <-- APP-INITIALIZER very import to preload data
 import { HttpService } from './http.service';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,13 +18,11 @@ import { FisicoComponent } from './fisico/fisico.component';
 import { GinecoComponent } from './gineco/gineco.component';
 import { RefreshComponent } from './refresh/refresh.component';
 import { ProblemasComponent } from './problemas/problemas.component';
-import {AuthGuard} from '../app/auth.guard';
-import {PreloadProvider} from './preload'
+import {AuthGuard} from '../app/auth.guard'; // <-- AuthGuard prevents page from loading if no valid session or token
+import {PreloadProvider} from './preload' // <== preload data from preload.ts
 
 
-// import { CakeComponent } from './cake/cake.component'; // <-- import FormsModule.
-
-export function preloadProviderFactory(provider: PreloadProvider) {
+export function preloadProviderFactory(provider: PreloadProvider) { // <== preload data from preload.ts
   return () => provider.load();
 }
 
@@ -46,10 +44,10 @@ export function preloadProviderFactory(provider: PreloadProvider) {
     ProblemasComponent,    
   ],
   providers: [
-    PreloadProvider, 
+    PreloadProvider, // <== preload data from preload.ts
     { provide: APP_INITIALIZER, useFactory: preloadProviderFactory, deps: [PreloadProvider], multi: true },
     HttpService,
-    AuthGuard
+    AuthGuard // <-- AuthGuard prevents page from loading if no valid session or token
   ],
   imports: [
     BrowserModule,

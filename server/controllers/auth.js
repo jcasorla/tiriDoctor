@@ -42,14 +42,12 @@ module.exports = {
                     console.log("Passwords match");
                     // let token=jwt.sign({ sub: user._id }, config.secret);
                     //     const token = jwt.sign({ eid : employee._id, cid : company._id, isOwner : (company.owner.email == employee.email), isManager : employee.isManager, isValid: true }, req.app.get('secretKey'), { expiresIn: '2h' })
-                    const token = jwt.sign({uid: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username, isValid: true}, config.secret, { expiresIn: '110m' });
+                    const token = jwt.sign({uid: user._id, isValid: true}, config.secret, { expiresIn: '110m' });
                     req.session.token = token;                   
                     console.log("end token");
-                    req.session.user=user;
-                    // req.session.lastName=user.lastName;
-                    // req.session.id=user._id;
-                    // req.session.email=user.email;
-                    // res.json(completeLogin(req, res, employee, company));
+                    var user2 ={uid: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username};
+                    req.session.user=user2;
+                 
 
                     res.redirect("/");
                 } else {
@@ -105,7 +103,6 @@ module.exports = {
     register(req, res) {
         console.log("in register");
         console.log(" req.body: ", req.body);
-        // req.session.email=req.body.email;
 
         if(req.body.code!=config.invite){
             req.flash("qform", "Codigo no es valido");

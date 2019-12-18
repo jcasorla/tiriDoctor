@@ -1,10 +1,8 @@
-// import { HttpService } from './http.service';
-// import { Component, OnInit } from '@angular/core';
 
 import { Component, OnInit, OnChanges, ComponentFactory} from '@angular/core';
-import { ActivatedRoute, Router, Event, NavigationStart, NavigationEnd, NavigationError  } from '@angular/router';
+// import { ActivatedRoute, Router, Event, NavigationStart, NavigationEnd, NavigationError  } from '@angular/router';
 import { AuthService } from './auth.service';
-import {Location} from '@angular/common';
+// import {Location} from '@angular/common';
 
 
 @Component({
@@ -18,28 +16,28 @@ import {Location} from '@angular/common';
 // Implement OnInit.
 export class AppComponent implements OnInit, OnChanges {
     title='TiriDoctor';
-    mytoken: any;
-    loggedin;
+    // mytoken: any;
+    // loggedin;
     
     constructor(  
       private _authService: AuthService,    
-      private _route: ActivatedRoute,
-      private _router: Router,
-      private _location: Location
+      // private _route: ActivatedRoute,
+      // private _router: Router,
+      // private _location: Location
       ){
       
         // this.getToken();
-        _router.events.subscribe((event: Event) => {
-          if (event instanceof NavigationStart) {
-            // this.getToken();
-            // if(!localStorage.getItem('access_token')){
-            //   this.getToken();
-            //   _router.navigateByUrl('/app/home');
-            // }
-            console.log("how many times");
+        // _router.events.subscribe((event: Event) => {
+        //   if (event instanceof NavigationStart) {
+        //     // this.getToken();
+        //     // if(!localStorage.getItem('access_token')){
+        //     //   this.getToken();
+        //     //   _router.navigateByUrl('/app/home');
+        //     // }
+        //     console.log("how many times");
            
-          }
-        });
+        //   }
+        // });
         
         // this.getToken();
       }
@@ -73,16 +71,16 @@ export class AppComponent implements OnInit, OnChanges {
     // }
     
  
-    getToken() {    
-      const observable = this._authService.getAuth();
-      observable.subscribe(data => {
-        // console.log(data);
-        // if(!data){
-        //   this.express();
-        // }
+    // getToken() {    
+    //   const observable = this._authService.getAuth();
+    //   observable.subscribe(data => {
+    //     // console.log(data);
+    //     // if(!data){
+    //     //   this.express();
+    //     // }
        
-      });
-    }
+    //   });
+    // }
 
     // express(){
     //   window.location.href = '/login';

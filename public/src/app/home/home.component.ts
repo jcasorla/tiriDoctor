@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, Event, NavigationStart, NavigationEnd, NavigationError  } from '@angular/router';
 import { AuthService } from '../auth.service';
-import {Location} from '@angular/common';
 import { PreloadProvider } from '../preload';
 
 @Component({
@@ -10,69 +8,39 @@ import { PreloadProvider } from '../preload';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  user ={firstName: '', lastName: ''}
-  user2 : any;
-  user3: any;
+  // user ={firstName: '', lastName: ''}
+  // user2 : any;
+  user: any;
 
   constructor(
     private _authService: AuthService,    
-      private _route: ActivatedRoute,
-      private _router: Router,
-      private _location: Location,
       private preload: PreloadProvider
       ) {
-        this.user3=preload.getUser();
-        console.log('user3')
-        console.log(this.user3);
-        console.log('user3')
-        this._authService.user$.subscribe(user=>{
-          this.user.firstName=user.firstName;
-          this.user.lastName=user.lastName;
-        });
-        // _router.events.subscribe((event: Event) => {
-        //   if (event instanceof NavigationStart) {
-        //     this._authService.user$.subscribe(user=>{
-        //       this.user.firstName=user.firstName;
-        //       this.user.lastName=user.lastName;
-        //     });
-            
-        //   }
-        //   //   if(!localStorage.getItem('access_token')){
-              
-            
-        //   //   this.refresh();
-            
-           
-        //   // }
+        this.user=preload.getUser(); //<-- grabing preloaded data
+        // console.log('user3')
+        // console.log(this.user);
+        // console.log('user3')
+
+        // this._authService.user$.subscribe(user=>{
+        //   this.user.firstName=user.firstName;
+        //   this.user.lastName=user.lastName;
         // });
         
+        
        }
-  
-  // user ={firstName: '', lastName: '', email: '', username: '', uid: ''}
+ 
+ 
 
   ngOnInit() {
-    this.getUser();
-    this.user2=JSON.parse(localStorage.getItem('user'));
-    console.log('works ?');
-    console.log(this.user2);
-   
-    
-    // console.log(this.user);
+    // this.getUser();
+    // this.user2=JSON.parse(localStorage.getItem('user'));
+    // console.log('works ?');
+    // console.log(this.user2);
+       
   }
 
-  getUser() { 
-    this._authService.getUser();      
-  }
-
-    refresh(){
-    //refresh trick that did work to refresh @Input data
-    this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
-      this._router.navigate([decodeURI(this._location.path())]);
-    });
-
-  }
-
-   
-
+  // getUser() { 
+  //   this._authService.getUser();      
+  // }
 
 }

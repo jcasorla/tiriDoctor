@@ -7,11 +7,11 @@ import { NewPatComponent } from './new-pat/new-pat.component';
 import {ViewPatComponent} from './view-pat/view-pat.component'
 import { EditPatComponent } from './edit-pat/edit-pat.component';
 import { RefreshComponent } from './refresh/refresh.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './auth.guard'; // <-- AuthGuard prevents page from loading if no valid session or token
 
 
 const routes: Routes = [
-{ path: 'app/home',component: HomeComponent, canActivate: [AuthGuard]},
+{ path: 'app/home',component: HomeComponent, canActivate: [AuthGuard]}, // <-- AuthGuard prevents page from loading if no valid session or token
 { path: 'refresh',component: RefreshComponent },
 { path: 'app/list',component: ListPatComponent, canActivate: [AuthGuard]},
   { path: 'app/new-pat',component: NewPatComponent, canActivate: [AuthGuard]},

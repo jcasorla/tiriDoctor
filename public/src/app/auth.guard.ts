@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router,CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
-// import { Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import * as jwt_decode from 'jwt-decode';
 
@@ -46,9 +46,8 @@ export class AuthGuard implements CanActivate {
 
   getToken(url): boolean { 
      
-    const observable = this._authService.getAuth();
+    const observable = this._authService.verifyAuth();
     observable.subscribe(data => {
-      console.log(data['data']['token']);
       if(!data['data']['token']){
         localStorage.removeItem('access_token');
         this.express();
@@ -60,7 +59,6 @@ export class AuthGuard implements CanActivate {
       
      
     });
-    console.log(this.status);
     return this.status;
   }
 

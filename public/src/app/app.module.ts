@@ -19,7 +19,8 @@ import { GinecoComponent } from './gineco/gineco.component';
 import { RefreshComponent } from './refresh/refresh.component';
 import { ProblemasComponent } from './problemas/problemas.component';
 import {AuthGuard} from '../app/auth.guard'; // <-- AuthGuard prevents page from loading if no valid session or token
-import {PreloadProvider} from './preload' // <== preload data from preload.ts
+import {PreloadProvider} from './preload';
+import { AccountComponent } from './account/account.component' // <== preload data from preload.ts
 
 
 export function preloadProviderFactory(provider: PreloadProvider) { // <== preload data from preload.ts
@@ -41,7 +42,8 @@ export function preloadProviderFactory(provider: PreloadProvider) { // <== prelo
     FisicoComponent,
     GinecoComponent,
     RefreshComponent,
-    ProblemasComponent,    
+    ProblemasComponent,
+    AccountComponent,    
   ],
   providers: [
     PreloadProvider, // <== preload data from preload.ts

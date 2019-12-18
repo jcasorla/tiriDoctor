@@ -45,7 +45,7 @@ module.exports = {
                     const token = jwt.sign({uid: user._id, isValid: true}, config.secret, { expiresIn: '110m' });
                     req.session.token = token;                   
                     console.log("end token");
-                    var user2 ={uid: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username};
+                    var user2 ={uid: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username};
                     req.session.user=user2;
                  
 

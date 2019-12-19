@@ -1,7 +1,8 @@
 <h1 class="text-center">Mi Cuenta</h1>
 
-<div class='col-lg'>
+<div class='col-lg'>    
     <br>
+   
     <div class="form-row">
                 
         <div class="form-group col-md-2">
@@ -14,7 +15,7 @@
             <input class="required" type="text" name="lastName" [ngModel]="user.lastName" class="form-control" readonly>                
         </div>
         <div class="form-group col-md-3">
-            <label for="email">Email</label>
+            <label for="email">Correo</label>
             <input class="required" type="text" name="email" [ngModel]="user.email" class="form-control" readonly>
         </div>
         <div class="form-group col-md-2">
@@ -35,6 +36,9 @@
     </nav>
 
     <div *ngIf='displayName'>
+        <div *ngIf="errors">
+            <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
+        </div>
         <form  (submit)="onSubmit($event, upForm1)" #upForm1="ngForm">
             <div class="form-row">
                     
@@ -91,11 +95,14 @@
     </div>
 
     <div *ngIf='displayEmail'>
-        <form (submit)="onSubmitConfirm(upForm2)" #upForm2="ngForm">
+        <div *ngIf="errors">
+            <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
+        </div>
+        <form (submit)="onSubmitConfirm()" #upForm2="ngForm">
             <div class="form-row">   
 
                 <div class="form-group col-md-3">
-                    <label class="required" for="email">Email</label>
+                    <label class="required" for="email">Correo</label>
                     <input type="text" name="email"  [ngModel]="user2.email" class="form-control"
                     
                     required
@@ -108,22 +115,21 @@
                             debes ingresar el correo
                         </div>
                         <div *ngIf="email?.errors && email?.errors?.pattern" class="alert alert-danger">
-                            correo invalido
+                            el correo invalido
                         </div>
                         
                     </div>
             
                 </div>
                 <div class="form-group col-md-3">
-                    <label class="required" for="password">Password</label>
+                    <label class="required" for="password">Contraseña</label>
                     <input type="password" name="password" [ngModel]="user2.password" class="form-control"
                     required
-                    minlength="3" 
                     #pwd="ngModel" 
                     >
                     <div *ngIf="(pwd.touched || pwd.dirty) && pwd.errors">
                         <div *ngIf="pwd?.errors?.required" class="alert alert-danger">
-                            debes ingresar la contrasena
+                            debes ingresar la contraseña
                         </div>                        
                         
                     </div>
@@ -149,6 +155,9 @@
     </div>
 
     <div *ngIf='displayUn'>
+        <div *ngIf="errors">
+            <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
+        </div>
         <form (submit)="onSubmitConfirm(upForm3)" #upForm3="ngForm">
             <div class="form-row">   
 
@@ -156,15 +165,15 @@
                     <label class="required" for="username">username</label>
                     <input type="text" name="username" [ngModel]="user2.username" class="form-control"
                     required
-                    minlength="3" 
+                    minlength="5" 
                     #username="ngModel" 
                     >
                     <div *ngIf="(username.touched || username.dirty) && username.errors">
                         <div *ngIf="username?.errors?.required" class="alert alert-danger">
-                            debes ingresar el apellido
+                            debes ingresar el usernmae
                         </div>
                         <div *ngIf="username?.errors?.minlength" class="alert alert-danger">
-                            el primer appellido debe tener
+                            el username debe tener
                             {{ username?.errors?.minlength.requiredLength }} letras
                         </div>
                         
@@ -172,15 +181,14 @@
             
                 </div>
                 <div class="form-group col-md-3">
-                    <label class="required" for="password">Password</label>
+                    <label class="required" for="password">Contraseña</label>
                     <input type="password" name="password" [ngModel]="user2.password" class="form-control"
                     required
-                    minlength="3" 
                     #pwd="ngModel" 
                     >
                     <div *ngIf="(pwd.touched || pwd.dirty) && pwd.errors">
                         <div *ngIf="pwd?.errors?.required" class="alert alert-danger">
-                            debes ingresar la contrasena
+                            debes ingresar la contraseña
                         </div>                        
                         
                     </div>
@@ -212,37 +220,33 @@
             <div class="form-row">   
 
                 <div class="form-group col-md-3">
-                    <label class="required" for="current">Current Password</label>
+                    <label class="required" for="current">Contraseña Actual</label>
                     <input type="password" name="current" [ngModel]="user2.current" class="form-control"
                     required
-                    minlength="3" 
                     #current="ngModel" 
                     >
                     <div *ngIf="(current.touched || current.dirty) && current.errors">
                         <div *ngIf="current?.errors?.required" class="alert alert-danger">
-                            debes ingresar la contrasena
+                            debes ingresar la contraseña
                         </div>
-                        <div *ngIf="current?.errors?.minlength" class="alert alert-danger">
-                            el primer appellido debe tener
-                            {{ current?.errors?.minlength.requiredLength }} letras
-                        </div>
+                        
                         
                     </div>
             
                 </div>
                 <div class="form-group col-md-3">
-                    <label class="required" for="password">Password</label>
+                    <label class="required" for="password">Nueva Contraseña</label>
                     <input type="password" name="password" [ngModel]="user2.password" class="form-control"
                     required
-                    minlength="3" 
+                    minlength="4" 
                     #pwd="ngModel" 
                     >
                     <div *ngIf="(pwd.touched || pwd.dirty) && pwd.errors">
                         <div *ngIf="pwd?.errors?.required" class="alert alert-danger">
-                            debes ingresar la contrasena
+                            debes ingresar la nueva contrasena
                         </div>
                         <div *ngIf="pwd?.errors?.minlength" class="alert alert-danger">
-                            el primer appellido debe tener
+                            la nueva contraseña debe tener
                             {{ pwd?.errors?.minlength.requiredLength }} letras
                         </div>                     
                         
@@ -250,18 +254,18 @@
             
                 </div>
                 <div class="form-group col-md-3">
-                    <label class="required" for="cpwd">Password</label>
+                    <label class="required" for="cpwd">Confirma Contraseña</label>
                     <input type="password" name="cpwd" [ngModel]="user2.cpwd" class="form-control"
                     required
-                    minlength="3" 
+                    minlength="4" 
                     #cpwd="ngModel" 
                     >
                     <div *ngIf="(cpwd.touched || cpwd.dirty) && cpwd.errors">
                         <div *ngIf="cpwd?.errors?.required" class="alert alert-danger">
-                            debes ingresar la contrasena
+                            debes confirmar contraseña
                         </div>
                         <div *ngIf="cpwd?.errors?.minlength" class="alert alert-danger">
-                            el primer appellido debe tener
+                            confirma contraseña debe tener
                             {{ cpwd?.errors?.minlength.requiredLength }} letras
                         </div>                        
                         

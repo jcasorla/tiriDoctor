@@ -41,7 +41,7 @@ export class AccountComponent implements OnInit, OnChanges {
 
   refresh(){
     //refresh trick that did work to refresh @Input data
-    console.log("in refresh");
+    // console.log("in refresh");
     this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
       this._router.navigate([decodeURI(this._location.path())]);
     });
@@ -57,11 +57,9 @@ export class AccountComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
-    console.log('edit account');
     
     this._userService.updateUser(this.user).subscribe({
       next: (data)=>{
-        // this._router.navigate(['/app/list'])
         this.refresh();
       
       },
@@ -79,12 +77,10 @@ export class AccountComponent implements OnInit, OnChanges {
     
     this._userService.updateUserConfirm(form.value).subscribe({
       next: (data)=>{
-        // this._router.navigate(['/app/list'])
         this.refresh();
       
       },
         error: error => {
-          console.log(error);
           this.errors=error.error;
   
       }
@@ -92,27 +88,32 @@ export class AccountComponent implements OnInit, OnChanges {
     });
   }
   onSubmitPwd(form: NgForm) {
-    console.log('edit account pwd');
-    console.log(form.value);
 
     if(form.value.password!==form.value.cpwd){
            
-      this.errors= ['not matching passwords'];
+      this.errors= ['las contraseñas no coinciden'];
+    }
+    else if(form.value.password===null || form.value.cpwd===null || form.value.current===null){
+           
+      this.errors= ['todos son obligatorios'];
     }
     
-    this._userService.updateUserPwd(form.value).subscribe({
-      next: (data)=>{
-        // this._router.navigate(['/app/list'])
-        this.refresh();
-      
-      },
-        error: error => {
-          console.log(error);
-          this.errors=error.error;
-  
-      }
-      
-    });
+    else{
+      this._userService.updateUserPwd(form.value).subscribe({
+        next: (data)=>{
+          this.refresh();
+        
+        },
+          error: error => {
+            console.log(error);
+            this.errors=error.error;
+    
+        }
+        
+      });
+
+    }
+   
   }
 
   showName(): void { 

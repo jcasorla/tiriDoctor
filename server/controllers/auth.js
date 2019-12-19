@@ -9,13 +9,7 @@ var config = require('../../config.json');
 
 module.exports = {
 
-    // getOneById: (req, res) => {
-    //     User.findById({ _id : req.params.id })
-    //         .then((data) => {
-    //             res.json({user: data})
-    //         })
-    //         .catch(err => res.json(err));
-    // },
+ 
 
     login(req, res) {
         var type;
@@ -73,8 +67,10 @@ module.exports = {
                     if (bcrypt.compareSync(req.body.password, user.password)) {
                         
                         const token = jwt.sign({uid: user._id, isValid: true}, config.secret, { expiresIn: '110m' });
-                        req.session.token = token;
-                        
+                        req.session.token = token;                   
+                        console.log("end token");
+                        var user2 ={uid: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username};
+                        req.session.user=user2;
 
                         res.redirect("/");
                     } else {

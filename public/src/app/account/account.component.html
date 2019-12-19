@@ -24,94 +24,214 @@
         </div>
     </div>
 
-    <form  (submit)="onSubmit($event, newForm)" #newForm="ngForm">
-        <div class="form-row">
-                
-            <div class="form-group col-md-2">
-                <label for="firstName">Primer Nombre</label>                    
-                <input type="text" name="firstName"
-                required
-                minlength="3" 
-                [(ngModel)]="user.firstName"
-                #firstName="ngModel" 
-                class="form-control" >
-                <div *ngIf="(firstName.touched || firstName.dirty) && firstName.errors">
-                    <div *ngIf="firstName?.errors?.required" class="alert alert-danger">
-                        debes ingresar el primer nombre
-                    </div>
-                    <div *ngIf="firstName?.errors?.minlength" class="alert alert-danger">
-                        el primer nombre debe tener
-                        {{ firstName?.errors?.minlength.requiredLength }} letras
-                    </div>
-                </div>
-        
-            </div>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <form class="form-inline">
+            <button class="btn btn-outline-primary" type="button" (click)="showName()">Editar Nombre</button>
+            <button class="btn btn-outline-primary" type="button" (click)="showEmail()">Editar Correo</button>
+            <button class="btn btn-outline-primary" type="button" (click)="showUn()">Editar username</button>
+            <button class="btn btn-outline-primary" type="button" (click)="showPw()">Editar Contrasena</button>
             
-            <div class="form-group col-md-2">
-                <label for="lastName">Apellido</label>
-                <input type="text" name="lastName" [(ngModel)]="user.lastName" class="form-control"
-                required
-                minlength="3" 
-                #lastName="ngModel" 
-                >
-                <div *ngIf="(lastName.touched || lastName.dirty) && lastName.errors">
-                    <div *ngIf="lastName?.errors?.required" class="alert alert-danger">
-                        debes ingresar el apellido
-                    </div>
-                    <div *ngIf="lastName?.errors?.minlength" class="alert alert-danger">
-                        el primer appellido debe tener
-                        {{ lastName?.errors?.minlength.requiredLength }} letras
-                    </div>
+        </form>
+    </nav>
+
+    <div *ngIf='displayName'>
+        <form  (submit)="onSubmit($event, upForm1)" #upForm1="ngForm">
+            <div class="form-row">
                     
+                <div class="form-group col-md-2">
+                    <label for="firstName">Primer Nombre</label>                    
+                    <input type="text" name="firstName"
+                    required
+                    minlength="3" 
+                    [(ngModel)]="user.firstName"
+                    #firstName="ngModel" 
+                    class="form-control" >
+                    <div *ngIf="(firstName.touched || firstName.dirty) && firstName.errors">
+                        <div *ngIf="firstName?.errors?.required" class="alert alert-danger">
+                            debes ingresar el primer nombre
+                        </div>
+                        <div *ngIf="firstName?.errors?.minlength" class="alert alert-danger">
+                            el primer nombre debe tener
+                            {{ firstName?.errors?.minlength.requiredLength }} letras
+                        </div>
+                    </div>
+            
                 </div>
-        
+                
+                <div class="form-group col-md-2">
+                    <label for="lastName">Apellido</label>
+                    <input type="text" name="lastName" [(ngModel)]="user.lastName" class="form-control"
+                    required
+                    minlength="3" 
+                    #lastName="ngModel" 
+                    >
+                    <div *ngIf="(lastName.touched || lastName.dirty) && lastName.errors">
+                        <div *ngIf="lastName?.errors?.required" class="alert alert-danger">
+                            debes ingresar el apellido
+                        </div>
+                        <div *ngIf="lastName?.errors?.minlength" class="alert alert-danger">
+                            el primer appellido debe tener
+                            {{ lastName?.errors?.minlength.requiredLength }} letras
+                        </div>
+                        
+                    </div>
+            
+                </div>
+               
             </div>
-            <div class="form-group col-md-3">
-                <label for="email">Email</label>
-                <input type="text" name="email" [(ngModel)]="user.email" class="form-control"
-                required
-                minlength="3" 
-                #email="ngModel" 
-                >
-                <div *ngIf="(email.touched || email.dirty) && email.errors">
-                    <div *ngIf="email?.errors?.required" class="alert alert-danger">
-                        debes ingresar el apellido
-                    </div>
-                    <div *ngIf="email?.errors?.minlength" class="alert alert-danger">
-                        el primer appellido debe tener
-                        {{ email?.errors?.minlength.requiredLength }} letras
-                    </div>
+            <button *ngIf="upForm1.valid" class="btn btn-primary btn-sm">Editar</button>
+            <button class="btn btn-danger btn-sm" [routerLink]="['/app/list']">Cancelar</button>
+            
+        </form>
+        
+           
+        <br>    
+
+    </div>
+
+    <div *ngIf='displayEmail'>
+        <form (submit)="onSubmitConfirm(upForm2)" #upForm2="ngForm">
+            <div class="form-row">   
+
+                <div class="form-group col-md-3">
+                    <label for="email">Email</label>
+                    <input type="text" name="email"  [ngModel]="user2.email" class="form-control"
                     
-                </div>
-        
-            </div>
-            <div class="form-group col-md-2">
-                <label for="username">username</label>
-                <input type="text" name="username" [(ngModel)]="user.username" class="form-control"
-                required
-                minlength="3" 
-                #username="ngModel" 
-                >
-                <div *ngIf="(username.touched || username.dirty) && username.errors">
-                    <div *ngIf="username?.errors?.required" class="alert alert-danger">
-                        debes ingresar el apellido
+                    required
+                    minlength="3" 
+                    #email="ngModel" 
+                    >
+                    <div *ngIf="(email.touched || email.dirty) && email.errors">
+                        <div *ngIf="email?.errors?.required" class="alert alert-danger">
+                            debes ingresar el correo
+                        </div>
+                        
                     </div>
-                    <div *ngIf="username?.errors?.minlength" class="alert alert-danger">
-                        el primer appellido debe tener
-                        {{ username?.errors?.minlength.requiredLength }} letras
-                    </div>
-                    
+            
                 </div>
-        
+                <div class="form-group col-md-3">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" [ngModel]="user2.password" class="form-control"
+                    required
+                    minlength="3" 
+                    #pwd="ngModel" 
+                    >
+                    <div *ngIf="(pwd.touched || pwd.dirty) && pwd.errors">
+                        <div *ngIf="pwd?.errors?.required" class="alert alert-danger">
+                            debes ingresar la contrasena
+                        </div>                        
+                        
+                    </div>
+            
+                </div>
+               
             </div>
-        </div>
-        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Editar</button>
-        <button class="btn btn-danger btn-sm" [routerLink]="['/app/list']">Cancelar</button>
+            <input type="hidden" name="_id" [ngModel]="user._id" class="form-control">
+            <input type="hidden" name="firstName" [ngModel]="user.firstName" class="form-control">
+            <input type="hidden" name="lastName" [ngModel]="user.lastName" class="form-control">
+            <input type="hidden" name="username" [ngModel]="user.username" class="form-control">
+            <input type="hidden" name="createdAt" [ngModel]="user.createdAt" class="form-control">
+            <button *ngIf="upForm2.valid" class="btn btn-primary btn-sm">Editar</button>
+            <button class="btn btn-danger btn-sm" [routerLink]="['/app/list']">Cancelar</button>
+            
+        </form>
         
-    </form>
+           
+        <br>    
+
+
+    </div>
+
+    <div *ngIf='displayUn'>
+        <form (submit)="onSubmitConfirm(upForm3)" #upForm3="ngForm">
+            <div class="form-row">   
+
+                <div class="form-group col-md-3">
+                    <label for="username">username</label>
+                    <input type="text" name="username" [ngModel]="user2.username" class="form-control"
+                    required
+                    minlength="3" 
+                    #username="ngModel" 
+                    >
+                    <div *ngIf="(username.touched || username.dirty) && username.errors">
+                        <div *ngIf="username?.errors?.required" class="alert alert-danger">
+                            debes ingresar el apellido
+                        </div>
+                        <div *ngIf="username?.errors?.minlength" class="alert alert-danger">
+                            el primer appellido debe tener
+                            {{ username?.errors?.minlength.requiredLength }} letras
+                        </div>
+                        
+                    </div>
+            
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" [ngModel]="user2.password" class="form-control"
+                    required
+                    minlength="3" 
+                    #pwd="ngModel" 
+                    >
+                    <div *ngIf="(pwd.touched || pwd.dirty) && pwd.errors">
+                        <div *ngIf="pwd?.errors?.required" class="alert alert-danger">
+                            debes ingresar la contrasena
+                        </div>                        
+                        
+                    </div>
+            
+                </div>
+               
+            </div>
+            <input type="hidden" name="_id" [ngModel]="user._id" class="form-control">
+            <input type="hidden" name="firstName" [ngModel]="user.firstName" class="form-control">
+            <input type="hidden" name="lastName" [ngModel]="user.lastName" class="form-control">
+            <input type="hidden" name="email" [ngModel]="user.email" class="form-control">
+            <input type="hidden" name="createdAt" [ngModel]="user.createdAt" class="form-control">
+            <button *ngIf="upForm3.valid" class="btn btn-primary btn-sm">Editar</button>
+            <button class="btn btn-danger btn-sm" [routerLink]="['/app/list']">Cancelar</button>
+            
+        </form>
+        
+           
+        <br>    
+
+        <!-- <form  (submit)="onSubmit($event, newForm)" #upForm3="ngForm">
+            <div class="form-row"> 
+                <div class="form-group col-md-2">
+                    <label for="username">username</label>
+                    <input type="text" name="username" [(ngModel)]="user.username" class="form-control"
+                    required
+                    minlength="3" 
+                    #username="ngModel" 
+                    >
+                    <div *ngIf="(username.touched || username.dirty) && username.errors">
+                        <div *ngIf="username?.errors?.required" class="alert alert-danger">
+                            debes ingresar el apellido
+                        </div>
+                        <div *ngIf="username?.errors?.minlength" class="alert alert-danger">
+                            el primer appellido debe tener
+                            {{ username?.errors?.minlength.requiredLength }} letras
+                        </div>
+                        
+                    </div>
+            
+                </div>
+            </div>
+            <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Editar</button>
+            <button class="btn btn-danger btn-sm" [routerLink]="['/app/list']">Cancelar</button>
+            
+        </form>        
+           
+        <br>     -->
+
+    </div>
+
+    <div *ngIf='displayPwd'>
+        <h3>pwd</h3>
+
+    </div>
+
     
-       
-    <br>
 
 </div>
         

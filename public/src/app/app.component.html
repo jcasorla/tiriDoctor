@@ -23,21 +23,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <!-- <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/home']">Casa</a>
-              </li> -->
-              
+                           
               <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/app/new-pat']">Crear Paciente <span class="sr-only">(current)</span></a>
+                  <!-- <a class="nav-link" [routerLink]="['/app/new-pat']">Crear Paciente <span class="sr-only">(current)</span></a> -->
+                  <button type="button" class="btn btn-outline-primary" [routerLink]="['/app/new-pat']">Crear Paciente</button>  
               </li>
               <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/app/list']">Lista de Pacientes</a>
+                  <!-- <a class="nav-link" [routerLink]="['/app/list']">Lista de Pacientes</a> -->
+                  <button type="button" class="btn btn-outline-primary" [routerLink]="['/app/list']">Lista de Pacientes</button>                  
               </li>
               <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/app/account']">Mi Cuenta</a>
+                <!-- <a class="nav-link" [routerLink]="['/app/account']">Mi Cuenta</a> -->
+                <button type="button" class="btn btn-outline-primary" [routerLink]="['/app/account']">Mi Cuenta</button>
               </li>              
               <li class="nav-item">
-                <button type="button" class="btn btn-outline-info btn-sm" (click)="logout()">Cerrar</button>
+                <button type="button" class="btn btn-outline-primary" (click)="logout()">Cerrar</button>
                 <!-- <a class="nav-link" (click)="logout()">Cerrar</a> -->
               </li>
                           

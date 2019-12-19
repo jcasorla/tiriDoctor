@@ -11,4 +11,11 @@ export class UserService {
   getUser(id) {
     return this._http.get('/api/user/' + id);
   }
+  updateUser(data) {
+    return this._http.put('/api/user/' + data._id, data);
+  }
+  updateUserConfirm(data) {
+    console.log("in service updateconfirm");
+    return this._http.put('/api/user/confirm/' + data._id, data);
+  }
 }

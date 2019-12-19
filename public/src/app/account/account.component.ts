@@ -13,7 +13,7 @@ import {Location} from '@angular/common';
 export class AccountComponent implements OnInit, OnChanges {
   usertmp: any;
   user= {_id: '', firstName: '', lastName: '', username: '', email: ''};
-  user2= {_id: '', firstName: '', lastName: '', username: '', email: ''};
+  user2= {_id: '', firstName: '', lastName: '', username: '', email: '', password: '',cpwd: '', current: ''};
   errors:any;
   displayName: any;
   displayEmail: any;
@@ -90,6 +90,29 @@ export class AccountComponent implements OnInit, OnChanges {
       }
       
     });
+  }
+  onSubmitPwd(form: NgForm) {
+    console.log('edit account pwd');
+    console.log(form.value);
+
+    if(form.value.password!==form.value.cpwd){
+           
+      this.errors= ['not matching passwords'];
+    }
+    
+    // this._userService.updateUserPwd(form.value).subscribe({
+    //   next: (data)=>{
+    //     // this._router.navigate(['/app/list'])
+    //     this.refresh();
+      
+    //   },
+    //     error: error => {
+    //       console.log(error);
+    //       this.errors=error.error;
+  
+    //   }
+      
+    // });
   }
 
   showName(): void { 

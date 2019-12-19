@@ -3,6 +3,7 @@ import { PreloadProvider } from '../preload';
 import { UserService } from '../user.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-account',
@@ -23,7 +24,8 @@ export class AccountComponent implements OnInit, OnChanges {
     private _userService: UserService,
     private preload: PreloadProvider,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private _location: Location
   ) { 
     this.usertmp=preload.getUser(); //<-- grabing preloaded data
     
@@ -35,6 +37,15 @@ export class AccountComponent implements OnInit, OnChanges {
   }
   ngOnChanges(){
     this.findUser(this.usertmp.uid);
+  }
+
+  refresh(){
+    //refresh trick that did work to refresh @Input data
+    console.log("in refresh");
+    this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
+      this._router.navigate([decodeURI(this._location.path())]);
+    });
+
   }
 
   findUser(id) {
@@ -50,7 +61,8 @@ export class AccountComponent implements OnInit, OnChanges {
     
     this._userService.updateUser(this.user).subscribe({
       next: (data)=>{
-        this._router.navigate(['/app/list'])
+        // this._router.navigate(['/app/list'])
+        this.refresh();
       
       },
         error: error => {
@@ -67,7 +79,8 @@ export class AccountComponent implements OnInit, OnChanges {
     
     this._userService.updateUserConfirm(form.value).subscribe({
       next: (data)=>{
-        this._router.navigate(['/app/list'])
+        // this._router.navigate(['/app/list'])
+        this.refresh();
       
       },
         error: error => {

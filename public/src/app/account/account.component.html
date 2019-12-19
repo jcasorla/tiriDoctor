@@ -6,20 +6,20 @@
                 
         <div class="form-group col-md-2">
             <label for="firstName">Primer Nombre</label>                    
-            <input type="text" name="firstName" [(ngModel)]="user.firstName" class="form-control" readonly>               
+            <input type="text" name="firstName" [ngModel]="user.firstName" class="form-control" readonly>               
         </div>
         
         <div class="form-group col-md-2">
             <label for="lastName">Apellido</label>
-            <input type="text" name="lastName" [(ngModel)]="user.lastName" class="form-control" readonly>                
+            <input type="text" name="lastName" [ngModel]="user.lastName" class="form-control" readonly>                
         </div>
         <div class="form-group col-md-3">
             <label for="email">Email</label>
-            <input type="text" name="email" [(ngModel)]="user.email" class="form-control" readonly>
+            <input type="text" name="email" [ngModel]="user.email" class="form-control" readonly>
         </div>
         <div class="form-group col-md-2">
             <label for="username">username</label>
-            <input type="text" name="username" [(ngModel)]="user.username" class="form-control" readonly>
+            <input type="text" name="username" [ngModel]="user.username" class="form-control" readonly>
     
         </div>
     </div>
@@ -80,7 +80,9 @@
                
             </div>
             <button *ngIf="upForm1.valid" class="btn btn-primary btn-sm">Editar</button>
-            <button class="btn btn-danger btn-sm" [routerLink]="['/app/list']">Cancelar</button>
+            <button *ngIf="!upForm1.valid" class="btn btn-primary btn-sm" disabled>Editar</button>
+            <!-- <button class="btn btn-danger btn-sm" [routerLink]="['/app/list']">Cancelar</button> -->
+            <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>  
             
         </form>
         
@@ -99,11 +101,15 @@
                     
                     required
                     minlength="3" 
-                    #email="ngModel" 
+                    #email="ngModel"
+                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                     >
                     <div *ngIf="(email.touched || email.dirty) && email.errors">
                         <div *ngIf="email?.errors?.required" class="alert alert-danger">
                             debes ingresar el correo
+                        </div>
+                        <div *ngIf="email?.errors && email?.errors?.pattern" class="alert alert-danger">
+                            correo invalido
                         </div>
                         
                     </div>
@@ -132,7 +138,9 @@
             <input type="hidden" name="username" [ngModel]="user.username" class="form-control">
             <input type="hidden" name="createdAt" [ngModel]="user.createdAt" class="form-control">
             <button *ngIf="upForm2.valid" class="btn btn-primary btn-sm">Editar</button>
-            <button class="btn btn-danger btn-sm" [routerLink]="['/app/list']">Cancelar</button>
+            <button *ngIf="!upForm2.valid" class="btn btn-primary btn-sm" disabled>Editar</button>
+            <!-- <button class="btn btn-danger btn-sm" [routerLink]="['/app/list']">Cancelar</button> -->
+            <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>  
             
         </form>
         
@@ -188,7 +196,9 @@
             <input type="hidden" name="email" [ngModel]="user.email" class="form-control">
             <input type="hidden" name="createdAt" [ngModel]="user.createdAt" class="form-control">
             <button *ngIf="upForm3.valid" class="btn btn-primary btn-sm">Editar</button>
-            <button class="btn btn-danger btn-sm" [routerLink]="['/app/list']">Cancelar</button>
+            <button *ngIf="!upForm3.valid" class="btn btn-primary btn-sm" disabled>Editar</button>
+            <!-- <button class="btn btn-danger btn-sm" [routerLink]="['/app/list']">Cancelar</button> -->
+            <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>  
             
         </form>
         

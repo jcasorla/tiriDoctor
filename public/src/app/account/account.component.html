@@ -11,15 +11,15 @@
         
         <div class="form-group col-md-2">
             <label for="lastName">Apellido</label>
-            <input type="text" name="lastName" [ngModel]="user.lastName" class="form-control" readonly>                
+            <input class="required" type="text" name="lastName" [ngModel]="user.lastName" class="form-control" readonly>                
         </div>
         <div class="form-group col-md-3">
             <label for="email">Email</label>
-            <input type="text" name="email" [ngModel]="user.email" class="form-control" readonly>
+            <input class="required" type="text" name="email" [ngModel]="user.email" class="form-control" readonly>
         </div>
         <div class="form-group col-md-2">
             <label for="username">username</label>
-            <input type="text" name="username" [ngModel]="user.username" class="form-control" readonly>
+            <input class="required" type="text" name="username" [ngModel]="user.username" class="form-control" readonly>
     
         </div>
     </div>
@@ -39,7 +39,7 @@
             <div class="form-row">
                     
                 <div class="form-group col-md-2">
-                    <label for="firstName">Primer Nombre</label>                    
+                    <label class="required" for="firstName">Primer Nombre</label>                    
                     <input type="text" name="firstName"
                     required
                     minlength="3" 
@@ -59,7 +59,7 @@
                 </div>
                 
                 <div class="form-group col-md-2">
-                    <label for="lastName">Apellido</label>
+                    <label class="required" for="lastName">Apellido</label>
                     <input type="text" name="lastName" [(ngModel)]="user.lastName" class="form-control"
                     required
                     minlength="3" 
@@ -95,7 +95,7 @@
             <div class="form-row">   
 
                 <div class="form-group col-md-3">
-                    <label for="email">Email</label>
+                    <label class="required" for="email">Email</label>
                     <input type="text" name="email"  [ngModel]="user2.email" class="form-control"
                     
                     required
@@ -115,7 +115,7 @@
             
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="password">Password</label>
+                    <label class="required" for="password">Password</label>
                     <input type="password" name="password" [ngModel]="user2.password" class="form-control"
                     required
                     minlength="3" 
@@ -153,7 +153,7 @@
             <div class="form-row">   
 
                 <div class="form-group col-md-3">
-                    <label for="username">username</label>
+                    <label class="required" for="username">username</label>
                     <input type="text" name="username" [ngModel]="user2.username" class="form-control"
                     required
                     minlength="3" 
@@ -172,7 +172,7 @@
             
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="password">Password</label>
+                    <label class="required" for="password">Password</label>
                     <input type="password" name="password" [ngModel]="user2.password" class="form-control"
                     required
                     minlength="3" 
@@ -200,36 +200,7 @@
         </form>
         
            
-        <br>    
-
-        <!-- <form  (submit)="onSubmit($event, newForm)" #upForm3="ngForm">
-            <div class="form-row"> 
-                <div class="form-group col-md-2">
-                    <label for="username">username</label>
-                    <input type="text" name="username" [(ngModel)]="user.username" class="form-control"
-                    required
-                    minlength="3" 
-                    #username="ngModel" 
-                    >
-                    <div *ngIf="(username.touched || username.dirty) && username.errors">
-                        <div *ngIf="username?.errors?.required" class="alert alert-danger">
-                            debes ingresar el apellido
-                        </div>
-                        <div *ngIf="username?.errors?.minlength" class="alert alert-danger">
-                            el primer appellido debe tener
-                            {{ username?.errors?.minlength.requiredLength }} letras
-                        </div>
-                        
-                    </div>
-            
-                </div>
-            </div>
-            <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Editar</button>
-            <button class="btn btn-danger btn-sm" [routerLink]="['/app/list']">Cancelar</button>
-            
-        </form>        
-           
-        <br>     -->
+        <br>            
 
     </div>
 
@@ -241,7 +212,7 @@
             <div class="form-row">   
 
                 <div class="form-group col-md-3">
-                    <label for="current">Current Password</label>
+                    <label class="required" for="current">Current Password</label>
                     <input type="password" name="current" [ngModel]="user2.current" class="form-control"
                     required
                     minlength="3" 
@@ -260,7 +231,7 @@
             
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="password">Password</label>
+                    <label class="required" for="password">Password</label>
                     <input type="password" name="password" [ngModel]="user2.password" class="form-control"
                     required
                     minlength="3" 
@@ -279,7 +250,7 @@
             
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="cpwd">Password</label>
+                    <label class="required" for="cpwd">Password</label>
                     <input type="password" name="cpwd" [ngModel]="user2.cpwd" class="form-control"
                     required
                     minlength="3" 

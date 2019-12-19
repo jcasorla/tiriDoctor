@@ -85,64 +85,56 @@ module.exports = {
     
         // }
 
-    //     async function run() {
-    //         const saltValue = await bcrypt.genSalt(10);
-    //         bcrypt
-    //           .hash(req.body.password, saltValue)
-    //           .then(hash =>{
-    //             console.log(hash)
-    //             var user = new User({email: req.body.email , firstName: req.body.firstName, lastName: req.body.lastName, password: hash, username: username});
-    //             user.save()
-    //             .then(result =>{
-    //                 res.redirect("/login");
-    //             })
-                
-    //             .catch(err =>{
-    //                 console.log("in error");
-    //                 for(var key in err.errors){
-    //                     req.flash("qform", err.errors[key].message);
-    //                 } 
-    //                 res.redirect("/register");
-
-    //             });
-    //           })
-    //           .catch(err =>{
-    //             console.log(err);
-    //             for(var key in err.errors){
-    //                 req.flash("qform", err.errors[key].message);
-    //             } 
-    //             res.redirect("/register")
-
-    //           });
-    //       }
-    //       run();
-        
-    //    }
+    
 
         User.findById({ _id : req.params.id })
             .then((user) => {
                 console.log("are you entering?");
-                if (bcrypt.compareSync(req.body.password, user.password)) {
+                if (bcrypt.compareSync(req.body.current, user.password)) {
                     // Passwords match
                     console.log("Passwords match");
-                    req.body.password=user.password;
-                    User.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
-                    .then((data) => {
-                        res.json({updatedUser: data});
-                    })
-                    .catch(err => {
-                        const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
-                        res.status(422).json(errors )});
-                    
 
-                    // res.redirect("/");
+                    async function run() {
+                        const saltValue = await bcrypt.genSalt(10);
+                        bcrypt
+                        .hash(req.body.password, saltValue)
+                        .then(hash =>{
+                            // console.log("in saltvalue");
+                            // console.log(hash);
+                            
+                            User.findByIdAndUpdate(req.params.id , {email: req.body.email , firstName: req.body.firstName, lastName: req.body.lastName, password: hash, username: req.body.username, updatedAt: req.body.updatedAt}, {runValidators: true, new: true} )
+                            .then((data) => {
+                                res.json({updatedUser: data});
+                            })
+                            .catch(err => {
+                                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                                res.status(422).json(errors )});                         
+
+                        })
+                        .catch(err =>{
+                            console.log(err);
+                            const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                            res.status(422).json(errors );
+
+                        });
+                    }
+                    run();
+                    
+                      
+
                 } else {
                     // Passwords don't match
                     console.log("Passwords don't match");
                     res.json({status: 'failure'});
                 }
             })
-            .catch(err => res.json(err));
+            // .catch(err => res.json(err));
+            .catch(err =>{
+                console.log(err);
+                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                res.status(422).json(errors );
+
+            });
 
        
     },

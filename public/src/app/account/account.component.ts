@@ -100,19 +100,19 @@ export class AccountComponent implements OnInit, OnChanges {
       this.errors= ['not matching passwords'];
     }
     
-    // this._userService.updateUserPwd(form.value).subscribe({
-    //   next: (data)=>{
-    //     // this._router.navigate(['/app/list'])
-    //     this.refresh();
+    this._userService.updateUserPwd(form.value).subscribe({
+      next: (data)=>{
+        // this._router.navigate(['/app/list'])
+        this.refresh();
       
-    //   },
-    //     error: error => {
-    //       console.log(error);
-    //       this.errors=error.error;
+      },
+        error: error => {
+          console.log(error);
+          this.errors=error.error;
   
-    //   }
+      }
       
-    // });
+    });
   }
 
   showName(): void { 

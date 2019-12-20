@@ -48,13 +48,17 @@
                         <label for="nombre" class="required">Problema</label>
                         
                         <input type="text" name="nombre" [ngModel]="newproblem.nombre" class="form-control" 
-                        required
+                        required                        
+                        minlength="3"
                         #nombre="ngModel">
                         <div *ngIf="(nombre.touched || nombre.dirty) && nombre.errors">
                             <div *ngIf="nombre?.errors?.required" class="alert alert-danger">
                                 Necesario
                             </div>
-                            
+                            <div *ngIf="nombre?.errors?.minlength" class="alert alert-danger">
+                                Debe tener
+                                {{ nombre?.errors?.minlength.requiredLength }} letras
+                            </div>
                         </div>
                 
                     </div>
@@ -97,11 +101,16 @@
                         
                         <input type="text" name="nombre" [ngModel]="editproblem.nombre" class="form-control" 
                         required
+                        minlength="3"
                         #nombre="ngModel">
                         <div *ngIf="(nombre.touched || nombre.dirty) && nombre.errors">
                             <div *ngIf="nombre?.errors?.required" class="alert alert-danger">
                                 Necesario
                             </div>
+                            <div *ngIf="nombre?.errors?.minlength" class="alert alert-danger">
+                                Debe tener
+                                {{ nombre?.errors?.minlength.requiredLength }} letras
+                            </div>                           
                             
                         </div>
                 
@@ -120,7 +129,7 @@
                             <div *ngIf="activo?.errors?.required" class="alert alert-danger">
                                 Necesario
                             </div>
-                            
+                                                        
                         </div>
                 
                     </div>        

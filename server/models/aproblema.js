@@ -4,7 +4,7 @@ const problemaSchema = new mongoose.Schema({
     nombre: { 
         type: String,
         required: true,
-        minlength: [4, 'At least 4 characters long']
+        minlength: [3, 'At least 4 characters long']
 
     },
     activo: { 

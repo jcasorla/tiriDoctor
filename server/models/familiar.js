@@ -31,7 +31,7 @@ const familiarSchema = new mongoose.Schema({
     },
     hermanosVivos: { 
         type: String,
-        required: true
+        required: false
 
     },
 

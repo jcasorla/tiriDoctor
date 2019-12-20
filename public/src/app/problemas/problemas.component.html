@@ -41,24 +41,39 @@
 
     <div class="col-md-5">
         <br>
-        <!-- <button *ngIf="!shownew" class="btn btn-outline-primary btn-sm" (click)="showNew()">Nuevo</button> -->
         <div *ngIf="shownew">
             <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)" >
                 <div class="form-row">
                     <div class="form-group col-lg-8">
-                        <label for="nombre">Problema</label>
+                        <label for="nombre" class="required">Problema</label>
                         
-                        <input type="text" name="nombre" [ngModel]="newproblem.nombre" class="form-control" >
+                        <input type="text" name="nombre" [ngModel]="newproblem.nombre" class="form-control" 
+                        required
+                        #nombre="ngModel">
+                        <div *ngIf="(nombre.touched || nombre.dirty) && nombre.errors">
+                            <div *ngIf="nombre?.errors?.required" class="alert alert-danger">
+                                Necesario
+                            </div>
+                            
+                        </div>
                 
                     </div>
                     <div class="form-group col-sm-3">
-                        <label for="activo">Activo</label>
-                        <select class="form-control" name="activo" [ngModel]="newproblem.activo">
+                        <label for="activo" class="required">Activo</label>
+                        <select class="form-control" name="activo" [ngModel]="newproblem.activo"
+                        required
+                        #activo="ngModel">
                             <option></option>
                             <option>Si</option>
                             <option>No</option>
                             
                         </select>
+                        <div *ngIf="(activo.touched || activo.dirty) && activo.errors">
+                            <div *ngIf="activo?.errors?.required" class="alert alert-danger">
+                                Necesario
+                            </div>
+                            
+                        </div>
                 
                     </div>
         
@@ -78,19 +93,35 @@
             <form  #upForm="ngForm" (submit)="onUpdate(upForm)" >
                 <div class="form-row">
                     <div class="form-group col-lg-8">
-                        <label for="nombre">Problema</label>
+                        <label for="nombre" class="required">Problema</label>
                         
-                        <input type="text" name="nombre" [ngModel]="editproblem.nombre" class="form-control" >
+                        <input type="text" name="nombre" [ngModel]="editproblem.nombre" class="form-control" 
+                        required
+                        #nombre="ngModel">
+                        <div *ngIf="(nombre.touched || nombre.dirty) && nombre.errors">
+                            <div *ngIf="nombre?.errors?.required" class="alert alert-danger">
+                                Necesario
+                            </div>
+                            
+                        </div>
                 
                     </div>
                     <div class="form-group col-sm-3">
-                        <label for="activo">Activo</label>
-                        <select class="form-control" name="activo" [ngModel]="editproblem.activo">
+                        <label for="activo" class="required">Activo</label>
+                        <select class="form-control" name="activo" [ngModel]="editproblem.activo"
+                        required
+                        #activo="ngModel">
                             <option></option>
                             <option>Si</option>
                             <option>No</option>
                             
                         </select>
+                        <div *ngIf="(activo.touched || activo.dirty) && activo.errors">
+                            <div *ngIf="activo?.errors?.required" class="alert alert-danger">
+                                Necesario
+                            </div>
+                            
+                        </div>
                 
                     </div>        
                 </div>

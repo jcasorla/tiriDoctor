@@ -6,45 +6,117 @@
         
         <div class="form-row">
             <div class="form-group col-sm-2">
-                <label for="taDerecho">T.A. (derecho)</label>                    
-                <input class="form-control" type="text" name="taDerecho" [ngModel]="fisico.taDerecho">
+                <label for="taDerecho" class="required">T.A. (derecho)</label>                    
+                <input class="form-control" type="text" name="taDerecho" [ngModel]="fisico.taDerecho"
+                required
+                #taDerecho="ngModel">
+                <div *ngIf="(taDerecho.touched || taDerecho.dirty) && taDerecho.errors">
+                    <div *ngIf="taDerecho?.errors?.required" class="alert alert-danger">
+                        Necesario
+                    </div>
+                    
+                </div>
             </div>
             <div class="form-group col-sm-2">
-                <label for="taIzquierdo">T.A. (izquierdo)</label>                    
-                <input class="form-control" type="text" name="taIzquierdo" [ngModel]="fisico.taIzquierdo">
+                <label for="taIzquierdo" class="required">T.A. (izquierdo)</label>                    
+                <input class="form-control" type="text" name="taIzquierdo" [ngModel]="fisico.taIzquierdo"
+                required
+                #taIzquierdo="ngModel">
+                <div *ngIf="(taIzquierdo.touched || taIzquierdo.dirty) && taIzquierdo.errors">
+                    <div *ngIf="taIzquierdo?.errors?.required" class="alert alert-danger">
+                        Necesario
+                    </div>
+                    
+                </div>
             </div>
             <div class="form-group col-sm-2">
-                <label for="freqC">F.C.</label>                    
-                <input class="form-control" type="text" name="freqC" [ngModel]="fisico.freqC">
+                <label for="freqC" class="required">F.C.</label>                    
+                <input class="form-control" type="text" name="freqC" [ngModel]="fisico.freqC"
+                required
+                #freqC="ngModel">
+                <div *ngIf="(freqC.touched || freqC.dirty) && freqC.errors">
+                    <div *ngIf="freqC?.errors?.required" class="alert alert-danger">
+                        Necesario
+                    </div>
+                    
+                </div>
             </div>
             <div class="form-group col-sm-2">
-                <label for="freqR">Frec. Resp.</label>                    
-                <input class="form-control" type="text" name="freqR" [ngModel]="fisico.freqR">
+                <label for="freqR" class="required">Frec. Resp.</label>                    
+                <input class="form-control" type="text" name="freqR" [ngModel]="fisico.freqR"
+                required
+                #freqR="ngModel">
+                <div *ngIf="(freqR.touched || freqR.dirty) && freqR.errors">
+                    <div *ngIf="freqR?.errors?.required" class="alert alert-danger">
+                        Necesario
+                    </div>
+                    
+                </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-sm-2">
-                <label for="temp">Temp.</label>                    
-                <input class="form-control" type="text" name="temp" [ngModel]="fisico.temp">
+                <label for="temp" class="required">Temp.</label>                    
+                <input class="form-control" type="text" name="temp" [ngModel]="fisico.temp"
+                required
+                #temp="ngModel">
+                <div *ngIf="(temp.touched || temp.dirty) && temp.errors">
+                    <div *ngIf="temp?.errors?.required" class="alert alert-danger">
+                        Necesario
+                    </div>
+                    
+                </div>
             </div>
             <div class="form-group col-sm-2">
-                <label for="peso">Peso</label>                    
-                <input class="form-control" type="text" name="peso" [ngModel]="fisico.peso">
+                <label for="peso" class="required">Peso</label>                    
+                <input class="form-control" type="text" name="peso" [ngModel]="fisico.peso"
+                required
+                #peso="ngModel">
+                <div *ngIf="(peso.touched || peso.dirty) && peso.errors">
+                    <div *ngIf="peso?.errors?.required" class="alert alert-danger">
+                        Necesario
+                    </div>
+                    
+                </div>
             </div>
             <div class="form-group col-sm-2">
-                <label for="talla">Talla</label>                    
-                <input class="form-control" type="text" name="talla" [ngModel]="fisico.talla">
+                <label for="talla" class="required">Talla</label>                    
+                <input class="form-control" type="text" name="talla" [ngModel]="fisico.talla"
+                required
+                #talla="ngModel">
+                <div *ngIf="(talla.touched || talla.dirty) && talla.errors">
+                    <div *ngIf="talla?.errors?.required" class="alert alert-danger">
+                        Necesario
+                    </div>
+                    
+                </div>
             </div>
             <div class="form-group col-sm-2">
-                <label for="imc">IMC</label>                    
-                <input class="form-control" type="text" name="imc" [ngModel]="fisico.imc">
+                <label for="imc" class="required">IMC</label>                    
+                <input class="form-control" type="text" name="imc" [ngModel]="fisico.imc"
+                required
+                #imc="ngModel">
+                <div *ngIf="(imc.touched || imc.dirty) && imc.errors">
+                    <div *ngIf="imc?.errors?.required" class="alert alert-danger">
+                        Necesario
+                    </div>
+                    
+                </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-lg">
-                <label for="cabeza">Cabeza Y Cuello</label>
+                <label for="cabeza" class="required">Cabeza Y Cuello</label>
                 
-                <textarea class="form-control"  name="cabeza" cols="3" rows="3" [ngModel]="fisico.cabeza"></textarea>
+                <textarea class="form-control"  name="cabeza" cols="3" rows="3" [ngModel]="fisico.cabeza"
+                required
+                #cabeza="ngModel"></textarea>
+                <div *ngIf="(cabeza.touched || cabeza.dirty) && cabeza.errors">
+                    <div *ngIf="cabeza?.errors?.required" class="alert alert-danger">
+                        Necesario
+                    </div>
+                    
+                </div>
         
             </div>
 
@@ -65,45 +137,117 @@
             
             <div class="form-row">
                 <div class="form-group col-sm-2">
-                    <label for="taDerecho">T.A. (derecho)</label>                    
-                    <input class="form-control" type="text" name="taDerecho" [ngModel]="list.taDerecho">
+                    <label for="taDerecho" class="required">T.A. (derecho)</label>                    
+                    <input class="form-control" type="text" name="taDerecho" [ngModel]="list.taDerecho"
+                    required
+                    #taDerecho="ngModel">
+                    <div *ngIf="(taDerecho.touched || taDerecho.dirty) && taDerecho.errors">
+                        <div *ngIf="taDerecho?.errors?.required" class="alert alert-danger">
+                            Necesario
+                        </div>
+                        
+                    </div>
                 </div>
                 <div class="form-group col-sm-2">
-                    <label for="taIzquierdo">T.A. (izquierdo)</label>                    
-                    <input class="form-control" type="text" name="taIzquierdo" [ngModel]="list.taIzquierdo">
+                    <label for="taIzquierdo" class="required">T.A. (izquierdo)</label>                    
+                    <input class="form-control" type="text" name="taIzquierdo" [ngModel]="list.taIzquierdo"
+                    required
+                    #taIzquierdo="ngModel">
+                    <div *ngIf="(taIzquierdo.touched || taIzquierdo.dirty) && taIzquierdo.errors">
+                        <div *ngIf="taIzquierdo?.errors?.required" class="alert alert-danger">
+                            Necesario
+                        </div>
+                        
+                    </div>
                 </div>
                 <div class="form-group col-sm-2">
-                    <label for="freqC">F.C.</label>                    
-                    <input class="form-control" type="text" name="freqC" [ngModel]="list.freqC">
+                    <label for="freqC" class="required">F.C.</label>                    
+                    <input class="form-control" type="text" name="freqC" [ngModel]="list.freqC"
+                    required
+                    #freqC="ngModel">
+                    <div *ngIf="(freqC.touched || freqC.dirty) && freqC.errors">
+                        <div *ngIf="freqC?.errors?.required" class="alert alert-danger">
+                            Necesario
+                        </div>
+                        
+                    </div>
                 </div>
                 <div class="form-group col-sm-2">
-                    <label for="freqR">Frec. Resp.</label>                    
-                    <input class="form-control" type="text" name="freqR" [ngModel]="list.freqR">
+                    <label for="freqR" class="required">Frec. Resp.</label>                    
+                    <input class="form-control" type="text" name="freqR" [ngModel]="list.freqR"
+                    required
+                    #freqR="ngModel">
+                    <div *ngIf="(freqR.touched || freqR.dirty) && freqR.errors">
+                        <div *ngIf="freqR?.errors?.required" class="alert alert-danger">
+                            Necesario
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-sm-2">
-                    <label for="temp">Temp.</label>                    
-                    <input class="form-control" type="text" name="temp" [ngModel]="list.temp">
+                    <label for="temp" class="required">Temp.</label>                    
+                    <input class="form-control" type="text" name="temp" [ngModel]="list.temp"
+                    required
+                    #temp="ngModel">
+                    <div *ngIf="(temp.touched || temp.dirty) && temp.errors">
+                        <div *ngIf="temp?.errors?.required" class="alert alert-danger">
+                            Necesario
+                        </div>
+                        
+                    </div>
                 </div>
                 <div class="form-group col-sm-2">
-                    <label for="peso">Peso</label>                    
-                    <input class="form-control" type="text" name="peso" [ngModel]="list.peso">
+                    <label for="peso" class="required">Peso</label>                    
+                    <input class="form-control" type="text" name="peso" [ngModel]="list.peso"
+                    required
+                    #peso="ngModel">
+                    <div *ngIf="(peso.touched || peso.dirty) && peso.errors">
+                        <div *ngIf="peso?.errors?.required" class="alert alert-danger">
+                            Necesario
+                        </div>
+                        
+                    </div>
                 </div>
                 <div class="form-group col-sm-2">
-                    <label for="talla">Talla</label>                    
-                    <input class="form-control" type="text" name="talla" [ngModel]="list.talla">
+                    <label for="talla" class="required">Talla</label>                    
+                    <input class="form-control" type="text" name="talla" [ngModel]="list.talla"
+                    required
+                    #talla="ngModel">
+                    <div *ngIf="(talla.touched || talla.dirty) && talla.errors">
+                        <div *ngIf="talla?.errors?.required" class="alert alert-danger">
+                            Necesario
+                        </div>
+                        
+                    </div>
                 </div>
                 <div class="form-group col-sm-2">
-                    <label for="imc">IMC</label>                    
-                    <input class="form-control" type="text" name="imc" [ngModel]="list.imc">
+                    <label for="imc" class="required">IMC</label>                    
+                    <input class="form-control" type="text" name="imc" [ngModel]="list.imc"
+                    required
+                    #imc="ngModel">
+                    <div *ngIf="(imc.touched || imc.dirty) && imc.errors">
+                        <div *ngIf="imc?.errors?.required" class="alert alert-danger">
+                            Necesario
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-lg">
-                    <label for="cabeza">Cabeza Y Cuello</label>
+                    <label for="cabeza" class="required">Cabeza Y Cuello</label>
                     
-                    <textarea class="form-control"  name="cabeza" cols="3" rows="3" [ngModel]="list.cabeza"></textarea>
+                    <textarea class="form-control"  name="cabeza" cols="3" rows="3" [ngModel]="list.cabeza"
+                    required
+                    #cabeza="ngModel"></textarea>
+                    <div *ngIf="(cabeza.touched || cabeza.dirty) && cabeza.errors">
+                        <div *ngIf="cabeza?.errors?.required" class="alert alert-danger">
+                            Necesario
+                        </div>
+                        
+                    </div>
             
                 </div>
     

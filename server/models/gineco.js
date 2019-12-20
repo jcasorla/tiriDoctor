@@ -44,12 +44,12 @@ const ginecoSchema = new mongoose.Schema({
     },
     anticonceptivo: { 
         type: String,
-        required: true
+        required: false
 
     },
     cuales: { 
         type: String,
-        required: true
+        required: false
 
     },    
 }, {timestamps: true });

@@ -51,7 +51,7 @@ export class FamiliarComponent implements OnInit {
     // console.log(form.value);
    
     this._httpService.familiar(pat, form.value).subscribe((data)=>{
-      // form.reset();
+      
       this.refresh();
 
       this.show=false;
@@ -60,8 +60,8 @@ export class FamiliarComponent implements OnInit {
   }
 
   onUpdate(form: NgForm) {
-    // console.log("printing on submit");
-    // console.log(form.value);
+    console.log("on update");
+    console.log(form.value);
     
     this._httpService.updateFamiliar(this.pat,form.value).subscribe({
       next: (data)=>{

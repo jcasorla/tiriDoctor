@@ -6,9 +6,22 @@
     <form  #actualForm="ngForm" (submit)="onCreate(pat, actualForm)" >
         <div class="form-row">
             <div class="form-group col-lg">
-                <label for="consulta">Motivo de Consulta</label>
+                <label for="consulta" class="required">Motivo de Consulta</label>
                 
-                <textarea class="form-control"  name="consulta" [ngModel]="actual.consulta" cols="5" rows="5" ></textarea>
+                <textarea class="form-control"  name="consulta" [ngModel]="actual.consulta" cols="5" rows="5" 
+                required
+                minlength="10"
+                #consulta="ngModel">></textarea>
+                <div *ngIf="(consulta.touched || consulta.dirty) && consulta.errors">
+                    <div *ngIf="consulta?.errors?.required" class="alert alert-danger">
+                        Necesario
+                    </div>
+                    <div *ngIf="consulta?.errors?.minlength" class="alert alert-danger">
+                        Por lo menos
+                        {{ consulta?.errors?.minlength.requiredLength }} letras
+                    </div>
+                    
+                </div>
         
             </div>
 
@@ -16,8 +29,21 @@
 
         <div class="form-row">
             <div class="form-group col-lg">
-                <label for="enfermedad">Enfermedad Actual</label>
-                <input type="text" name="enfermedad" [ngModel]="actual.enfermedad" class="form-control" >
+                <label for="enfermedad" class="required">Enfermedad Actual</label>
+                <input type="text" name="enfermedad" [ngModel]="actual.enfermedad" class="form-control" 
+                required
+                minlength="4"
+                #enfermedad="ngModel">
+                <div *ngIf="(enfermedad.touched || enfermedad.dirty) && enfermedad.errors">
+                    <div *ngIf="enfermedad?.errors?.required" class="alert alert-danger">
+                        Necesario
+                    </div>
+                    <div *ngIf="enfermedad?.errors?.minlength" class="alert alert-danger">
+                        Por lo menos
+                        {{ enfermedad?.errors?.minlength.requiredLength }} letras
+                    </div>
+                    
+                </div>
         
             </div>
 
@@ -29,7 +55,6 @@
         
         <button  class="btn btn-primary btn-sm">Añadir</button>
         <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
-        <!-- <button class="btn btn-danger btn-sm" [routerLink]="['/list']">Cancelar</button> -->
         
     </form>
     <br>
@@ -42,9 +67,22 @@
         <form  #actualForm="ngForm" (submit)="onUpdate(actualForm)" >
             <div class="form-row">
                 <div class="form-group col-lg">
-                    <label for="consulta">Motivo de Consulta</label>
+                    <label for="consulta" class="required">Motivo de Consulta</label>
                     
-                    <textarea class="form-control"  name="consulta" [ngModel]="list.consulta"  cols="5" rows="5"></textarea>
+                    <textarea class="form-control"  name="consulta" [ngModel]="list.consulta"  cols="5" rows="5"
+                    required
+                    minlength="10"
+                    #consulta="ngModel">></textarea>
+                    <div *ngIf="(consulta.touched || consulta.dirty) && consulta.errors">
+                        <div *ngIf="consulta?.errors?.required" class="alert alert-danger">
+                            Necesario
+                        </div>
+                        <div *ngIf="consulta?.errors?.minlength" class="alert alert-danger">
+                            Por lo menos
+                            {{ consulta?.errors?.minlength.requiredLength }} letras
+                        </div>
+                        
+                    </div>
             
                 </div>
     
@@ -52,9 +90,22 @@
     
             <div class="form-row">
                 <div class="form-group col-lg">
-                    <label for="enfermedad">Enfermedad Actual</label>
-                    <input type="text" name="enfermedad" [ngModel]="list.enfermedad" class="form-control">
-            
+                    <label for="enfermedad" class="required">Enfermedad Actual</label>
+                    <input type="text" name="enfermedad" [ngModel]="list.enfermedad" class="form-control"
+                    required
+                    minlength="4"
+                    #enfermedad="ngModel">
+                    <div *ngIf="(enfermedad.touched || enfermedad.dirty) && enfermedad.errors">
+                        <div *ngIf="enfermedad?.errors?.required" class="alert alert-danger">
+                            Necesario
+                        </div>
+                        <div *ngIf="enfermedad?.errors?.minlength" class="alert alert-danger">
+                            Por lo menos
+                            {{ enfermedad?.errors?.minlength.requiredLength }} letras
+                        </div>
+                        
+                    </div>
+                
                 </div>
     
             </div>
@@ -67,7 +118,6 @@
             
             <button  class="btn btn-primary btn-sm">Editar</button>
             <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
-            <!-- <button class="btn btn-danger btn-sm" [routerLink]="['/list']">Cancelar</button> -->
             
         </form>
         <br>

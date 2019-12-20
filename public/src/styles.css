@@ -12,6 +12,10 @@ label.required::after {
     height:300px;
     overflow-y: scroll;
 }
+.scroll2{
+    height:500px;
+    overflow-y: scroll;
+}
 
 .scrollbar-primary::-webkit-scrollbar {
     width: 12px;

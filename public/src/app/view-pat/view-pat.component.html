@@ -83,7 +83,7 @@
         <button class="btn btn-outline-primary" type="button" (click)="showFamiliar(pat)">Familiar</button>
         <button *ngIf="selectedpat.sex === 'F'" class="btn btn-outline-primary" type="button" (click)="showGineco(pat)">Gineco</button>               
         <button class="btn btn-outline-primary" type="button" (click)="showFisico(pat)">Fisico</button>        
-        <button class="btn btn-outline-primary" type="button">Laboratorio</button>        
+        <button class="btn btn-outline-primary" type="button" (click)="showLab(pat)">Laboratorio</button>        
         
     </form>
 </nav>
@@ -120,3 +120,6 @@
     <app-consulta [pat]=selectedpat></app-consulta>    
 </div>
 
+<div *ngIf='displayLab'>     
+    <app-lab [pat]=selectedpat></app-lab>    
+</div>

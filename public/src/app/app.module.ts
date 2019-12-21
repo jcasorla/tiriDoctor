@@ -21,7 +21,8 @@ import { ProblemasComponent } from './problemas/problemas.component';
 import {AuthGuard} from '../app/auth.guard'; // <-- AuthGuard prevents page from loading if no valid session or token
 import {PreloadProvider} from './preload';
 import { AccountComponent } from './account/account.component';
-import { ConsultaComponent } from './consulta/consulta.component' // <== preload data from preload.ts
+import { ConsultaComponent } from './consulta/consulta.component';
+import { LabComponent } from './lab/lab.component' // <== preload data from preload.ts
 
 
 export function preloadProviderFactory(provider: PreloadProvider) { // <== preload data from preload.ts
@@ -45,7 +46,8 @@ export function preloadProviderFactory(provider: PreloadProvider) { // <== prelo
     RefreshComponent,
     ProblemasComponent,
     AccountComponent,
-    ConsultaComponent,    
+    ConsultaComponent,
+    LabComponent,    
   ],
   providers: [
     PreloadProvider, // <== preload data from preload.ts

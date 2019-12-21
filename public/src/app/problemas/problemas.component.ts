@@ -16,7 +16,7 @@ export class ProblemasComponent implements OnInit {
   errors:any;
   shownew= false;
   showedit= false;
-  // show=true;
+  showlist=false;
 
   constructor(
     private _httpService: HttpService,
@@ -43,6 +43,12 @@ export class ProblemasComponent implements OnInit {
   showNew(){
     this.shownew=true;
     this.showedit=false;
+  }
+  showList(){
+    this.showlist=true;
+  }
+  hideList(){
+    this.showlist=false;
   }
 
   showEdit(list){

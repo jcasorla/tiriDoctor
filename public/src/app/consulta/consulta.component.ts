@@ -30,21 +30,21 @@ export class ConsultaComponent implements OnInit {
   ngOnInit() {
   }
 
-  showNew(){
-    this.shownew=true;
-    this.showedit=false;
-    this.showlist=false;
-  }
+  // showNew(){
+  //   this.shownew=true;
+  //   this.showedit=false;
+  //   this.showlist=false;
+  // }
 
   showEdit(list){
     this.editconsulta=list;
     // console.log(this.editproblem);
     this.showedit=true;
-    this.shownew=false;
+    // this.shownew=false;
   }
   showList(){
     this.showlist=true;
-    this.shownew=false;
+    // this.shownew=false;
   }
   hideList(){
     this.showlist=false;

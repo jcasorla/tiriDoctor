@@ -1,35 +1,89 @@
 
 <div class="row">
     <div class="col-sm-2">
-        <h2>Consulta</h2>
+        <h2>Consultas</h2>
     </div>
     <div class="col-sm-5">
-        <button *ngIf="!shownew" class="btn btn-outline-primary btn-sm" (click)="showNew()">Nuevo</button>
-        <button *ngIf="!showlist" class="btn btn-outline-primary btn-sm" (click)="showList()">List</button>
-        <button *ngIf="showlist" class="btn btn-outline-danger btn-sm" (click)="hideList()">Hide List</button>
+        <button *ngIf="!showlist" class="btn btn-outline-primary btn-sm" (click)="showList()">Lista</button>
+        <button *ngIf="showlist" class="btn btn-outline-danger btn-sm" (click)="hideList()">Ocultar Lista</button>
     </div>
 
 </div>
 
-<div class="row">
-   
-    <div *ngIf="showlist" class="col-md-5 scroll scrollbar-primary">
-        <br>
-        <!-- <h2>Lista de Consultas</h2> -->
+<div *ngIf="!showlist" class="col-lg">
+    <div class="col-lg">
+        <div *ngIf="errors">
+            <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
+        </div>
+    </div>
+    <form  #actualForm="ngForm" (submit)="onCreate(pat, actualForm)">
+        <div class="form-row">
+            <div class="form-group col-lg">
+                <label for="enfermedad" class="required">Resumen</label>
+                <input type="text" name="enfermedad" [ngModel]="newconsulta.enfermedad" class="form-control" 
+                required
+                minlength="4"
+                maxlength="23"
+                #enfermedad="ngModel">
+                <div *ngIf="(enfermedad.touched || enfermedad.dirty) && enfermedad.errors">
+                    <div *ngIf="enfermedad?.errors?.required" class="alert alert-danger">
+                        Necesario
+                    </div>
+                    <div *ngIf="enfermedad?.errors?.minlength" class="alert alert-danger">
+                        Por lo menos
+                        {{ enfermedad?.errors?.minlength.requiredLength }} letras
+                    </div>
+                    
+                </div>
+        
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-lg">
+                <label for="consulta" class="required">Motivo de Consulta</label>
+                
+                <textarea class="form-control"  name="consulta" [ngModel]="newconsulta.consulta" cols="5" rows="5" 
+                required
+                minlength="10"
+                #consulta="ngModel"></textarea>
+                <div *ngIf="(consulta.touched || consulta.dirty) && consulta.errors">
+                    <div *ngIf="consulta?.errors?.required" class="alert alert-danger">
+                        Necesario
+                    </div>
+                    <div *ngIf="consulta?.errors?.minlength" class="alert alert-danger">
+                        Por lo menos
+                        {{ consulta?.errors?.minlength.requiredLength }} letras
+                    </div>
+                    
+                </div>
+        
+            </div>
+
+        </div>
+
+        <button *ngIf="!actualForm.valid" class="btn btn-primary btn-sm" disabled>Añadir</button>
+        <button *ngIf="actualForm.valid" class="btn btn-primary btn-sm">Añadir</button>
+        <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+        
+    </form>
+</div>
+<div class="row" *ngIf="showlist">    
+    <div  class="col-md-5 scroll scrollbar-primary">
         <div class="container-fluid">
             <table class="table table-light"> 
                 <thead class="table-primary">
-                    <tr class="d-flex"><th class="col-sm-4">Fecha</th><th class="col-sm-5">Resumen</th>
-                        <th class="col-sm-1">Actiones</th>
+                    <tr class="d-flex"><th class="col-sm-3">Fecha</th><th class="col-sm-6">Resumen</th>
+                        <th class="col-sm-5">Actiones</th>
                     </tr>  
                 </thead>
             
                 <tbody *ngFor="let list of pat.actual">
                     
                     <tr class="d-flex">
-                        <td class="col-sm-4"><button class="btn btn-outline-primary btn-sm" (click)="showEdit(list)">{{list.createdAt | date:'dd/MM/yyyy'}}</button></td>
+                        <td class="col-sm-3"><button class="btn btn-outline-primary btn-sm" (click)="showEdit(list)">{{list.createdAt | date:'dd/MM/yyyy'}}</button></td>
                         <!-- <td class="col-sm-3">{{list.createdAt | date:'dd/MM/yyyy'}}</td>  -->
-                        <td class="col-sm-5">{{list.enfermedad}}</td>                          
+                        <td class="col-sm-6">{{list.enfermedad}}</td>                          
                         <td class="col-sm-5"><button class="btn btn-outline-danger btn-sm" (click)="onClickDelete(list)">Eliminar</button></td>
                         
                     
@@ -46,44 +100,24 @@
     
 
     <div class="col-md-7 scroll scrollbar-primary">
-        <br>
         <div class="col-lg">
             <div *ngIf="errors">
                 <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
             </div>
         </div>
-        <div *ngIf="shownew">
-            <form  #actualForm="ngForm" (submit)="onCreate(pat, actualForm)" >
+        
+
+        <div *ngIf="showedit">
+            
+            
+            <form  #actualForm="ngForm" (submit)="onUpdate(actualForm)" >
                 <div class="form-row">
                     <div class="form-group col-lg">
-                        <label for="consulta" class="required">Motivo de Consulta</label>
-                        
-                        <textarea class="form-control"  name="consulta" [ngModel]="newconsulta.consulta" cols="5" rows="5" 
-                        required
-                        minlength="10"
-                        #consulta="ngModel"></textarea>
-                        <div *ngIf="(consulta.touched || consulta.dirty) && consulta.errors">
-                            <div *ngIf="consulta?.errors?.required" class="alert alert-danger">
-                                Necesario
-                            </div>
-                            <div *ngIf="consulta?.errors?.minlength" class="alert alert-danger">
-                                Por lo menos
-                                {{ consulta?.errors?.minlength.requiredLength }} letras
-                            </div>
-                            
-                        </div>
-                
-                    </div>
-        
-                </div>
-        
-                <div class="form-row">
-                    <div class="form-group col-lg">
-                        <label for="enfermedad" class="required">Enfermedad Actual</label>
-                        <input type="text" name="enfermedad" [ngModel]="newconsulta.enfermedad" class="form-control" 
+                        <label for="enfermedad" class="required">Resumen</label>
+                        <input type="text" name="enfermedad" [ngModel]="editconsulta.enfermedad" class="form-control"
                         required
                         minlength="4"
-                        maxlength="25"
+                        maxlength="23"
                         #enfermedad="ngModel">
                         <div *ngIf="(enfermedad.touched || enfermedad.dirty) && enfermedad.errors">
                             <div *ngIf="enfermedad?.errors?.required" class="alert alert-danger">
@@ -95,26 +129,10 @@
                             </div>
                             
                         </div>
-                
+                    
                     </div>
         
                 </div>
-                
-                
-                
-        
-                <button *ngIf="!actualForm.valid" class="btn btn-primary btn-sm" disabled>Añadir</button>
-                <button *ngIf="actualForm.valid" class="btn btn-primary btn-sm">Añadir</button>
-                <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
-                
-            </form>
-            
-        </div>
-
-        <div *ngIf="showedit">
-            
-          
-            <form  #actualForm="ngForm" (submit)="onUpdate(actualForm)" >
                 <div class="form-row">
                     <div class="form-group col-lg">
                         <label for="consulta" class="required">Motivo de Consulta</label>
@@ -138,37 +156,15 @@
         
                 </div>
         
-                <div class="form-row">
-                    <div class="form-group col-lg">
-                        <label for="enfermedad" class="required">Enfermedad Actual</label>
-                        <input type="text" name="enfermedad" [ngModel]="editconsulta.enfermedad" class="form-control"
-                        required
-                        minlength="4"
-                        maxlength="20"
-                        #enfermedad="ngModel">
-                        <div *ngIf="(enfermedad.touched || enfermedad.dirty) && enfermedad.errors">
-                            <div *ngIf="enfermedad?.errors?.required" class="alert alert-danger">
-                                Necesario
-                            </div>
-                            <div *ngIf="enfermedad?.errors?.minlength" class="alert alert-danger">
-                                Por lo menos
-                                {{ enfermedad?.errors?.minlength.requiredLength }} letras
-                            </div>
-                            
-                        </div>
-                    
-                    </div>
-        
-                </div>
+               
                 <input type="hidden" name="_id" [ngModel]="editconsulta._id" class="form-control">
                 <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">
                 <input type="hidden" name="created_at" [ngModel]="editconsulta.createdAt" class="form-control">
-                                               
+                                                
         
                 
                 <button *ngIf="!actualForm.valid" class="btn btn-primary btn-sm" disabled>Editar</button>
                 <button *ngIf="actualForm.valid" class="btn btn-primary btn-sm">Editar</button>
-                <!-- <button class="btn btn-outline-danger btn-sm" (click)="onClickDelete(editconsulta)">Eliminar</button> -->
                 <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
                 
             </form>
@@ -179,6 +175,7 @@
         
 
     </div>
+    
 
 </div>
 

@@ -9,9 +9,11 @@ const actualSchema = new mongoose.Schema({
     enfermedad: { 
         type: String,
         required: [true,"Enfermedad Actual es obligatorio"],
-        minlength: [4, 'Enfermedad Actual - Por lo menos 4 letras']
+        minlength: [4, 'Enfermedad Actual - Por lo menos 4 letras'],
+        maxlength: [20, 'Enfermedad Actual - Por lo menos 4 letras'],
 
     },    
+    // enfermedad:{type: String, required: false}
     
   
 }, { timestamps: true });

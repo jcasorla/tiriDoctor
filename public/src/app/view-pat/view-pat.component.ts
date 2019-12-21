@@ -18,6 +18,7 @@ export class ViewPatComponent implements OnInit{
   displayGineco: any;
   displayFisico: any;
   displayProblemas: any;
+  displayConsultas: any;
   
 
   constructor(
@@ -65,6 +66,7 @@ export class ViewPatComponent implements OnInit{
     this.displayFisico = null;
     this.displayGineco = null;
     this.displayProblemas = null;
+    this.displayConsultas=null;
   }
   showFamiliar(data): void { 
     // console.log("in familiar");
@@ -76,6 +78,7 @@ export class ViewPatComponent implements OnInit{
     this.displayFisico = null;
     this.displayGineco = null;
     this.displayProblemas = null;
+    this.displayConsultas=null;
   }
   showPatologico(data): void { 
     // console.log("in patologico");
@@ -86,6 +89,7 @@ export class ViewPatComponent implements OnInit{
     this.displayFisico = null;
     this.displayGineco = null;
     this.displayProblemas = null;
+    this.displayConsultas=null;
   }
   showNoPatologico(data): void { 
     // console.log("in no patologico");
@@ -96,6 +100,7 @@ export class ViewPatComponent implements OnInit{
     this.displayFisico = null;
     this.displayGineco = null;
     this.displayProblemas = null;
+    this.displayConsultas=null;
   }
 
   showGineco(data): void { 
@@ -108,6 +113,7 @@ export class ViewPatComponent implements OnInit{
     this.displayNoPatologico = null;
     this.displayFisico = null;
     this.displayProblemas = null;
+    this.displayConsultas=null;
   }
 
   showFisico(data): void { 
@@ -119,10 +125,23 @@ export class ViewPatComponent implements OnInit{
     this.displayIllness=null;
     this.displayGineco = null;
     this.displayProblemas = null;
+    this.displayConsultas=null;
   }
   showProblemas(data): void { 
     // console.log("in fisico");
     this.displayProblemas = true;
+    this.displayNoPatologico = null;
+    this.displayPatologico = null;
+    this.displayFamiliar = null;
+    this.displayIllness=null;
+    this.displayGineco = null;
+    this.displayFisico = null;
+    this.displayConsultas=null;
+  }
+  showConsultas(data): void { 
+    // console.log("in fisico");
+    this.displayConsultas=true;
+    this.displayProblemas = null;
     this.displayNoPatologico = null;
     this.displayPatologico = null;
     this.displayFamiliar = null;

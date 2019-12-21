@@ -96,9 +96,7 @@ module.exports = {
                        
                     },
                     function(err,doc) {
-                        // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
-                        // res.status(422).json(errors);
-                        res.status(422).json(['Error inesperado']);                
+                               
                     }
                 );
                 
@@ -146,7 +144,7 @@ module.exports = {
                     function(err,doc) {
                         // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
                         // res.status(422).json(errors )
-                        res.status(422).json(['Error inesperado']);                
+                        // res.status(422).json(['Error inesperado']);                
                     }
                 );
                 
@@ -194,7 +192,7 @@ module.exports = {
                     function(err,doc) {
                         // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
                         // res.status(422).json(errors )
-                        res.status(422).json(['Error inesperado']);                
+                        // res.status(422).json(['Error inesperado']);                
                     }
                 );
                 
@@ -242,7 +240,7 @@ module.exports = {
                     function(err,doc) {
                         // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
                         // res.status(422).json(errors);
-                        res.status(422).json(['Error inesperado']);                
+                        // res.status(422).json(['Error inesperado']);                
                     }
                 );
                 
@@ -290,7 +288,7 @@ module.exports = {
                     function(err,doc) {
                         // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
                         // res.status(422).json(errors);
-                        res.status(422).json(['Error inesperado']);                
+                        // res.status(422).json(['Error inesperado']);                
                     }
                 );
                 
@@ -338,7 +336,7 @@ module.exports = {
                     function(err,doc) {
                         // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
                         // res.status(422).json(errors);
-                        res.status(422).json(['Error inesperado']);
+                        // res.status(422).json(['Error inesperado']);
                 
                     }
                 );
@@ -387,7 +385,7 @@ module.exports = {
                                     
                 },
                 function(err,doc) {
-                    res.status(422).json(['Error inesperado']);
+                    // res.status(422).json(['Error inesperado']);
                 }
             );
             

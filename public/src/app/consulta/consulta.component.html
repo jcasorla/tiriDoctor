@@ -1,0 +1,162 @@
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Lista de Consultas</h2>
+    </div>
+    <div class="col-sm-1">
+        <button *ngIf="!shownew" class="btn btn-outline-primary btn-sm" (click)="showNew()">Nuevo</button>
+    </div>
+
+</div>
+
+<div class="row">
+   
+    <div class="col-md-6 scroll scrollbar-primary">
+        <div class="container-fluid">
+            <table class="table table-light"> 
+                <thead class="table-primary">
+                    <tr class="d-flex"><th class="col-sm-4">Fecha</th><th class="col-sm-4">Resumen</th><th class="col-sm-5">Actiones</th></tr>  
+                </thead>
+            
+                <tbody *ngFor="let list of pat.actual">
+                    
+                    <tr class="d-flex">
+                        <td class="col-sm-4">{{list.createdAt | date:'dd/MM/yyyy'}}</td> 
+                        <td class="col-sm-4">{{list.enfermedad}}</td>                          
+                        <td class="col-sm-5"><button class="btn btn-outline-primary btn-sm" (click)="showEdit(list)">Editar</button><button class="btn btn-outline-danger btn-sm" (click)="onClickDelete(list)">Eliminar</button></td>
+                        
+                    
+                    </tr> 
+            
+                </tbody>
+                
+                
+            </table>
+           
+        </div>    
+
+        
+
+    </div>
+
+    <!-- <div class="col-md-5">
+        <br>
+        <div class="col-lg">
+            <div *ngIf="errors">
+                <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
+            </div>
+        </div>
+        <div *ngIf="shownew">
+            <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)" >
+                <div class="form-row">
+                    <div class="form-group col-lg-8">
+                        <label for="nombre" class="required">Problema</label>
+                        
+                        <input type="text" name="nombre" [ngModel]="newproblem.nombre" class="form-control" 
+                        required                        
+                        minlength="3"
+                        #nombre="ngModel">
+                        <div *ngIf="(nombre.touched || nombre.dirty) && nombre.errors">
+                            <div *ngIf="nombre?.errors?.required" class="alert alert-danger">
+                                Necesario
+                            </div>
+                            <div *ngIf="nombre?.errors?.minlength" class="alert alert-danger">
+                                Debe tener
+                                {{ nombre?.errors?.minlength.requiredLength }} letras
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="activo" class="required">Activo</label>
+                        <select class="form-control" name="activo" [ngModel]="newproblem.activo"
+                        required
+                        #activo="ngModel">
+                            <option></option>
+                            <option>Si</option>
+                            <option>No</option>
+                            
+                        </select>
+                        <div *ngIf="(activo.touched || activo.dirty) && activo.errors">
+                            <div *ngIf="activo?.errors?.required" class="alert alert-danger">
+                                Necesario
+                            </div>
+                            
+                        </div>
+                
+                    </div>
+        
+                </div>
+        
+                
+                <button *ngIf="!newForm.valid" class="btn btn-primary btn-sm" disabled>Añadir</button>
+                <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Añadir</button>
+                <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+                
+            </form>
+            <br>
+
+        </div>
+
+        <div *ngIf="showedit">
+            
+            <form  #upForm="ngForm" (submit)="onUpdate(upForm)" >
+                <div class="form-row">
+                    <div class="form-group col-lg-8">
+                        <label for="nombre" class="required">Problema</label>
+                        
+                        <input type="text" name="nombre" [ngModel]="editproblem.nombre" class="form-control" 
+                        required
+                        minlength="3"
+                        #nombre="ngModel">
+                        <div *ngIf="(nombre.touched || nombre.dirty) && nombre.errors">
+                            <div *ngIf="nombre?.errors?.required" class="alert alert-danger">
+                                Necesario
+                            </div>
+                            <div *ngIf="nombre?.errors?.minlength" class="alert alert-danger">
+                                Debe tener
+                                {{ nombre?.errors?.minlength.requiredLength }} letras
+                            </div>                           
+                            
+                        </div>
+                
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="activo" class="required">Activo</label>
+                        <select class="form-control" name="activo" [ngModel]="editproblem.activo"
+                        required
+                        #activo="ngModel">
+                            <option></option>
+                            <option>Si</option>
+                            <option>No</option>
+                            
+                        </select>
+                        <div *ngIf="(activo.touched || activo.dirty) && activo.errors">
+                            <div *ngIf="activo?.errors?.required" class="alert alert-danger">
+                                Necesario
+                            </div>
+                                                        
+                        </div>
+                
+                    </div>        
+                </div>
+                <input type="hidden" name="_id" [ngModel]="editproblem._id" class="form-control">
+                <input type="hidden" name="created_at" [ngModel]="editproblem.createdAt" class="form-control">
+                <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">
+        
+                
+                <button *ngIf="!upForm.valid" class="btn btn-primary btn-sm" disabled>Editar</button>
+                <button *ngIf="upForm.valid" class="btn btn-primary btn-sm">Editar</button>
+                <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+                
+            </form>
+            <br>
+
+        </div>
+        
+        
+
+    </div> -->
+
+</div>
+

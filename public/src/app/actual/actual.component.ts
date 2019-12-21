@@ -13,6 +13,7 @@ export class ActualComponent implements OnInit {
   actual: any = {};
   errors:any;
   show= true;
+  index: any;
   constructor(
     private _httpService: HttpService,
     private _route: ActivatedRoute,
@@ -62,6 +63,7 @@ export class ActualComponent implements OnInit {
   hideActual(){
     if(this.pat.actual.length >0){
       this.show=false;
+      this.index=this.pat.actual.length-1;
 
     }
     

@@ -27,38 +27,36 @@ export class NoPatologicosComponent implements OnInit {
   }
 
   hideActual(){
-    // console.log(this.pat.actual);
     if(this.pat.nopatologico.length >0){
       this.show=false;
-
     }
     
   }
 
   refresh(){
     //refresh trick that did work to refresh @Input data
-    console.log("in refresh");
     this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
       this._router.navigate([decodeURI(this._location.path())]);
     });
 
   }
-  onCreate(pat, form: NgForm): void { 
-    console.log("onCreate");
-    console.log(form.value);
+  onCreate(pat, form: NgForm): void {    
    
-    this._httpService.noPatologico(pat, form.value).subscribe((data)=>{
-      // form.reset();
-      this.refresh();
-
-      this.show=false;
-      
-    });
+    this._httpService.noPatologico(pat, form.value).subscribe({
+      next: (data)=>{        
+        this.refresh();
+        this.show=false;      
+       
+       },
+         error: error => {
+           this.errors=error.error; 
+          //  console.log(this.errors); 
+       }
+       
+     });     
   }
 
   onUpdate(form: NgForm) {
-    // console.log("printing on submit");
-    // console.log(form.value);
     
     this._httpService.updateNoPatologico(this.pat,form.value).subscribe({
       next: (data)=>{
@@ -69,7 +67,7 @@ export class NoPatologicosComponent implements OnInit {
       },
         error: error => {
           console.log(error);
-          this.errors=error.error;
+          // this.errors=error.error;
   
       }
       

@@ -41,6 +41,11 @@
 
     <div class="col-md-5">
         <br>
+        <div class="col-lg">
+            <div *ngIf="errors">
+                <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
+            </div>
+        </div>
         <div *ngIf="shownew">
             <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)" >
                 <div class="form-row">
@@ -84,7 +89,8 @@
                 </div>
         
                 
-                <button  class="btn btn-primary btn-sm">Añadir</button>
+                <button *ngIf="!newForm.valid" class="btn btn-primary btn-sm" disabled>Añadir</button>
+                <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Añadir</button>
                 <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
                 
             </form>
@@ -93,7 +99,7 @@
         </div>
 
         <div *ngIf="showedit">
-            <h4>edit</h4>
+            
             <form  #upForm="ngForm" (submit)="onUpdate(upForm)" >
                 <div class="form-row">
                     <div class="form-group col-lg-8">
@@ -139,7 +145,8 @@
                 <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">
         
                 
-                <button  class="btn btn-primary btn-sm">Editar</button>
+                <button *ngIf="!upForm.valid" class="btn btn-primary btn-sm" disabled>Editar</button>
+                <button *ngIf="upForm.valid" class="btn btn-primary btn-sm">Editar</button>
                 <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
                 
             </form>

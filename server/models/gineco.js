@@ -4,32 +4,32 @@ const ginecoSchema = new mongoose.Schema({
     
     menarquia: { 
         type: String,
-        required: true
+        required: [true, "Menarquia es obligatorio"]
 
     },
     ritmo: { 
         type: String,
-        required: true
+        required: [true, "Ritmo es obligatorio"]
 
     },
     fum: { 
         type: String,
-        required: true
+        required: [true, "F.U.M es obligatorio"]
 
     },
     g: { 
         type: String,
-        required: true
+        required: [true, "G es obligatorio"]
 
     },
     p: { 
         type: String,
-        required: true
+        required: [true, "P es obligatorio"]
 
     },
     c: { 
         type: String,
-        required: true
+        required: [true, "C es obligatorio"]
 
     },
     ivsa: { 

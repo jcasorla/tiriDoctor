@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 const problemaSchema = new mongoose.Schema({
     nombre: { 
         type: String,
-        required: true,
-        minlength: [3, 'At least 4 characters long']
+        required: [true, "Problema es obligatorio"],
+        minlength: [3, 'Problema - Por lo menos 3 letras']
 
     },
     activo: { 
         type: String,
-        required: true
+        required: [true, "Activo es obligatorio"],
     },
     
   

@@ -1,5 +1,10 @@
 <h2>Antecedentes Familiares</h2>
 
+<div class="col-lg">
+    <div *ngIf="errors">
+        <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
+    </div>
+</div>
 
 <div class='col-lg scroll scrollbar-primary' *ngIf="show">
     <br>
@@ -67,7 +72,7 @@
 
         </div>
         <div class="form-check form-check-inline ">
-            <label class="form-check-label required" >Hermanos Cuantos?</label>
+            <label class="form-check-label required" >Cuantos Hermanos?</label>
                 
         </div>
         <div class="form-check form-check-inline">
@@ -77,7 +82,7 @@
                 
         </div>
         <div class="form-check form-check-inline">
-            <label class="form-check-label required" >Vivos?</label>
+            <label class="form-check-label" >Vivos?</label>
         </div>
         <div class="form-check form-check-inline">            
             <input class="form-check-input" type="radio" name="hermanosVivos" value="Si" [ngModel]="familiar.hermanosVivos">
@@ -105,7 +110,8 @@
 
         </div>
 
-        <button class="btn btn-primary btn-sm">Añadir</button>
+        <button *ngIf="!newForm.valid" class="btn btn-primary btn-sm" disabled>Añadir</button>
+        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Añadir</button>
         <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>  
         
     </form>
@@ -179,7 +185,7 @@
 
             </div>
             <div class="form-check form-check-inline ">
-                <label class="form-check-label required" >Hermanos Cuantos?</label>
+                <label class="form-check-label required" >Cuantos Hermanos?</label>
                     
             </div>
             <div class="form-check form-check-inline ">
@@ -221,7 +227,8 @@
     
             
             
-            <button class="btn btn-primary btn-sm">Editar</button>
+            <button *ngIf="!upForm.valid" class="btn btn-primary btn-sm" disabled>Editar</button>
+            <button *ngIf="upForm.valid" class="btn btn-primary btn-sm">Editar</button>
             <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>  
                 
             </form>

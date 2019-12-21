@@ -1,9 +1,14 @@
 <h2>Antecedentes Personales No Patologicos</h2>
 
+<div class="col-lg">
+    <div *ngIf="errors">
+        <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
+    </div>
+</div>
 <div class='col-lg scroll scrollbar-primary' *ngIf="show">
-    <br>
-    <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)">
-       
+    <br> 
+
+    <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)">       
 
         <div class="form-group col-lg">
             <div class="form-check form-check-inline ">
@@ -68,6 +73,8 @@
 </div>
 
 <div *ngIf="!show">
+    <br>
+    
     <div class='col-lg scroll scrollbar-primary' *ngFor="let list of pat.nopatologico">
         <form  #upForm="ngForm" (submit)="onUpdate(upForm)">
             

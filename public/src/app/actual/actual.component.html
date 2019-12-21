@@ -1,5 +1,11 @@
 <h2>Problema Actual</h2>
 
+<div class="col-lg">
+    <div *ngIf="errors">
+        <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
+    </div>
+</div>
+
 <div class='col-lg scroll scrollbar-primary' *ngIf="show">
     <br>
     <form  #actualForm="ngForm" (submit)="onCreate(pat, actualForm)" >
@@ -51,8 +57,8 @@
         
         
 
-        
-        <button  class="btn btn-primary btn-sm">Añadir</button>
+        <button *ngIf="!actualForm.valid" class="btn btn-primary btn-sm" disabled>Añadir</button>
+        <button *ngIf="actualForm.valid" class="btn btn-primary btn-sm">Añadir</button>
         <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
         
     </form>
@@ -115,7 +121,8 @@
             
     
             
-            <button  class="btn btn-primary btn-sm">Editar</button>
+            <button *ngIf="!actualForm.valid" class="btn btn-primary btn-sm" disabled>Editar</button>
+            <button *ngIf="actualForm.valid" class="btn btn-primary btn-sm">Editar</button>
             <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
             
         </form>

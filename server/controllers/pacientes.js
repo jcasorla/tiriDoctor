@@ -82,8 +82,6 @@ module.exports = {
     },
 
     updateActual: (req, res) => {
-        console.log("hitting updateActual route");
-        // console.log(req.body);
         console.log(req.body._id2);
         Actual.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
             .then((data) => {
@@ -98,7 +96,9 @@ module.exports = {
                        
                     },
                     function(err,doc) {
-                
+                        // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                        // res.status(422).json(errors);
+                        res.status(422).json(['Error inesperado']);                
                     }
                 );
                 
@@ -131,8 +131,6 @@ module.exports = {
     },
 
     updatePatologico: (req, res) => {
-        // console.log("in controller")
-        // console.log(req.body._id2);
         Patologico.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
             .then((data) => {
                 res.json({updatedPatologico: data});
@@ -146,7 +144,9 @@ module.exports = {
                        
                     },
                     function(err,doc) {
-                
+                        // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                        // res.status(422).json(errors )
+                        res.status(422).json(['Error inesperado']);                
                     }
                 );
                 
@@ -179,8 +179,6 @@ module.exports = {
     },
 
     updateNoPatologico: (req, res) => {
-        // console.log("in controller")
-        // console.log(req.body._id2);
         NoPatologico.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
             .then((data) => {
                 res.json({updatedNoPatologico: data});
@@ -194,7 +192,9 @@ module.exports = {
                        
                     },
                     function(err,doc) {
-                
+                        // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                        // res.status(422).json(errors )
+                        res.status(422).json(['Error inesperado']);                
                     }
                 );
                 
@@ -227,8 +227,6 @@ module.exports = {
     },
 
     updateFamiliar: (req, res) => {
-        // console.log("in controller")
-        // console.log(req.body._id2);
         Familiar.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
             .then((data) => {
                 res.json({updatedFamiliar: data});
@@ -242,7 +240,9 @@ module.exports = {
                        
                     },
                     function(err,doc) {
-                
+                        // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                        // res.status(422).json(errors);
+                        res.status(422).json(['Error inesperado']);                
                     }
                 );
                 
@@ -275,8 +275,6 @@ module.exports = {
     },
 
     updateGineco: (req, res) => {
-        // console.log("in controller")
-        // console.log(req.body._id2);
         Gineco.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
             .then((data) => {
                 res.json({updatedGineco: data});
@@ -290,7 +288,9 @@ module.exports = {
                        
                     },
                     function(err,doc) {
-                
+                        // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                        // res.status(422).json(errors);
+                        res.status(422).json(['Error inesperado']);                
                     }
                 );
                 
@@ -310,7 +310,7 @@ module.exports = {
                 Paciente.findOneAndUpdate({_id:req.params.id}, {$push : {fisico: data}}, {runValidators: true, new: true}, function(err, data){
                     if (err){
                         const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
-                        res.status(422).json(errors );
+                        res.status(422).json(errors);
                     }
                     else{
                        res.json(data)
@@ -323,8 +323,6 @@ module.exports = {
     },
 
     updateFisico: (req, res) => {
-        // console.log("in controller")
-        // console.log(req.body);
         Fisico.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
             .then((data) => {
                 res.json({updatedFisico: data});
@@ -338,6 +336,9 @@ module.exports = {
                                         
                     },
                     function(err,doc) {
+                        // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                        // res.status(422).json(errors);
+                        res.status(422).json(['Error inesperado']);
                 
                     }
                 );
@@ -386,7 +387,7 @@ module.exports = {
                                     
                 },
                 function(err,doc) {
-            
+                    res.status(422).json(['Error inesperado']);
                 }
             );
             
@@ -397,8 +398,6 @@ module.exports = {
     },
 
     deleteProblema: (req, res) => {
-        // console.log(req.body._id);
-        // console.log(req.params.id);
         
         Problema.findOneAndDelete({ _id : req.params.id })
         .then((data) => {
@@ -406,23 +405,22 @@ module.exports = {
 
             Paciente.findById({ _id : req.body._id })
             .then((paciente) => {
-                // res.json({paciente: paciente})
                 paciente.problema.id(req.params.id).remove();            
                 paciente.save(function (err) {
                 if (err){
                     const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
                     res.status(422).json(errors);
                 }
-                // if (err) return handleError(err);
                 console.log('the subdocs were removed');
             })
-            // .catch(err => res.json(err));
 
             
         });
         })
         .catch(err => {
-            res.json(err);
+            // res.json(err);
+            const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+            res.status(422).json(errors);
         });        
 
     },

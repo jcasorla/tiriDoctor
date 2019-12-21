@@ -28,7 +28,6 @@ export class GinecoComponent implements OnInit {
   }
 
   hideActual(){
-    // console.log(this.pat.gineco.length);
     if(this.pat.gineco.length >0){
       this.show=false;
 
@@ -47,20 +46,22 @@ export class GinecoComponent implements OnInit {
   
 
   onCreate(pat, form: NgForm): void { 
-    console.log("onCreate");
-    console.log(form.value);
    
-    this._httpService.gineco(pat, form.value).subscribe((data)=>{
-  
-      this.refresh();
-
-      this.show=false;
-      
-    });
+    this._httpService.gineco(pat, form.value).subscribe({
+      next: (data)=>{        
+        this.refresh();
+        this.show=false;      
+       
+       },
+         error: error => {
+           this.errors=error.error; 
+          //  console.log(this.errors); 
+       }
+       
+     });     
   }
 
   onUpdate(form: NgForm) {
-
     
     this._httpService.updateGineco(this.pat,form.value).subscribe({
       next: (data)=>{

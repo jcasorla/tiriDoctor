@@ -1,5 +1,11 @@
 <h2>Antecedentes Personales Patologicos</h2>
 
+<div class="col-lg">
+    <div *ngIf="errors">
+        <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
+    </div>
+</div>
+
 <div class='col-lg scroll scrollbar-primary' *ngIf="show">
     <br>
     <form  #newForm="ngForm" (submit)="onCreate(pat, newForm)" >

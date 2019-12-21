@@ -4,29 +4,29 @@ const familiarSchema = new mongoose.Schema({
     
     padreVivo: { 
         type: String,
-        required: true
+        required: [true, "Padre Vivo es obligatorio"]
 
     },
  
     commentPadre: { 
         type: String,
-        required: true
+        required: [true, "Enfermedad que Padece Padre es obligatorio"]
 
     },
     madreViva: { 
         type: String,
-        required: true
+        required: [true, "Madre Viva es obligatorio"]
 
     },
 
     commentMadre: { 
         type: String,
-        required: true
+        required: [true, "Enfermedad que Padece Madre es obligatorio"]
 
     },
     hermanos: { 
         type: Number,
-        required: true
+        required: [true, "Cuantos Hermanos es obligatorio"]
 
     },
     hermanosVivos: { 

@@ -29,7 +29,6 @@ export class ViewPatComponent implements OnInit{
 
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
-      // console.log(params['id'])
       let id=params['id'];
       this.findPatient(id)
   });
@@ -46,7 +45,6 @@ export class ViewPatComponent implements OnInit{
   findPatient(id) {
     const observable = this._httpService.getPatient(id);
     observable.subscribe(data => {
-      // console.log(data['paciente']);
       this.selectedpat = data['paciente'];
     });
   }
@@ -54,7 +52,6 @@ export class ViewPatComponent implements OnInit{
   onClickDelete(id) {
     const observable = this._httpService.deletePatient(id);
     observable.subscribe(data => {
-      // console.log(data);
       this._router.navigate(['/app/list']);
     });
   }

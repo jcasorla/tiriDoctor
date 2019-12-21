@@ -26,9 +26,6 @@ module.exports = {
     },
 
     updateConfirm: (req, res) => {
-        // console.log("in controller updateconfirm");
-        // console.log(req.body);
-        // console.log(req.params);
 
         var result=validateEmail(req.body.email);
 
@@ -39,7 +36,6 @@ module.exports = {
         else{
             User.findById({ _id : req.params.id })
             .then((user) => {
-                console.log("are you entering?");
                 if (bcrypt.compareSync(req.body.password, user.password)) {
                     // Passwords match
                     console.log("Passwords match");
@@ -55,7 +51,7 @@ module.exports = {
                 } else {
                     // Passwords don't match
                     console.log("Passwords don't match???");
-                    res.status(422).json(['Password is incorrect']);
+                    res.status(422).json(['Contraseñas incorrectas']);
                 }
             })
             .catch(err => {
@@ -66,21 +62,16 @@ module.exports = {
     },
 
     updatePwd: (req, res) => {
-        // console.log("in controller updatePwd");
-        // console.log(req.body);
-        // console.log(req.params);
-
       
         
         if(req.body.password!=req.body.cpwd){
-           res.status(422).json(['Password dont match']);
+           res.status(422).json(['Contraseñas no coinciden']);
     
         }
 
         else{
             User.findById({ _id : req.params.id })
             .then((user) => {
-                console.log("are you entering?");
                 if (bcrypt.compareSync(req.body.current, user.password)) {
                     // Passwords match
                     console.log("Passwords match");
@@ -114,7 +105,7 @@ module.exports = {
                 } else {
                     // Passwords don't match
                     console.log("Passwords don't match???");
-                    res.status(422).json(['Password is incorrect']);
+                    res.status(422).json(['Contraseñas incorrectas']);
                 }
             })
             .catch(err =>{

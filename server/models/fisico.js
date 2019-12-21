@@ -4,41 +4,41 @@ const fisicoSchema = new mongoose.Schema({
   
     taDerecho: {
         type: String,
-        required: true 
+        required: [true, "TA derecho es obligatorio"]
     },
     taIzquierdo: {
         type: String,
-        required: true 
+        required: [true, "TA izquierdo es obligatorio"]
     },
     freqC: {
         type: String,
-        required: true
+        required: [true, "F.C. es obligatorio"]
     },
     freqR: {
         type: String,
-        required: true
+        required: [true, "Freq, Resp. es obligatorio"]
     },
     temp: {
         type: String,
-        required: true
+        required: [true, "Temp. es obligatorio"]
     },
     peso: {
         type: String,
-        required: true
+        required: [true, "Peso es obligatorio"]
     },
     talla: {
         type: String,
-        required: true
+        required: [true, "Talla es obligatorio"]
     },
     imc: {
         type: String,
-        required: true
+        required: [true, "IMC es obligatorio"]
     },
     cabeza: {
         type: String,
-        required: true
+        required: [true, "Cabeza Y Cuello es obligatorio"]
     },
-    
+       
   
 }, { timestamps: true });
 mongoose.model('Fisico', fisicoSchema);

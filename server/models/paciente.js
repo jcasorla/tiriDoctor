@@ -13,35 +13,34 @@ const PacienteSchema = new mongoose.Schema({
     id: { type: Number, unique: true, min: 1 },
     firstName: { 
         type: String,
-        required: true,
-        minlength: [3, 'At least 3 characters long']
+        required: [true, "Primer Nombre es obligatorio"],
+        minlength: [3, 'Primer Nombre -Por lo menos 3 letras']
 
     },
     lastName: { 
         type: String,
-        required: true,
-        minlength: [3, 'At least 3 characters long']
+        required: [true, "Apellido es obligatorio"],
+        minlength: [3, 'Apellido - Por lo menos 3 letras']
 
     },
     sLastName: { 
         type: String,
-        required: true,
-        minlength: [3, 'At least 3 characters long']
+        required: [true, "Segundo Apellido es obligatorio"],
+        minlength: [3, 'Segundo Apellido - Por lo menos 3 letras']
 
     },    
     sex: {
         type: String,
-        // required: false
-        required: [true, 'Sex field is required']
+        required: [true, "Sexo es obligatorio"]
     }, 
     age: {
         type: Number,
-        required: true,
-        min: [1, "atleast 1"]
+        required: [true, "Edad es obligatorio"],
+        min: [1, " Edad - Por lo Menos 1"]
     },
     phone: {
         type: String,
-        required: true
+        required: [true, "Telefono es obligatorio"]
     },
     email: {
         type: String,
@@ -57,12 +56,12 @@ const PacienteSchema = new mongoose.Schema({
     },
     city: {
         type: String,
-        required: true,
-        minlength: [4, 'At least 4 characters long']
+        required: [true, "Ciudad es obligatorio"],
+        minlength: [4, 'Ciudad - Por lo menos 4 letras']
     }, 
     state: {
         type: String,
-        required: true
+        required: [true, "Estado es obligatorio"],
     }, 
     zip: {
         type: String,

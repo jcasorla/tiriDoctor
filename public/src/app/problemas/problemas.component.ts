@@ -16,7 +16,7 @@ export class ProblemasComponent implements OnInit {
   errors:any;
   shownew= false;
   showedit= false;
-  show=true;
+  // show=true;
 
   constructor(
     private _httpService: HttpService,
@@ -46,7 +46,6 @@ export class ProblemasComponent implements OnInit {
   }
 
   showEdit(list){
-    // console.log(list);
     this.editproblem=list;
     console.log(this.editproblem);
     this.showedit=true;
@@ -55,7 +54,6 @@ export class ProblemasComponent implements OnInit {
 
   refresh(){
     //refresh trick that did work to refresh @Input data
-    // console.log("in refresh");
     this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
       this._router.navigate([decodeURI(this._location.path())]);
     });
@@ -65,28 +63,28 @@ export class ProblemasComponent implements OnInit {
 
   onCreate(pat, form: NgForm): void { 
        
-    this._httpService.problema(pat, form.value).subscribe((data)=>{
-      // form.reset();
-      this.refresh();
-
-      this.show=false;
-      
-    });
+    this._httpService.problema(pat, form.value).subscribe({
+      next: (data)=>{        
+        this.refresh();    
+       
+       },
+         error: error => {
+           this.errors=error.error; 
+          //  console.log(this.errors); 
+       }
+       
+     });     
   }
 
   onUpdate(form: NgForm) {
-    // console.log("printing on submit");
-    // console.log(form.value);
     console.log(this.pat.problema);
     this._httpService.updateProblema(this.pat,form.value).subscribe({
-      next: (data)=>{
-                
-       this.refresh();
-       
+      next: (data)=>{                
+       this.refresh();      
       
       },
         error: error => {
-          console.log(error);
+          // console.log(error);
           this.errors=error.error;
   
       }

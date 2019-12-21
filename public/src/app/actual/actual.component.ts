@@ -59,11 +59,7 @@ export class ActualComponent implements OnInit {
   }
 
 
-  
-
-
   hideActual(){
-    // console.log(this.pat.actual);
     if(this.pat.actual.length >0){
       this.show=false;
 
@@ -80,22 +76,22 @@ export class ActualComponent implements OnInit {
   }
 
   onCreate(pat, form: NgForm): void { 
-    // console.log("in actual");
-    // console.log(pat);
-    // console.log(form.value);
    
-    this._httpService.actual(pat, form.value).subscribe((data)=>{
-      // form.reset();
-      
-      this.refresh();
-      this.show=false;
-      
-    });
+    this._httpService.actual(pat, form.value).subscribe({
+      next: (data)=>{        
+        this.refresh();
+        this.show=false;      
+       
+       },
+         error: error => {
+           this.errors=error.error; 
+          //  console.log(this.errors); 
+       }
+       
+     });     
   }
 
   onUpdate(form: NgForm) {
-    // console.log("printing on submit");
-    // console.log(form.value);
     
     this._httpService.updateActual(this.pat,form.value).subscribe({
       next: (data)=>{
@@ -105,7 +101,7 @@ export class ActualComponent implements OnInit {
       
       },
         error: error => {
-          console.log(error);
+          // console.log(error);
           this.errors=error.error;
   
       }

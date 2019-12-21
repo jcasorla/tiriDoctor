@@ -26,12 +26,12 @@ app.set('views', __dirname + '/views');
 app.use(session({ secret: config.secret, resave: false, saveUninitialized: true, cookie: {  maxAge: Date.now() + (5400 * 1000)  } }));
 // app.use('/api/pacientes', expressJwt({ secret: config.secret }).unless({ path: ['/login', '/register'] }));
 
-app.use('/api/pacientes', expressJwt({ secret: config.secret,
+app.use('/api/', expressJwt({ secret: config.secret,
     // credentialsRequired: false,
     getToken: function fromHeaderOrQuerystring (req) {
         return req.session.token;
     }
-}).unless({ path: ['/login', '/register'] }));
+}).unless({ path: ['/api/auth/logout', '/api/auth/send'] }));
 
 // make '/app' default route
 app.get('/', function (req, res) {

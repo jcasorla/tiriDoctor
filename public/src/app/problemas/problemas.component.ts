@@ -47,7 +47,7 @@ export class ProblemasComponent implements OnInit {
 
   showEdit(list){
     this.editproblem=list;
-    console.log(this.editproblem);
+    // console.log(this.editproblem);
     this.showedit=true;
     this.shownew=false;
   }

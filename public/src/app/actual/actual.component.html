@@ -16,7 +16,7 @@
                 <textarea class="form-control"  name="consulta" [ngModel]="actual.consulta" cols="5" rows="5" 
                 required
                 minlength="10"
-                #consulta="ngModel">></textarea>
+                #consulta="ngModel"></textarea>
                 <div *ngIf="(consulta.touched || consulta.dirty) && consulta.errors">
                     <div *ngIf="consulta?.errors?.required" class="alert alert-danger">
                         Necesario
@@ -38,6 +38,7 @@
                 <input type="text" name="enfermedad" [ngModel]="actual.enfermedad" class="form-control" 
                 required
                 minlength="4"
+                maxlength="20"
                 #enfermedad="ngModel">
                 <div *ngIf="(enfermedad.touched || enfermedad.dirty) && enfermedad.errors">
                     <div *ngIf="enfermedad?.errors?.required" class="alert alert-danger">

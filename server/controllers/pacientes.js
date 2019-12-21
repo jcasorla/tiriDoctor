@@ -82,28 +82,69 @@ module.exports = {
     },
 
     updateActual: (req, res) => {
-        console.log(req.body._id2);
+        console.log('wrong place');
         Actual.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
             .then((data) => {
                 res.json({updatedActual: data});
-               
+                
                 Paciente.findOneAndUpdate(
-                    { "_id": req.body._id2, "patologico._id": req.params.id },
+                    { "_id": req.body._id2, "actual._id": req.params.id },
                     { 
                         "$set": {
-                            "actual": req.body
+                            "actual.$.consulta": req.body.consulta,"actual.$.enfermedad": req.body.enfermedad
                         },
-                       
+                                        
                     },
                     function(err,doc) {
-                               
+
                     }
                 );
+
+                // Paciente.findOneAndUpdate(
+                //     { "_id": req.body._id2, "actual._id": req.params.id },
+                //     { 
+                //         "$set": {
+                //             "actual": req.body
+                //         },
+                       
+                //     },
+                //     function(err,doc) {
+                               
+                //     }
+                // );
                 
             })
             .catch(err => {
                 const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
                 res.status(422).json(errors )});
+    },
+
+    deleteActual: (req, res) => {
+        console.log('enter delete?')
+        
+        Actual.findOneAndDelete({ _id : req.params.id })
+        .then((data) => {
+            res.json(data);
+
+            Paciente.findById({ _id : req.body._id })
+            .then((paciente) => {
+                paciente.actual.id(req.params.id).remove();            
+                paciente.save(function (err) {
+                if (err){
+                    const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                    res.status(422).json(errors);
+                }
+                console.log('the subdocs were removed');
+            })
+
+            
+        });
+        })
+        .catch(err => {
+            const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+            res.status(422).json(errors);
+        });        
+
     },
 
     createPatologico: function(req,res){
@@ -370,7 +411,7 @@ module.exports = {
         })
     },
 
-    //best way to update chile documents
+    //best way to update child documents
     updateProblema: (req, res) => {
     Problema.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
         .then((data) => {

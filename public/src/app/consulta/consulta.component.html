@@ -22,7 +22,7 @@
                 <label for="enfermedad" class="required">Resumen</label>
                 <input type="text" name="enfermedad" [ngModel]="newconsulta.enfermedad" class="form-control" 
                 required
-                minlength="4"
+                minlength="3"
                 maxlength="23"
                 #enfermedad="ngModel">
                 <div *ngIf="(enfermedad.touched || enfermedad.dirty) && enfermedad.errors">
@@ -116,7 +116,7 @@
                         <label for="enfermedad" class="required">Resumen</label>
                         <input type="text" name="enfermedad" [ngModel]="editconsulta.enfermedad" class="form-control"
                         required
-                        minlength="4"
+                        minlength="3"
                         maxlength="23"
                         #enfermedad="ngModel">
                         <div *ngIf="(enfermedad.touched || enfermedad.dirty) && enfermedad.errors">

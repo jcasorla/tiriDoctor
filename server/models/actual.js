@@ -9,7 +9,7 @@ const actualSchema = new mongoose.Schema({
     enfermedad: { 
         type: String,
         required: [true,"Resumen es obligatorio"],
-        minlength: [4, 'Resumen - Por lo menos 4 letras'],
+        minlength: [3, 'Resumen - Por lo menos 4 letras'],
         maxlength: [23, 'Resumen - dete tener menos de 25 letras'],
 
     },    

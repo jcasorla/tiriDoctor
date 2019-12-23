@@ -7,6 +7,8 @@ const Familiar = mongoose.model('Familiar');
 const Gineco = mongoose.model('Gineco');
 const Fisico = mongoose.model('Fisico');
 const Problema = mongoose.model('Problema');
+const Grid = mongoose.model('Grid');
+const Lab = mongoose.model('Lab');
 
 module.exports = {
 
@@ -462,6 +464,99 @@ module.exports = {
             res.status(422).json(errors);
         });        
 
+    },
+
+    createGrid: function(req,res){
+        Grid.create(req.body, function(err, data){
+            if (err){
+                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                res.status(422).json(errors );
+            }
+            else{
+                Paciente.findOneAndUpdate({_id:req.params.id}, {$push : {grid: data}}, {runValidators: true, new: true}, function(err, data){
+                    if (err){
+                        const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                        res.status(422).json(errors);
+                    }
+                    else{
+                       res.json(data)
+                    }
+                })
+               
+                
+            }
+        })
+    },
+
+    updateGrid: (req, res) => {
+        Grid.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
+            .then((data) => {
+                res.json({updatedGrid: data});
+               
+                Paciente.findOneAndUpdate(
+                    { "_id": req.body._id2, "grid._id": req.params.id },
+                    { 
+                        "$set": {
+                            "grid": req.body
+                        },
+                                        
+                    },                    
+                    function(err,doc) {                       
+                
+                    }
+                   
+                )
+                
+            })
+            .catch(err => {
+                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                res.status(422).json(errors )});
+    },
+
+    createLab: function(req,res){
+        Lab.create(req.body, function(err, data){
+            if (err){
+                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                res.status(422).json(errors );
+            }
+            else{
+                Paciente.findOneAndUpdate({_id:req.params.id}, {$push : {lab: data}}, {runValidators: true, new: true}, function(err, data){
+                    if (err){
+                        const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                        res.status(422).json(errors);
+                    }
+                    else{
+                       res.json(data)
+                    }
+                })
+               
+                
+            }
+        })
+    },
+
+    updateLab: (req, res) => {
+        Lab.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
+            .then((data) => {
+                res.json({updatedLab: data});
+               
+                Paciente.findOneAndUpdate(
+                    { "_id": req.body._id2, "lab._id": req.params.id },
+                    { 
+                        "$set": {
+                            "lab": req.body
+                        },
+                                        
+                    },
+                    function(err,doc) {                       
+                
+                    }
+                )              
+                
+            })
+            .catch(err => {
+                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                res.status(422).json(errors )});
     },
 
     

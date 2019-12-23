@@ -23,5 +23,9 @@ router.get('/', pacientes.all)
     .post('/:id/problemas', pacientes.createProblema)
     .put('/problemas/:id', pacientes.updateProblema)
     .put('/problemas/delete/:id/', pacientes.deleteProblema)
+    .post('/:id/grid', pacientes.createGrid)
+    .put('/grid/:id', pacientes.updateGrid)
+    .post('/:id/lab', pacientes.createLab)
+    .put('/lab/:id', pacientes.updateLab)
 
 module.exports = router;

@@ -12,7 +12,9 @@ import {Location} from '@angular/common';
 export class LabComponent implements OnInit {
   lab: any = {};
   errors:any;
-  show= false;
+  showGrid= true;
+  showtable = false;
+  showlab = false;
 
   constructor(
     private _httpService: HttpService,
@@ -24,15 +26,21 @@ export class LabComponent implements OnInit {
   @Input() pat : any;
 
   ngOnInit() {
+    this.hideGrid();
   }
 
-  // hideActual(){
-  //   if(this.pat.familiar.length >0){
-  //     this.show=false;
+  hideGrid(){
+    if(this.pat.grid.length >0){
+      this.showGrid=false;
 
-  //   }
+    }
+    if(this.pat.lab.length >0){
+      this.showlab=false;
+
+    }
+
     
-  // }
+  }
 
   refresh(){
     //refresh trick that did work to refresh @Input data
@@ -42,19 +50,34 @@ export class LabComponent implements OnInit {
 
   }
   showTable(){
-    this.show=true;
+    this.showtable=true;
   }
   hideTable(){
-    this.show=false;
+    this.showtable=false;
   }
   
 
-  onCreate(pat, form: NgForm): void { 
+  onCreate(pat, form: NgForm): void {     
    
-    this._httpService.familiar(pat, form.value).subscribe({
+    this._httpService.grid(pat, form.value).subscribe({
       next: (data)=>{        
         this.refresh();
-        this.show=false;      
+        this.showGrid=false;      
+       
+       },
+         error: error => {
+           this.errors=error.error; 
+          //  console.log(this.errors); 
+       }
+       
+     });     
+  }
+  onCreate2(pat, form: NgForm): void {     
+   
+    this._httpService.lab(pat, form.value).subscribe({
+      next: (data)=>{        
+        this.refresh();
+        this.showlab=false;      
        
        },
          error: error => {
@@ -66,8 +89,9 @@ export class LabComponent implements OnInit {
   }
 
   onUpdate(form: NgForm) {
+    console.log(form.value)
     
-    this._httpService.updateFamiliar(this.pat,form.value).subscribe({
+    this._httpService.updateGrid(this.pat,form.value).subscribe({
       next: (data)=>{        
        this.refresh();       
       
@@ -80,5 +104,21 @@ export class LabComponent implements OnInit {
       
     });
   }
+
+  onUpdate2(form: NgForm) {
+    
+      this._httpService.updateLab(this.pat,form.value).subscribe({
+        next: (data)=>{        
+         this.refresh();       
+        
+        },
+          error: error => {
+            this.errors=error.error;
+            //  console.log(this.errors); 
+    
+        }
+        
+      });
+    }
 
 }

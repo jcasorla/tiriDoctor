@@ -146,6 +146,31 @@ deleteProblema(pat,data){
   return this._http.put(url,pat);
 }
 
+grid(pat,data){
+  let url='/api/pacientes/' + pat._id + '/grid/';
+  
+  return this._http.post(url,data);
+}
+
+updateGrid(pat,data){
+  let url='/api/pacientes/grid/' +data._id; 
+
+
+  return this._http.put(url,data);
+}
+lab(pat,data){
+  let url='/api/pacientes/' + pat._id + '/lab/';
+  
+  return this._http.post(url,data);
+}
+
+updateLab(pat,data){
+  let url='/api/pacientes/lab/' +data._id; 
+
+
+  return this._http.put(url,data);
+}
+
 
 
 

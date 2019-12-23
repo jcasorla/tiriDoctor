@@ -7,6 +7,8 @@ const familiarSchema = mongoose.model('Familiar').schema;
 const ginecoSchema = mongoose.model('Gineco').schema;
 const fisicoSchema = mongoose.model('Fisico').schema;
 const problemaSchema = mongoose.model('Problema').schema;
+const gridSchema = mongoose.model('Grid').schema;
+const labSchema = mongoose.model('Lab').schema;
 
 
 const PacienteSchema = new mongoose.Schema({
@@ -78,6 +80,8 @@ const PacienteSchema = new mongoose.Schema({
     gineco: [ginecoSchema],
     fisico: [fisicoSchema],
     problema: [problemaSchema],
+    grid: [gridSchema],
+    lab: [labSchema]
         
 }, {timestamps: true });
 

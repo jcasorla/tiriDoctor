@@ -68,16 +68,17 @@
 </div>
 
 <div *ngIf="showlist" class="row">
-    <br>
+    <br>    
    
     <div class="col-xl-5 scroll scrollbar-primary">
+        <input type="text" [(ngModel)]="name" (input)="search()" placeholder="Busqueda" aria-label="Search">
         <div class="container-fluid">
             <table class="table table-light"> 
                 <thead class="table-primary">
                     <tr class="d-flex"><th class="col-sm-7">Problemas</th><th class="col-sm-2">Activos</th><th class="col-sm-2">Actiones</th></tr>  
                 </thead>
             
-                <tbody *ngFor="let list of pat.problema">
+                <tbody *ngFor="let list of problema">
                     
                     <tr class="d-flex">
                         <!-- <td class="col-sm-5">{{list.nombre}}</td> -->

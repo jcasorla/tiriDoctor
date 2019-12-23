@@ -17,6 +17,8 @@ export class ConsultaComponent implements OnInit {
   shownew= true;
   showedit= false;
   showlist=false;
+  name: any;
+  consulta: any;
   
   constructor(
     private _httpService: HttpService,
@@ -28,6 +30,7 @@ export class ConsultaComponent implements OnInit {
   @Input() pat : any;
 
   ngOnInit() {
+    this.consulta=this.pat.actual;
   }
 
   // showNew(){
@@ -35,6 +38,12 @@ export class ConsultaComponent implements OnInit {
   //   this.showedit=false;
   //   this.showlist=false;
   // }
+
+  search() {
+    this.consulta = this.pat.actual.filter(res=>{
+      return res.enfermedad.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+    });
+  }
 
   showEdit(list){
     this.editconsulta=list;

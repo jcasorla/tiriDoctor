@@ -27,8 +27,6 @@ export class ListPatComponent implements OnInit {
     
     const observable = this._httpService.getPatients();
     observable.subscribe(data => {
-      // console.log("get all pacients");
-      // console.log(data);
       this.patients = data['pacientes'];
     });
   }
@@ -38,7 +36,6 @@ export class ListPatComponent implements OnInit {
       const observable = this._httpService.deletePatient(pat._id);
       
       observable.subscribe(data => {
-        // console.log(data);
         this.getAllPacients();
       });
     }

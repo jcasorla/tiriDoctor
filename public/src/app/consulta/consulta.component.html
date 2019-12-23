@@ -72,6 +72,7 @@
 <div class="col-lg scroll scrollbar-primary" *ngIf="showlist">
     <div class="row">
         <div  class="col-md-5">
+            <input type="text" [(ngModel)]="name" (input)="search()" placeholder="Busqueda" aria-label="Search">
             <div class="container-fluid">
                 <table class="table table-light"> 
                     <thead class="table-primary">
@@ -80,7 +81,7 @@
                         </tr>  
                     </thead>
                 
-                    <tbody *ngFor="let list of pat.actual">
+                    <tbody *ngFor="let list of consulta">
                         
                         <tr class="d-flex">
                             <td class="col-sm-3"><button class="btn btn-outline-primary btn-sm" (click)="showEdit(list)">{{list.createdAt | date:'dd/MM/yyyy'}}</button></td>

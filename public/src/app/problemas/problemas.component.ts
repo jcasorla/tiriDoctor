@@ -17,6 +17,8 @@ export class ProblemasComponent implements OnInit {
   shownew= false;
   showedit= false;
   showlist=false;
+  name: any;
+  problema: any;
 
   constructor(
     private _httpService: HttpService,
@@ -29,6 +31,7 @@ export class ProblemasComponent implements OnInit {
 
   ngOnInit() {
     // this.hideActual();
+    this.problema=this.pat.problema;
   }
 
   // hideActual(){
@@ -39,6 +42,12 @@ export class ProblemasComponent implements OnInit {
   //   }
     
   // }
+
+  search() {
+    this.problema = this.pat.problema.filter(res=>{
+      return res.nombre.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+    });
+  }
 
   showNew(){
     this.shownew=true;
@@ -53,7 +62,6 @@ export class ProblemasComponent implements OnInit {
 
   showEdit(list){
     this.editproblem=list;
-    // console.log(this.editproblem);
     this.showedit=true;
     this.shownew=false;
   }

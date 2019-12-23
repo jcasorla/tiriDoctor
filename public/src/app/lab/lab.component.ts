@@ -14,7 +14,7 @@ export class LabComponent implements OnInit {
   errors:any;
   showGrid= true;
   showtable = false;
-  showlab = false;
+  showlab = true;
 
   constructor(
     private _httpService: HttpService,

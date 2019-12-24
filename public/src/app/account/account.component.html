@@ -1,7 +1,8 @@
 <!-- <h1 class="text-center">Mi Cuenta</h1> -->
+<br>
 <div class="row">
     <div class="col-md-6">
-        <h2 class="text-right">Mi Cuenta</h2>
+        <h1 class="text-right">Mi Cuenta</h1>
     </div>
     <div class="col-md-1">
         <button class="btn btn-outline-primary btn-sm" (click)="refresh()">refresh</button>
@@ -45,6 +46,7 @@
     </nav>
 
     <div *ngIf='displayName'>
+        <h2>Editar Nombre</h2>
         <div *ngIf="errors">
             <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
         </div>
@@ -92,8 +94,8 @@
                 </div>
                
             </div>
-            <button *ngIf="upForm1.valid" class="btn btn-primary btn-sm">Editar</button>
-            <button *ngIf="!upForm1.valid" class="btn btn-primary btn-sm" disabled>Editar</button>
+            <button *ngIf="upForm1.valid" class="btn btn-primary btn-sm">Salvar</button>
+            <button *ngIf="!upForm1.valid" class="btn btn-primary btn-sm" disabled>Salvar</button>
             <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>  
             
         </form>
@@ -104,6 +106,7 @@
     </div>
 
     <div *ngIf='displayEmail'>
+        <h2>Editar Correo Electronico</h2>
         <div *ngIf="errors">
             <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
         </div>
@@ -151,8 +154,8 @@
             <input type="hidden" name="lastName" [ngModel]="user.lastName" class="form-control">
             <input type="hidden" name="username" [ngModel]="user.username" class="form-control">
             <input type="hidden" name="createdAt" [ngModel]="user.createdAt" class="form-control">
-            <button *ngIf="upForm2.valid" class="btn btn-primary btn-sm">Editar</button>
-            <button *ngIf="!upForm2.valid" class="btn btn-primary btn-sm" disabled>Editar</button>
+            <button *ngIf="upForm2.valid" class="btn btn-primary btn-sm">Salvar</button>
+            <button *ngIf="!upForm2.valid" class="btn btn-primary btn-sm" disabled>Salvar</button>
             <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>  
             
         </form>
@@ -164,6 +167,7 @@
     </div>
 
     <div *ngIf='displayUn'>
+        <h2>Editar username</h2>
         <div *ngIf="errors">
             <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
         </div>
@@ -210,8 +214,8 @@
             <input type="hidden" name="lastName" [ngModel]="user.lastName" class="form-control">
             <input type="hidden" name="email" [ngModel]="user.email" class="form-control">
             <input type="hidden" name="createdAt" [ngModel]="user.createdAt" class="form-control">
-            <button *ngIf="upForm3.valid" class="btn btn-primary btn-sm">Editar</button>
-            <button *ngIf="!upForm3.valid" class="btn btn-primary btn-sm" disabled>Editar</button>
+            <button *ngIf="upForm3.valid" class="btn btn-primary btn-sm">Salvar</button>
+            <button *ngIf="!upForm3.valid" class="btn btn-primary btn-sm" disabled>Salvar</button>
             <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>  
             
         </form>
@@ -222,6 +226,7 @@
     </div>
 
     <div *ngIf='displayPwd'>
+        <h2>Editar Contraseña</h2>
         <div *ngIf="errors">
             <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
         </div>
@@ -289,8 +294,8 @@
             <input type="hidden" name="lastName" [ngModel]="user.lastName" class="form-control">
             <input type="hidden" name="email" [ngModel]="user.email" class="form-control">
             <input type="hidden" name="createdAt" [ngModel]="user.createdAt" class="form-control">
-            <button *ngIf="upForm4.valid" class="btn btn-primary btn-sm">Editar</button>
-            <button *ngIf="!upForm4.valid" class="btn btn-primary btn-sm" disabled>Editar</button>
+            <button *ngIf="upForm4.valid" class="btn btn-primary btn-sm">Salvar</button>
+            <button *ngIf="!upForm4.valid" class="btn btn-primary btn-sm" disabled>Salvar</button>
             <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>  
             
         </form>

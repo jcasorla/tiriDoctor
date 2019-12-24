@@ -144,14 +144,14 @@ module.exports = {
         
         
 
-        console.log("this is username: " + username);  
+        // console.log("this is username: " + username);  
 
         async function run() {
             const saltValue = await bcrypt.genSalt(10);
             bcrypt
               .hash(req.body.password, saltValue)
               .then(hash =>{
-                console.log(hash)
+                // console.log(hash)
                 var user = new User({email: req.body.email , firstName: req.body.firstName, lastName: req.body.lastName, password: hash, username: username});
                 user.save()
                 .then(result =>{

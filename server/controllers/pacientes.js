@@ -51,9 +51,115 @@ module.exports = {
     },
 	
     delete: (req, res) => {
-        console.log(req.params.id);
         Paciente.findOneAndDelete({ _id : req.params.id })
             .then((data) => {
+                if(data.patologico.length>0){
+                    for(var i=0; i< data.patologico.length; i++){
+                        Patologico.findOneAndDelete({ _id : data.patologico[i]._id })
+                        .then((data) => {
+                        })
+                        .catch(err => {
+                            res.json(err);
+                        });
+
+                    }                  
+                }
+                if(data.actual.length>0){
+                    // console.log(data.actual);
+                    for(var i=0; i< data.actual.length; i++){
+                        Actual.findOneAndDelete({ _id : data.actual[i]._id })
+                        .then((data) => {
+                        })
+                        .catch(err => {
+                            res.json(err);
+                        });
+
+                    }   
+                }
+                if(data.nopatologico.length>0){
+                    // console.log(data.nopatologico);
+                    for(var i=0; i< data.nopatologico.length; i++){
+                        NoPatologico.findOneAndDelete({ _id : data.nopatologico[i]._id })
+                        .then((data) => {
+                        })
+                        .catch(err => {
+                            res.json(err);
+                        });
+
+                    }               
+                }
+                if(data.familiar.length>0){
+                    // console.log(data.familiar);
+                    for(var i=0; i< data.familiar.length; i++){
+                        Familiar.findOneAndDelete({ _id : data.familiar[i]._id })
+                        .then((data) => {
+                        })
+                        .catch(err => {
+                            res.json(err);
+                        });
+
+                    }               
+                }
+                if(data.gineco.length>0){
+                    // console.log(data.gineco);
+                    for(var i=0; i< data.gineco.length; i++){
+                        Gineco.findOneAndDelete({ _id : data.gineco[i]._id })
+                        .then((data) => {
+                        })
+                        .catch(err => {
+                            res.json(err);
+                        });
+
+                    }               
+                }
+                if(data.fisico.length>0){
+                    // console.log(data.fisico);
+                    for(var i=0; i< data.fisico.length; i++){
+                        Fisico.findOneAndDelete({ _id : data.fisico[i]._id })
+                        .then((data) => {
+                        })
+                        .catch(err => {
+                            res.json(err);
+                        });
+
+                    }               
+                }
+                if(data.problema.length>0){
+                    // console.log(data.problema);
+                    for(var i=0; i< data.problema.length; i++){
+                        Problema.findOneAndDelete({ _id : data.problema[i]._id })
+                        .then((data) => {
+                        })
+                        .catch(err => {
+                            res.json(err);
+                        });
+
+                    }               
+                }
+                if(data.grid.length>0){
+                    // console.log(data.grid);
+                    for(var i=0; i< data.grid.length; i++){
+                        Grid.findOneAndDelete({ _id : data.grid[i]._id })
+                        .then((data) => {
+                        })
+                        .catch(err => {
+                            res.json(err);
+                        });
+
+                    }               
+                }
+                if(data.lab.length>0){
+                    // console.log(data.lab);
+                    for(var i=0; i< data.lab.length; i++){
+                        Lab.findOneAndDelete({ _id : data.lab[i]._id })
+                        .then((data) => {
+                        })
+                        .catch(err => {
+                            res.json(err);
+                        });
+
+                    }               
+                }
                 res.json(data);
             })
             .catch(err => {

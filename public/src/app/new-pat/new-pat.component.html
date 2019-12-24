@@ -102,7 +102,7 @@
                 <label class="required" for="phone">Telefono</label>
                 <input type="text" class="form-control"  name="phone" [(ngModel)]="newpatient.phone"
                 required
-                minlength="7"  
+                minlength="7"
                 #phone="ngModel">
 
                 <div *ngIf="(phone.touched || phone.dirty) && phone.errors">

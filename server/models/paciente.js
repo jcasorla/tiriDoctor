@@ -73,6 +73,10 @@ const PacienteSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    creator: {
+        type: String,
+        required: false
+    },
     actual: [actualSchema],
     patologico: [patologicoSchema],
     nopatologico: [noPatologicoSchema],

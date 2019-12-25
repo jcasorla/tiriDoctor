@@ -13,11 +13,20 @@ const Lab = mongoose.model('Lab');
 
 function validateEmail(mail) 
 {
-if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
-{
-    return (true)
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+    {
+        return (true)
+    }
+        return (false)
 }
-    return (false)
+
+function onlyNumbers(num) 
+{
+    if (/^[0-9 -()+]+$/.test(num))
+    {
+        return (true)
+    }
+        return (false)
 }
 
 module.exports = {
@@ -40,10 +49,18 @@ module.exports = {
             .catch(err => res.json(err));
     },
     create: (req, res) => {
-        var result=validateEmail(req.body.email);
+        if(req.body.email){
+            var result=validateEmail(req.body.email);
+            if(!result){
+                res.status(422).json(['Correo es invalido']);  
+            }
+        }
+        
+        var result2=onlyNumbers(req.body.phone);
 
-        if(!result){
-            res.status(422).json(['Correo es invalido']);  
+        
+        if(!result2){
+            res.status(422).json(['Telefono debe tener solo digitos']);  
         }
         else{
             const paciente = new Paciente(req.body); 
@@ -59,10 +76,18 @@ module.exports = {
        
     },
     update: (req, res) => {
-        var result=validateEmail(req.body.email);
+        if(req.body.email){
+            var result=validateEmail(req.body.email);
+            if(!result){
+                res.status(422).json(['Correo es invalido']);  
+            }
+        }
+        
+        var result2=onlyNumbers(req.body.phone);
 
-        if(!result){
-            res.status(422).json(['Correo es invalido']);  
+        
+        if(!result2){
+            res.status(422).json(['Telefono debe tener solo digitos']);  
         }
         else{
             Paciente.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )

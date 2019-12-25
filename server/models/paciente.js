@@ -42,7 +42,8 @@ const PacienteSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
-        required: [true, "Telefono es obligatorio"]
+        required: [true, "Telefono es obligatorio"],
+        minlength: [7, 'Telefono - Por lo menos 7 digitos']
     },
     email: {
         type: String,

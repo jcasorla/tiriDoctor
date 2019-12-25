@@ -105,7 +105,7 @@
                 <input type="text" class="form-control"  name="phone" [(ngModel)]="newpatient.phone"
                 required
                 minlength="7"
-                pattern="^[0-9 -()+]+$"
+                pattern="^[0-9 -()+]+$"                
                 #phone="ngModel">
 
                 <div *ngIf="(phone.touched || phone.dirty) && phone.errors">

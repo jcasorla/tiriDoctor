@@ -97,12 +97,15 @@
                 </div>
             </div>
            
+            <!-- pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$" -->
+            
             
             <div class="form-group col-md-3">
                 <label class="required" for="phone">Telefono</label>
                 <input type="text" class="form-control"  name="phone" [(ngModel)]="newpatient.phone"
                 required
                 minlength="7"
+                pattern="^[0-9 -()+]+$"
                 #phone="ngModel">
 
                 <div *ngIf="(phone.touched || phone.dirty) && phone.errors">
@@ -113,12 +116,22 @@
                         el telefono debe tener
                         {{ phone?.errors?.minlength.requiredLength }} digitos
                     </div>
+                    <div *ngIf="phone?.errors?.pattern" class="alert alert-danger">
+                        el telefono debe tener solo digitos
+                    </div>     
                     
                 </div>
             </div>
             <div class="form-group col-md-3">
                 <label for="email">Correo</label>
-                <input type="email" class="form-control"  name="email" [(ngModel)]="newpatient.email">
+                <input type="email" class="form-control"  name="email" [(ngModel)]="newpatient.email"
+                #email="ngModel"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                <div *ngIf="(email.touched || email.dirty) && email.errors">                   
+                    <div *ngIf="email?.errors && email?.errors?.pattern" class="alert alert-danger">
+                        el correo es invalido
+                    </div>                    
+                </div>
             </div>
             <div class="form-group col-lg">
                 <label for="ocupation">ocupacion</label>

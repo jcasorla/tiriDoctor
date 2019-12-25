@@ -118,7 +118,6 @@
                     <input type="text" name="email"  [ngModel]="user2.email" class="form-control"
                     
                     required
-                    minlength="3" 
                     #email="ngModel"
                     pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                     >
@@ -127,7 +126,7 @@
                             debes ingresar el correo
                         </div>
                         <div *ngIf="email?.errors && email?.errors?.pattern" class="alert alert-danger">
-                            el correo invalido
+                            el correo es invalido
                         </div>
                         
                     </div>

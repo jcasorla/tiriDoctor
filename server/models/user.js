@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
     },     
     email: {
         type: String,
-        required: [true, "debes ingresar el correo electronico"],
+        required: [true, "debes ingresar el correo electronico"]
     },
     password: {
         type: String,

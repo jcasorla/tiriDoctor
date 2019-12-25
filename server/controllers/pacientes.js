@@ -10,6 +10,16 @@ const Problema = mongoose.model('Problema');
 const Grid = mongoose.model('Grid');
 const Lab = mongoose.model('Lab');
 
+
+function validateEmail(mail) 
+{
+if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+{
+    return (true)
+}
+    return (false)
+}
+
 module.exports = {
 
    
@@ -30,24 +40,41 @@ module.exports = {
             .catch(err => res.json(err));
     },
     create: (req, res) => {
-        const paciente = new Paciente(req.body); 
-      
-        paciente.save()
-            .then((data) => {
-                res.json({newPaciente: data});
-            })
-            .catch(err => {
-                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
-                res.status(422).json(errors )});
+        var result=validateEmail(req.body.email);
+
+        if(!result){
+            res.status(422).json(['Correo es invalido']);  
+        }
+        else{
+            const paciente = new Paciente(req.body); 
+            paciente.save()
+                .then((data) => {
+                    res.json({newPaciente: data});
+                })
+                .catch(err => {
+                    const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                    res.status(422).json(errors )});
+
+        }
+       
     },
     update: (req, res) => {
-        Paciente.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
+        var result=validateEmail(req.body.email);
+
+        if(!result){
+            res.status(422).json(['Correo es invalido']);  
+        }
+        else{
+            Paciente.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
             .then((data) => {
                 res.json({updatedPaciente: data});
             })
             .catch(err => {
                 const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
                 res.status(422).json(errors )});
+
+        }
+        
     },
 	
     delete: (req, res) => {

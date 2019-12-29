@@ -22,7 +22,9 @@ import {AuthGuard} from '../app/auth.guard'; // <-- AuthGuard prevents page from
 import {PreloadProvider} from './preload';
 import { AccountComponent } from './account/account.component';
 import { ConsultaComponent } from './consulta/consulta.component';
-import { LabComponent } from './lab/lab.component' // <== preload data from preload.ts
+import { LabComponent } from './lab/lab.component';
+import { UploadComponent } from './upload/upload.component' // <== preload data from preload.ts
+import { FileUploadModule } from 'ng2-file-upload'; //<-- file upload module
 
 
 export function preloadProviderFactory(provider: PreloadProvider) { // <== preload data from preload.ts
@@ -47,7 +49,8 @@ export function preloadProviderFactory(provider: PreloadProvider) { // <== prelo
     ProblemasComponent,
     AccountComponent,
     ConsultaComponent,
-    LabComponent,    
+    LabComponent,
+    UploadComponent,    
   ],
   providers: [
     PreloadProvider, // <== preload data from preload.ts
@@ -59,7 +62,8 @@ export function preloadProviderFactory(provider: PreloadProvider) { // <== prelo
     BrowserModule,
     FormsModule, // <-- register FormsModule with our app.
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FileUploadModule //<-- file upload module
   ],  
   bootstrap: [AppComponent]
 })

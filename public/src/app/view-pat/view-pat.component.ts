@@ -20,6 +20,7 @@ export class ViewPatComponent implements OnInit{
   displayProblemas: any;
   displayConsultas: any;
   displayLab: any;
+  displayUpload: any;
   
 
   constructor(
@@ -94,6 +95,7 @@ export class ViewPatComponent implements OnInit{
     this.displayProblemas = null;
     this.displayConsultas=null;
     this.displayLab=null;
+    this.displayUpload=null;
   }
   showNoPatologico(data): void { 
     // console.log("in no patologico");
@@ -106,6 +108,7 @@ export class ViewPatComponent implements OnInit{
     this.displayProblemas = null;
     this.displayConsultas=null;
     this.displayLab=null;
+    this.displayUpload=null;
   }
 
   showGineco(data): void { 
@@ -120,6 +123,7 @@ export class ViewPatComponent implements OnInit{
     this.displayProblemas = null;
     this.displayConsultas=null;
     this.displayLab=null;
+    this.displayUpload=null;
   }
 
   showFisico(data): void { 
@@ -132,6 +136,7 @@ export class ViewPatComponent implements OnInit{
     this.displayProblemas = null;
     this.displayConsultas=null;
     this.displayLab=null;
+    this.displayUpload=null;
   }
   showProblemas(data): void { 
     this.displayProblemas = true;
@@ -143,6 +148,7 @@ export class ViewPatComponent implements OnInit{
     this.displayFisico = null;
     this.displayConsultas=null;
     this.displayLab=null;
+    this.displayUpload=null;
   }
   showConsultas(data): void { 
     this.displayConsultas=true;
@@ -154,10 +160,24 @@ export class ViewPatComponent implements OnInit{
     this.displayGineco = null;
     this.displayFisico = null;
     this.displayLab=null;
+    this.displayUpload=null;
   }
   showLab(data): void { 
     this.displayLab=true;
-    this.displayConsultas=false;
+    this.displayConsultas=null;
+    this.displayProblemas = null;
+    this.displayNoPatologico = null;
+    this.displayPatologico = null;
+    this.displayFamiliar = null;
+    this.displayIllness=null;
+    this.displayGineco = null;
+    this.displayFisico = null;
+    this.displayUpload=null;
+  }
+  showUpload(data): void { 
+    this.displayUpload=true;
+    this.displayLab=null;
+    this.displayConsultas=null;
     this.displayProblemas = null;
     this.displayNoPatologico = null;
     this.displayPatologico = null;
@@ -166,5 +186,6 @@ export class ViewPatComponent implements OnInit{
     this.displayGineco = null;
     this.displayFisico = null;
   }
+
 
 }

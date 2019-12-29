@@ -1,14 +1,27 @@
-<div class="container-fluid">
-    <div class="row header-section">
-        <span>Angular 4/5 Nodejs File Upload Download Sample</span>
+<div class="row">
+    <div class="col-sm-2">
+        <h2>Documentos</h2>
     </div>
+    <div class="col-sm-5">
+        <button *ngIf="!showlist" class="btn btn-outline-primary btn-sm" (click)="showList()">Lista</button>
+        <button *ngIf="showlist" class="btn btn-outline-danger btn-sm" (click)="hideList()">Ocultar Lista</button>
+    </div>
+
+</div>
+<div class="container-fluid">
+    <!-- <h2>Documentos</h2> -->
+    <!-- <div class="row header-section">
+        <span>Angular 4/5 Nodejs File Upload Download Sample</span>
+    </div> -->
+    
+
 
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <div class="row card table-primary">
+            <div class="row card scroll scrollbar-primary" *ngIf="showlist">
                 <div class="col-sm-12">
-                    <h4>Upload Section</h4>
+                    <h4>Subir Documentos</h4>
                     <div id="fileSelector">
                         <input type="file" name="fileUpload" id="fileUpload"
                         multiple ng2FileSelect [uploader]="uploader">
@@ -23,25 +36,47 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                    <button type="button" class="btn btn-dark" (click)="item.upload()">Upload</button>
-                                    <button type="button" class="btn btn-danger" (click)="item.remove()">Cancel</button>
+                                    <button type="button" class="btn btn-dark" (click)="item.upload()">Subir</button>
+                                    <button type="button" class="btn btn-danger" (click)="item.remove()">Cancelar</button>
                             </div>
                         </div>                        
                     </div>
                     <div class="row" *ngIf="uploader?.queue?.length > 0">
-                            <button type="button" class="btn btn-primary" (click)="uploader.uploadAll()">Upload All</button>
+                            <button type="button" class="btn btn-primary" (click)="uploader.uploadAll()">Subir Todos</button>
                     </div>
                 </div>                
             </div>
 
-            <div class="row card">
-                <h4>Download Section</h4>
+            <div class="row card scroll scrollbar-primary" *ngIf="!showlist">
+                <h4>Bajar Documentos</h4>
+                <table class="table table-light"> 
+                    <thead class="table-primary">
+                        <tr class="d-flex"><th class="col-sm-7">Documento</th><th class="col-sm-2">Actiones</th></tr>  
+                    </thead>
+                
+                    <tbody *ngFor="let list of pat.file; let i = index">
+                        
+                        <tr class="d-flex">
+                            <!-- <td class="col-sm-5">{{list.originalname}}</td> -->
+                            <td class="col-sm-7"><button class="btn btn-outline-primary btn-sm" (click)="download(i)">{{list.originalname}}</button></td>
+                            <!-- <td class="col-sm-2">{{list.activo}}</td> -->
+                            <td class="col-sm-2"><button class="btn btn-outline-danger btn-sm" >Eliminar</button></td>
+                            <!-- <td class="col-sm-4"><button class="btn btn-outline-primary btn-sm" (click)="showEdit(list)">Editar</button><button class="btn btn-outline-danger btn-sm" (click)="onClickDelete(list)">Eliminar</button></td> -->
+                            
+                        
+                        </tr> 
+                
+                    </tbody>
+                    
+                    
+                </table>
+               
 
-                <div class="row" *ngFor="let item of attachmentList; let i = index"
+                <!-- <div class="row" *ngFor="let item of attachmentList; let i = index"
                 style="margin:10px;padding:5px;background-color:rgb(231, 229, 229); border-radius:5px; line-height:40px;">
                     <div class="col-sm-7">{{item.originalname}}</div>
                     <div class="col-sm-5" style="text-align:center;"><button type="button" class="btn btn-primary" (click)="download(i)">Download</button></div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="col-md-2"></div>

@@ -9,6 +9,7 @@ const Fisico = mongoose.model('Fisico');
 const Problema = mongoose.model('Problema');
 const Grid = mongoose.model('Grid');
 const Lab = mongoose.model('Lab');
+const File = mongoose.model('File');
 
 
 function validateEmail(mail) 
@@ -205,6 +206,18 @@ module.exports = {
                     for(var i=0; i< data.lab.length; i++){
                         Lab.findOneAndDelete({ _id : data.lab[i]._id })
                         .then((data) => {
+                        })
+                        .catch(err => {
+                            res.json(err);
+                        });
+
+                    }               
+                }
+                if(data.files.length>0){
+                    for(var i=0; i< data.files.length; i++){
+                        File.findOneAndDelete({ _id : data.file[i]._id })
+                        .then((data) => {
+                            //also need logic to delete documents
                         })
                         .catch(err => {
                             res.json(err);

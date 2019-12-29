@@ -9,6 +9,7 @@ const fisicoSchema = mongoose.model('Fisico').schema;
 const problemaSchema = mongoose.model('Problema').schema;
 const gridSchema = mongoose.model('Grid').schema;
 const labSchema = mongoose.model('Lab').schema;
+const fileSchema = mongoose.model('File').schema;
 
 
 const PacienteSchema = new mongoose.Schema({
@@ -86,7 +87,8 @@ const PacienteSchema = new mongoose.Schema({
     fisico: [fisicoSchema],
     problema: [problemaSchema],
     grid: [gridSchema],
-    lab: [labSchema]
+    lab: [labSchema],
+    file: [fileSchema]
         
 }, {timestamps: true });
 

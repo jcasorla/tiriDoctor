@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FileSelectDirective, FileUploader} from 'ng2-file-upload';
 import { FileService } from '../file.service';
 import {saveAs} from 'file-saver';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import {Location} from '@angular/common';
+
 
 const uri = 'http://localhost:8000/api/file/upload';
 @Component({
@@ -11,7 +14,8 @@ const uri = 'http://localhost:8000/api/file/upload';
   providers:[FileService]
 })
 export class UploadComponent implements OnInit {
-
+  @Input() pat : any;
+  showlist=false;
   uploader:FileUploader = new FileUploader({url:uri});
 
   attachmentList:any = [];
@@ -22,9 +26,22 @@ export class UploadComponent implements OnInit {
           this.attachmentList.push(JSON.parse(response));
       }
   }
+  ngOnInit() {
+    this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
+      form.append('uid', this.pat._id); //note comma separating key and value
+      
+     };
+  }
+  showList(){
+    this.showlist=true;
+  }
+  hideList(){
+    this.showlist=false;
+  }
 
   download(index){
-      var filename = this.attachmentList[index].uploadname;
+      // var filename = this.attachmentList[index].uploadname;
+      var filename = this.pat.file[index].filename;
       console.log(filename);
 
       this._fileService.downloadFile(filename)
@@ -34,7 +51,6 @@ export class UploadComponent implements OnInit {
       );
   }
 
-  ngOnInit() {
-  }
+ 
 
 }

@@ -20,4 +20,9 @@ export class FileService {
             headers:new HttpHeaders().append('Content-Type','application/json')
         });
     }
+
+    deleteFile(pat,data){
+        let url='/api/file/delete/' +pat._id; 
+        return this._http.put(url,data);
+      }
 }

@@ -43,12 +43,7 @@ updateActual(pat,actual){
 }
 
 deleteActual(pat,data){
-  // console.log("is pat empty?");
-  // console.log(pat);
-  // console.log(data);
   let url='/api/pacientes/actual/delete/' +data._id; 
-
-
   return this._http.put(url,pat);
 }
 

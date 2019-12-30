@@ -10,6 +10,9 @@ const Problema = mongoose.model('Problema');
 const Grid = mongoose.model('Grid');
 const Lab = mongoose.model('Lab');
 const File = mongoose.model('File');
+const path = require('path');
+const fs = require('fs');
+
 
 
 function validateEmail(mail) 
@@ -213,11 +216,20 @@ module.exports = {
 
                     }               
                 }
-                if(data.files.length>0){
-                    for(var i=0; i< data.files.length; i++){
+                if(data.file.length>0){
+                    for(var i=0; i< data.file.length; i++){
+                        filepath = path.join(__dirname,'../../uploads') +'/'+ data.file[i].filename;
                         File.findOneAndDelete({ _id : data.file[i]._id })
                         .then((data) => {
                             //also need logic to delete documents
+                            try{
+                                fs.unlinkSync(filepath);
+                                
+                            }catch(err){
+                                console.log(err);
+                                const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                                res.status(422).json(errors );        
+                            }
                         })
                         .catch(err => {
                             res.json(err);

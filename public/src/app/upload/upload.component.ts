@@ -20,7 +20,12 @@ export class UploadComponent implements OnInit {
 
   attachmentList:any = [];
 
-  constructor(private _fileService:FileService){
+  constructor(
+    private _fileService:FileService,
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _location: Location
+    ){
 
       this.uploader.onCompleteItem = (item:any, response:any , status:any, headers:any) => {
           this.attachmentList.push(JSON.parse(response));
@@ -39,16 +44,32 @@ export class UploadComponent implements OnInit {
     this.showlist=false;
   }
 
+  refresh(){
+    //refresh trick that did work to refresh @Input data
+    this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
+      this._router.navigate([decodeURI(this._location.path())]);
+    });
+
+  }
+
   download(index){
-      // var filename = this.attachmentList[index].uploadname;
       var filename = this.pat.file[index].filename;
-      console.log(filename);
 
       this._fileService.downloadFile(filename)
       .subscribe(
           data => saveAs(data, filename),
           error => console.error(error)
       );
+  }
+  onClickDelete(data) {
+    if(confirm("Estas seguro de eliminar a " +data.originalname)){
+      const observable = this._fileService.deleteFile(this.pat,data);
+      
+      observable.subscribe(data => {
+        this.refresh();
+      });
+    }
+    
   }
 
  

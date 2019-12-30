@@ -16,9 +16,9 @@
             <div class="row card" *ngIf="!showlist">
                 <div class="col-sm-12">
                     <h4>Subir Documentos</h4>
-                    <div id="fileSelector">
+                    <div id="fileSelector" *ngIf="uploader?.queue?.length < 1">
                         <input type="file" name="fileUpload" id="fileUpload"
-                        multiple ng2FileSelect [uploader]="uploader">
+                        ng2FileSelect [uploader]="uploader"><!--multiple-->
                     </div>
                     <div>
                         <div class="row uploadList" *ngFor="let item of uploader.queue">
@@ -33,11 +33,15 @@
                                     <button type="button" class="btn btn-dark" (click)="item.upload()" (click)="refresh()">Subir</button>
                                     <button type="button" class="btn btn-danger" (click)="item.remove()">Cancelar</button>
                             </div>
+                            <!-- <div class="col-sm-4" *ngIf="uploader?.queue?.length > 1">
+                                <button type="button" class="btn btn-dark" (click)="item.upload()" (click)="refresh()">Subir</button>
+                                <button type="button" class="btn btn-danger" (click)="item.remove()">Cancelar</button>
+                            </div> -->
                         </div>                        
                     </div>
-                    <div class="row" *ngIf="uploader?.queue?.length > 0">
-                            <button type="button" class="btn btn-primary" (click)="uploader.uploadAll()">Subir Todos</button>
-                    </div>
+                    <!-- <div class="row" *ngIf="uploader?.queue?.length > 0">
+                            <button type="button" class="btn btn-primary" (click)="uploader.uploadAll()" (click)="refresh()">Subir Todos</button>
+                    </div> -->
                 </div>                
             </div>
 

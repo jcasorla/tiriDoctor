@@ -109,13 +109,11 @@ module.exports = {
     },
     
     register(req, res) {
-        // console.log("in register");
-        // console.log(" req.body: ", req.body);
 
-        if(req.body.code!=config.invite){
+        if(req.body.code!=process.env.INVITE){
             req.flash("qform", "Codigo no es valido");
             res.redirect("/register")     
-        }
+        } 
         var result=validateEmail(req.body.email);
 
         if(!result){
@@ -155,8 +153,6 @@ module.exports = {
         }
         
         
-
-        // console.log("this is username: " + username);  
 
         async function run() {
             const saltValue = await bcrypt.genSalt(10);
@@ -203,14 +199,13 @@ module.exports = {
     updatePwd: (req, res) => {
               
         
-        if(req.body.code!=config.reset){
+        if(req.body.code!=process.env.RESET){
             req.flash("qform", "Codigo no es valido");
             res.redirect("/reset");
     
         }
 
         else{
-            var temp="temp";
             var generator = require('generate-password');
             var password = generator.generate({
                 length: 5,

@@ -3,8 +3,20 @@ const User = mongoose.model('User');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var config = require('../../config.json');
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 // var Q = require('q');
 // var request = require('request');
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth:{
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+})
 
 
 module.exports = {
@@ -186,7 +198,139 @@ module.exports = {
     logout(req,res){
         req.session.destroy();
         res.json({status: 'success', message: 'Logged out'})
+    },
+
+    updatePwd: (req, res) => {
+              
+        
+        if(req.body.code!=config.reset){
+            req.flash("qform", "Codigo no es valido");
+            res.redirect("/reset");
+    
+        }
+
+        else{
+            var temp="temp";
+            var generator = require('generate-password');
+            var password = generator.generate({
+                length: 5,
+                numbers: true
+            });
+                
+
+            User.findOne({ email : req.body.email })
+            .then((user) => {
+
+                async function run() {
+                    const saltValue = await bcrypt.genSalt(10);
+                    bcrypt
+                    .hash(password, saltValue)
+                    .then(hash =>{
+                        
+                        
+                        User.findByIdAndUpdate(user.id , {password: hash}, {runValidators: true, new: true} )
+                        .then((data) => {
+                            var mailOptions={
+                                from: 'tiridoctor@gmail.com',
+                                to: 'precado999@gmail.com',
+                                subject: 'Cambio de Contraseña para: ' + user.email,
+                                text: 'Contraseña Temporal: ' + password
+                            };
+                            transporter.sendMail(mailOptions, function(err,data){
+                                if(err){
+                                    console.log("error sending email", err);
+                                }
+                                else{
+                                    console.log("email is sent");
+                                }
+                            });
+                            res.redirect("/");
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            
+                        });                         
+
+                    })
+                    .catch(err =>{
+                        console.log(err);
+                        // req.flash("qform", "Usario no encontrado");                    
+
+                    });
+                }
+                run();
+               
+            })
+            .catch(err =>{
+                console.log(err);
+                req.flash("qform", "Usario no encontrado");  
+            });
+
+        }
+    },
+
+    updateSpecial: (req, res) => {
+              
+        
+        if(req.body.code!=config.reset){
+            req.flash("qform", "Codigo no es valido");
+            res.redirect("/reset");
+    
+        }
+
+        else{
+            var temp="temp";
+            User.findOne({ email : req.body.email })
+            .then((user) => {
+
+                async function run() {
+                    const saltValue = await bcrypt.genSalt(10);
+                    bcrypt
+                    .hash(temp, saltValue)
+                    .then(hash =>{
+                        
+                        
+                        User.findByIdAndUpdate(user.id , {password: hash}, {runValidators: true, new: true} )
+                        .then((data) => {
+                            var mailOptions={
+                                from: 'tiridoctor@gmail.com',
+                                to: 'precado999@gmail.com',
+                                subject: 'Cambio de Contraseña para ' +user.email,
+                                text: 'Contraseña Temporal: ' + temp
+                            };
+                            transporter.sendMail(mailOptions, function(err,data){
+                                if(err){
+                                    console.log("error sending email", err);
+                                }
+                                else{
+                                    console.log("email is sent");
+                                }
+                            });
+                            res.redirect("/");
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            
+                        });                         
+
+                    })
+                    .catch(err =>{
+                        console.log(err);
+                        // req.flash("qform", "Usario no encontrado");                    
+
+                    });
+                }
+                run();
+               
+            })
+            .catch(err =>{
+                console.log(err);
+                req.flash("qform", "Usario no encontrado");  
+            });
+
+        }
     }
+
 
 //     /**
 //    * Performs JWT logout

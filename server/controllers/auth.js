@@ -149,7 +149,12 @@ module.exports = {
             var firstI=firstS[0];
             var last=req.body.lastName;        
             last=last.toLowerCase();
-            username=firstI+last;
+            var slast=req.body.slastName;
+            slast=slast.toLowerCase();
+            slastarr=slast.split('');
+            slastindex1=slastarr[0];
+            slastlastindex=slastarr[slastarr.length-1];
+            username=firstI+last+slastindex1+slastlastindex;
         }
         
         
@@ -160,7 +165,7 @@ module.exports = {
               .hash(req.body.password, saltValue)
               .then(hash =>{
                 // console.log(hash)
-                var user = new User({email: req.body.email , firstName: req.body.firstName, lastName: req.body.lastName, password: hash, username: username});
+                var user = new User({email: req.body.email , firstName: req.body.firstName, lastName: req.body.lastName, slastName: req.body.slastName, password: hash, username: username});
                 user.save()
                 .then(result =>{
                     res.redirect("/login");
@@ -227,7 +232,7 @@ module.exports = {
                         .then((data) => {
                             var mailOptions={
                                 from: 'tiridoctor@gmail.com',
-                                to: 'precado999@gmail.com',
+                                to: user.email,
                                 subject: 'Cambio de Contraseña para: ' + user.email,
                                 text: 'Contraseña Temporal: ' + password
                             };

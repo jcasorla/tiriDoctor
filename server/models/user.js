@@ -15,6 +15,12 @@ const UserSchema = new mongoose.Schema({
         minlength: [3, 'el apellido debe tener por lo menos 3 letras']
 
     },
+    slastName: { 
+        type: String,
+        required: [true, "Debes ingresar el Segundo apellido"],
+        minlength: [3, 'el Segundo apellido debe tener por lo menos 3 letras']
+
+    },
     username: { 
         type: String,
         required: [true, "username cannot be blank"],

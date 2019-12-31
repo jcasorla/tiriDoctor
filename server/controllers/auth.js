@@ -265,23 +265,31 @@ module.exports = {
     },
 
     updateSpecial: (req, res) => {
+        console.log(req.body);
+        console.log (process.env.SPECIAL);
               
         
-        if(req.body.code!=config.reset){
+        if(req.body.code!=process.env.SPECIAL){
             req.flash("qform", "Codigo no es valido");
-            res.redirect("/reset");
+            res.redirect("/tiri256Especial");
     
         }
 
         else{
-            var temp="temp";
+            var generator = require('generate-password');
+            var password = generator.generate({
+                length: 5,
+                numbers: true
+            });
+                
+
             User.findOne({ email : req.body.email })
             .then((user) => {
 
                 async function run() {
                     const saltValue = await bcrypt.genSalt(10);
                     bcrypt
-                    .hash(temp, saltValue)
+                    .hash(password, saltValue)
                     .then(hash =>{
                         
                         
@@ -290,8 +298,8 @@ module.exports = {
                             var mailOptions={
                                 from: 'tiridoctor@gmail.com',
                                 to: 'precado999@gmail.com',
-                                subject: 'Cambio de Contraseña para ' +user.email,
-                                text: 'Contraseña Temporal: ' + temp
+                                subject: 'Cambio de Contraseña para: ' + user.email,
+                                text: 'Contraseña Temporal: ' + password
                             };
                             transporter.sendMail(mailOptions, function(err,data){
                                 if(err){

@@ -17,6 +17,9 @@ export class UserService {
   updateUserConfirm(data) {
     return this._http.put('/api/user/confirm/' + data._id, data);
   }
+  updateUserEmail(data) {
+    return this._http.put('/api/user/email/' + data._id, data);
+  }
   updateUserPwd(data) {
     console.log('service');
     return this._http.put('/api/user/pwd/' + data._id, data);

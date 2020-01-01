@@ -71,21 +71,47 @@ export class AccountComponent implements OnInit, OnChanges {
       
     });
   }
-  onSubmitConfirm(form: NgForm) {
-    console.log('edit account confirm');
-    console.log(form.value);
+  onSubmitUser(form: NgForm) {
+    if(form.value.username===this.user.username){
+           
+      this.errors= ['El username es el mismo'];
+    }
+    else{
+      this._userService.updateUserConfirm(form.value).subscribe({
+        next: (data)=>{
+          this.refresh();
+        
+        },
+          error: error => {
+            this.errors=error.error;
     
-    this._userService.updateUserConfirm(form.value).subscribe({
-      next: (data)=>{
-        this.refresh();
-      
-      },
-        error: error => {
-          this.errors=error.error;
-  
-      }
-      
-    });
+        }
+        
+      });
+
+    }
+    
+  }
+  onSubmitEmail(form: NgForm) {
+    if(form.value.email===this.user.email){
+           
+      this.errors= ['El correo es el mismo'];
+    }
+    else{
+      this._userService.updateUserEmail(form.value).subscribe({
+        next: (data)=>{
+          this.refresh();
+        
+        },
+          error: error => {
+            this.errors=error.error;
+    
+        }
+        
+      });
+
+    }
+    
   }
   onSubmitPwd(form: NgForm) {
 

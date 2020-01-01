@@ -269,10 +269,7 @@ module.exports = {
         }
     },
 
-    updateSpecial: (req, res) => {
-        console.log(req.body);
-        console.log (process.env.SPECIAL);
-              
+    updateSpecial: (req, res) => {              
         
         if(req.body.code!=process.env.SPECIAL){
             req.flash("qform", "Codigo no es valido");

@@ -24,6 +24,10 @@
             <label for="lastName">Apellido</label>
             <input type="text" name="lastName" [ngModel]="user.lastName" class="form-control" readonly>                
         </div>
+        <div class="form-group col-md-2">
+            <label for="slastName">Segundo Apellido</label>
+            <input type="text" name="slastName" [ngModel]="user.slastName" class="form-control" readonly>                
+        </div>
         <div class="form-group col-md-3">
             <label for="email">Correo</label>
             <input type="text" name="email" [ngModel]="user.email" class="form-control" readonly>
@@ -92,6 +96,25 @@
                     </div>
             
                 </div>
+                <div class="form-group col-md-2">
+                    <label class="required" for="slastName">Segundo Apellido</label>
+                    <input type="text" name="slastName" [(ngModel)]="user.slastName" class="form-control"
+                    required
+                    minlength="3" 
+                    #slastName="ngModel" 
+                    >
+                    <div *ngIf="(slastName.touched || slastName.dirty) && slastName.errors">
+                        <div *ngIf="slastName?.errors?.required" class="alert alert-danger">
+                            debes ingresar el segundo apellido
+                        </div>
+                        <div *ngIf="slastName?.errors?.minlength" class="alert alert-danger">
+                            el segundo appellido debe tener
+                            {{ slastName?.errors?.minlength.requiredLength }} letras
+                        </div>
+                        
+                    </div>
+            
+                </div>
                
             </div>
             <button *ngIf="upForm1.valid" class="btn btn-primary btn-sm">Salvar</button>
@@ -110,7 +133,7 @@
         <div *ngIf="errors">
             <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
         </div>
-        <form (submit)="onSubmitConfirm()" #upForm2="ngForm">
+        <form (submit)="onSubmitEmail(upForm2)" #upForm2="ngForm">
             <div class="form-row">   
 
                 <div class="form-group col-md-3">
@@ -151,6 +174,7 @@
             <input type="hidden" name="_id" [ngModel]="user._id" class="form-control">
             <input type="hidden" name="firstName" [ngModel]="user.firstName" class="form-control">
             <input type="hidden" name="lastName" [ngModel]="user.lastName" class="form-control">
+            <input type="hidden" name="lastName" [ngModel]="user.slastName" class="form-control">
             <input type="hidden" name="username" [ngModel]="user.username" class="form-control">
             <input type="hidden" name="createdAt" [ngModel]="user.createdAt" class="form-control">
             <button *ngIf="upForm2.valid" class="btn btn-primary btn-sm">Salvar</button>
@@ -170,7 +194,7 @@
         <div *ngIf="errors">
             <p class="text-danger" *ngFor="let item of errors ">{{item}}</p>
         </div>
-        <form (submit)="onSubmitConfirm(upForm3)" #upForm3="ngForm">
+        <form (submit)="onSubmitUser(upForm3)" #upForm3="ngForm">
             <div class="form-row">   
 
                 <div class="form-group col-md-3">
@@ -211,6 +235,7 @@
             <input type="hidden" name="_id" [ngModel]="user._id" class="form-control">
             <input type="hidden" name="firstName" [ngModel]="user.firstName" class="form-control">
             <input type="hidden" name="lastName" [ngModel]="user.lastName" class="form-control">
+            <input type="hidden" name="lastName" [ngModel]="user.slastName" class="form-control">
             <input type="hidden" name="email" [ngModel]="user.email" class="form-control">
             <input type="hidden" name="createdAt" [ngModel]="user.createdAt" class="form-control">
             <button *ngIf="upForm3.valid" class="btn btn-primary btn-sm">Salvar</button>
@@ -291,6 +316,7 @@
             <input type="hidden" name="username" [ngModel]="user.username" class="form-control">
             <input type="hidden" name="firstName" [ngModel]="user.firstName" class="form-control">
             <input type="hidden" name="lastName" [ngModel]="user.lastName" class="form-control">
+            <input type="hidden" name="lastName" [ngModel]="user.slastName" class="form-control">
             <input type="hidden" name="email" [ngModel]="user.email" class="form-control">
             <input type="hidden" name="createdAt" [ngModel]="user.createdAt" class="form-control">
             <button *ngIf="upForm4.valid" class="btn btn-primary btn-sm">Salvar</button>

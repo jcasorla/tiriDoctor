@@ -24,15 +24,60 @@ module.exports = {
                 res.status(422).json(errors )});
     },
 
-    updateConfirm: (req, res) => {
-
+    updateEmail: (req, res) => { 
         var result=validateEmail(req.body.email);
 
         if(!result){
             res.status(422).json(['Correo es invalido']);  
-        }
-
+        } 
         else{
+            User.findOne({ email : req.body.email })
+            .then((user) => { 
+                console.log(user.email);                    
+                res.status(422).json(['Correo existe, escoje otro']);  
+                
+            })
+            .catch(err =>{
+                User.findById({ _id : req.params.id })
+                .then((user) => {
+                    if (bcrypt.compareSync(req.body.password, user.password)) {
+                        // Passwords match
+                        console.log("Passwords match");
+                        req.body.password=user.password;
+                        User.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
+                        .then((data) => {
+                            res.json({updatedUser: data});
+                        })
+                        .catch(err => {
+                            const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                            res.status(422).json(errors )});
+                        
+                    } else {
+                        // Passwords don't match
+                        console.log("Passwords don't match???");
+                        res.status(422).json(['Contraseñas incorrectas']);
+                    }
+                })
+                .catch(err => {
+                    const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                    res.status(422).json(errors )});
+                
+                
+
+            });
+
+        }  
+       
+    },
+
+    updateUsername:(req,res)=>{
+        User.findOne({ username : req.body.username })
+        .then((user) => { 
+            console.log(user.username);                    
+            res.status(422).json(['username existe, escoje otro']);  
+           
+        })
+        .catch(err =>{
             User.findById({ _id : req.params.id })
             .then((user) => {
                 if (bcrypt.compareSync(req.body.password, user.password)) {
@@ -56,12 +101,12 @@ module.exports = {
             .catch(err => {
                 const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
                 res.status(422).json(errors )});
+        });
 
-        }
+        
     },
 
-    updatePwd: (req, res) => {
-      
+    updatePwd: (req, res) => {      
         
         if(req.body.password!=req.body.cpwd){
            res.status(422).json(['Contraseñas no coinciden']);
@@ -115,10 +160,6 @@ module.exports = {
             });
 
         }
-
-        
-
-       
     },
 
 }

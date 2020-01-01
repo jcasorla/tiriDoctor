@@ -2,7 +2,10 @@
 <br>
 
 <div class="row">
-    <div class="col-md-7 text-right">
+    <div class="col-md-4 text-right">
+        <h4>ID#{{selectedpat.id}}</h4>
+    </div>
+    <div class="col-md-4 text-center">
         <h4>{{selectedpat.firstName}} {{selectedpat.lastName}} {{selectedpat.sLastName}}</h4>
     </div>
     <div class="col-md-1">
@@ -12,16 +15,12 @@
 </div>
 
 
-<div class="form-row">
+<!-- <div class="form-row">
     <div class="form-group col-sm-1">
         <label for="id">ID</label>                    
         <input class="form-control" type="text" name="id" readonly value="{{selectedpat.id}}">
-    </div>
-                    
-    <div class="form-group col-md-3">
-        <label for="nombre">occupacion</label>                    
-        <input class="form-control" type="text" name="nombre" readonly value="{{selectedpat.occupation}}">
-    </div>
+    </div>                   
+    
     <div class="form-group col-sm-1">
         <label for="sex">Sexo</label>                    
         <input class="form-control" type="text" name="sex" readonly value="{{selectedpat.sex}}">
@@ -34,38 +33,42 @@
         <label for="phone">Telefono</label>                    
         <input class="form-control" type="text" name="phone" readonly value="{{selectedpat.phone}}">
     </div>
+    <div class="form-group col-sm-2">
+        <label for="ciudad">Ciudad</label>                    
+        <input class="form-control" type="text" name="ciudad" readonly value="{{selectedpat.city}}">
+    </div>
+    <div class="form-group col-sm-2">
+        <label for="state">Estado</label>                    
+        <input class="form-control" type="text" name="state" readonly value="{{selectedpat.state}}">
+    </div>
     
-    <div class="form-group col-sm-3">
+   
+</div> -->
+
+<!-- <div class="form-row">
+     <div class="form-group col-sm-3">
         <label for="email">Correo</label>                    
         <input class="form-control" type="text" name="email" readonly value="{{selectedpat.email}}">
     </div>
-</div>
-
-<div class="form-row">
-        
-                        
-        <div class="form-group col-md-3">
-            <label for="address">Dirreccion</label>                    
-            <input class="form-control" type="text" name="address" readonly value="{{selectedpat.address}}">
-        </div>
-        <div class="form-group col-md-3">
-            <label for="colonia">Colonia</label>                    
-            <input class="form-control" type="text" name="colonia" readonly value="{{selectedpat.colonia}}">
-        </div>
-        
-        <div class="form-group col-sm-2">
-            <label for="ciudad">Ciudad</label>                    
-            <input class="form-control" type="text" name="ciudad" readonly value="{{selectedpat.city}}">
-        </div>
-        <div class="form-group col-sm-2">
-            <label for="state">Estado</label>                    
-            <input class="form-control" type="text" name="state" readonly value="{{selectedpat.state}}">
-        </div>
-        <div class="form-group col-sm-2">
-            <label for="zipcode">Codigo Postal</label>                    
-            <input class="form-control" type="text" name="zipcode" readonly value="{{selectedpat.zip}}">
-        </div>
+    <div class="form-group col-md-3">
+        <label for="nombre">occupacion</label>                    
+        <input class="form-control" type="text" name="nombre" readonly value="{{selectedpat.occupation}}">
     </div>
+                        
+    <div class="form-group col-md-3">
+        <label for="address">Dirreccion</label>                    
+        <input class="form-control" type="text" name="address" readonly value="{{selectedpat.address}}">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="colonia">Colonia</label>                    
+        <input class="form-control" type="text" name="colonia" readonly value="{{selectedpat.colonia}}">
+    </div>   
+    
+    <div class="form-group col-sm-2">
+        <label for="zipcode">Codigo Postal</label>                    
+        <input class="form-control" type="text" name="zipcode" readonly value="{{selectedpat.zip}}">
+    </div>
+</div> -->
     
     
 
@@ -73,6 +76,7 @@
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <form class="form-inline">
         <!-- <button class="btn btn-outline-primary" type="button" (click)="showActual()">Problema Actual</button> -->
+        <button class="btn btn-outline-primary" type="button" (click)="showPerfil(pat)">Perfil</button>
         <button class="btn btn-outline-primary" type="button" (click)="showConsultas(pat)">Consultas</button> 
         <button class="btn btn-outline-primary" type="button" (click)="showProblemas(pat)">Problemas</button>
         <button class="btn btn-outline-primary" type="button" (click)="showPatologico(pat)">Patologicos</button>
@@ -123,4 +127,7 @@
 </div>
 <div *ngIf='displayUpload'>     
     <app-upload [pat]=selectedpat></app-upload>    
+</div>
+<div *ngIf='displayPerfil'>     
+    <app-perfil [pat]=selectedpat></app-perfil>    
 </div>

@@ -24,7 +24,8 @@ import { AccountComponent } from './account/account.component';
 import { ConsultaComponent } from './consulta/consulta.component';
 import { LabComponent } from './lab/lab.component';
 import { UploadComponent } from './upload/upload.component' // <== preload data from preload.ts
-import { FileUploadModule } from 'ng2-file-upload'; //<-- file upload module
+import { FileUploadModule } from 'ng2-file-upload';
+import { PerfilComponent } from './perfil/perfil.component'; //<-- file upload module
 
 
 export function preloadProviderFactory(provider: PreloadProvider) { // <== preload data from preload.ts
@@ -50,7 +51,8 @@ export function preloadProviderFactory(provider: PreloadProvider) { // <== prelo
     AccountComponent,
     ConsultaComponent,
     LabComponent,
-    UploadComponent,    
+    UploadComponent,
+    PerfilComponent,    
   ],
   providers: [
     PreloadProvider, // <== preload data from preload.ts

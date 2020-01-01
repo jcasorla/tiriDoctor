@@ -132,7 +132,7 @@ module.exports = {
         else if(req.body.password!=req.body.cpwd){
             req.flash("qform", "Contraseñas no coinciden!");
             console.log("do not match");
-            res.redirect("/register")
+            res.redirect("/register");
     
         }
     
@@ -157,39 +157,49 @@ module.exports = {
             username=firstI+last+slastindex1+slastlastindex;
         }
         
+        User.findOne({ email : req.body.email })
+            .then((user) => { 
+                console.log(user.email);
+                req.flash("qform", "Correo existe, escoje otro");
+                res.redirect("/register");
+            })
+            .catch(err =>{
+                async function run() {
+                    const saltValue = await bcrypt.genSalt(10);
+                    bcrypt
+                      .hash(req.body.password, saltValue)
+                      .then(hash =>{
+                        // console.log(hash)
+                        var user = new User({email: req.body.email , firstName: req.body.firstName, lastName: req.body.lastName, slastName: req.body.slastName, password: hash, username: username});
+                        user.save()
+                        .then(result =>{
+                            res.redirect("/login");
+                        })
+                        
+                        .catch(err =>{
+                            console.log("in error");
+                            for(var key in err.errors){
+                                req.flash("qform", err.errors[key].message);
+                            } 
+                            res.redirect("/register");
+        
+                        });
+                      })
+                      .catch(err =>{
+                        console.log(err);
+                        for(var key in err.errors){
+                            req.flash("qform", err.errors[key].message);
+                        } 
+                        res.redirect("/register")
+        
+                      });
+                  }
+                  run();
+                
+            })
         
 
-        async function run() {
-            const saltValue = await bcrypt.genSalt(10);
-            bcrypt
-              .hash(req.body.password, saltValue)
-              .then(hash =>{
-                // console.log(hash)
-                var user = new User({email: req.body.email , firstName: req.body.firstName, lastName: req.body.lastName, slastName: req.body.slastName, password: hash, username: username});
-                user.save()
-                .then(result =>{
-                    res.redirect("/login");
-                })
-                
-                .catch(err =>{
-                    console.log("in error");
-                    for(var key in err.errors){
-                        req.flash("qform", err.errors[key].message);
-                    } 
-                    res.redirect("/register");
-
-                });
-              })
-              .catch(err =>{
-                console.log(err);
-                for(var key in err.errors){
-                    req.flash("qform", err.errors[key].message);
-                } 
-                res.redirect("/register")
-
-              });
-          }
-          run();
+        
         
        }
      

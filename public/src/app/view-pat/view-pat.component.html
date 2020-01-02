@@ -76,16 +76,16 @@
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <form class="form-inline">
         <!-- <button class="btn btn-outline-primary" type="button" (click)="showActual()">Problema Actual</button> -->
-        <button class="btn btn-outline-primary" type="button" (click)="showPerfil(pat)">Perfil</button>
-        <button class="btn btn-outline-primary" type="button" (click)="showConsultas(pat)">Consultas</button> 
-        <button class="btn btn-outline-primary" type="button" (click)="showProblemas(pat)">Problemas</button>
-        <button class="btn btn-outline-primary" type="button" (click)="showPatologico(pat)">Patologicos</button>
-        <button class="btn btn-outline-primary" type="button" (click)="showNoPatologico(pat)">No Patologicos</button>
+        <button class="btn btn-outline-primary" type="button" (click)="showPerfil()">Perfil</button>
+        <button class="btn btn-outline-primary" type="button" (click)="showConsultas()">Consultas</button> 
+        <button class="btn btn-outline-primary" type="button" (click)="showProblemas()">Problemas</button>
+        <button class="btn btn-outline-primary" type="button" (click)="showPatologico()">Patologicos</button>
+        <button class="btn btn-outline-primary" type="button" (click)="showNoPatologico()">No Patologicos</button>
         <button class="btn btn-outline-primary" type="button" (click)="showFamiliar(pat)">Familiar</button>
-        <button *ngIf="selectedpat.sex === 'F'" class="btn btn-outline-primary" type="button" (click)="showGineco(pat)">Gineco</button>               
-        <button class="btn btn-outline-primary" type="button" (click)="showFisico(pat)">Fisico</button>        
-        <button class="btn btn-outline-primary" type="button" (click)="showLab(pat)">Laboratorio</button>  
-        <button class="btn btn-outline-primary" type="button" (click)="showUpload(pat)">Documentos</button>            
+        <button *ngIf="selectedpat.sex === 'F'" class="btn btn-outline-primary" type="button" (click)="showGineco()">Gineco</button>               
+        <button class="btn btn-outline-primary" type="button" (click)="showFisico()">Fisico</button>        
+        <button class="btn btn-outline-primary" type="button" (click)="showLab()">Laboratorio</button>  
+        <button class="btn btn-outline-primary" type="button" (click)="showUpload()">Documentos</button>            
         
     </form>
 </nav>

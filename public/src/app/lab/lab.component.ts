@@ -67,7 +67,6 @@ export class LabComponent implements OnInit {
        },
          error: error => {
            this.errors=error.error; 
-          //  console.log(this.errors); 
        }
        
      });     
@@ -82,7 +81,6 @@ export class LabComponent implements OnInit {
        },
          error: error => {
            this.errors=error.error; 
-          //  console.log(this.errors); 
        }
        
      });     
@@ -98,7 +96,6 @@ export class LabComponent implements OnInit {
       },
         error: error => {
           this.errors=error.error;
-          //  console.log(this.errors); 
   
       }
       
@@ -114,7 +111,6 @@ export class LabComponent implements OnInit {
         },
           error: error => {
             this.errors=error.error;
-            //  console.log(this.errors); 
     
         }
         

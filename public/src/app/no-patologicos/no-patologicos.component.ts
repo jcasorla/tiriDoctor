@@ -50,7 +50,6 @@ export class NoPatologicosComponent implements OnInit {
        },
          error: error => {
            this.errors=error.error; 
-          //  console.log(this.errors); 
        }
        
      });     
@@ -67,7 +66,6 @@ export class NoPatologicosComponent implements OnInit {
       },
         error: error => {
           console.log(error);
-          // this.errors=error.error;
   
       }
       

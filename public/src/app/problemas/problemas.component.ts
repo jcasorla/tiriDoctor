@@ -30,18 +30,10 @@ export class ProblemasComponent implements OnInit {
   @Input() pat : any;
 
   ngOnInit() {
-    // this.hideActual();
     this.problema=this.pat.problema;
   }
 
-  // hideActual(){
-  //   // console.log(this.pat.actual);
-  //   if(this.pat.familiar.length >0){
-  //     this.show=false;
 
-  //   }
-    
-  // }
 
   search() {
     this.problema = this.pat.problema.filter(res=>{
@@ -84,7 +76,6 @@ export class ProblemasComponent implements OnInit {
        },
          error: error => {
            this.errors=error.error; 
-          //  console.log(this.errors); 
        }
        
      });     
@@ -98,7 +89,6 @@ export class ProblemasComponent implements OnInit {
       
       },
         error: error => {
-          // console.log(error);
           this.errors=error.error;
   
       }

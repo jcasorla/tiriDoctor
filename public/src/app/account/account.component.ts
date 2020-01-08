@@ -41,7 +41,6 @@ export class AccountComponent implements OnInit, OnChanges {
 
   refresh(){
     //refresh trick that did work to refresh @Input data
-    // console.log("in refresh");
     this._router.navigateByUrl("/refresh",{skipLocationChange:true}).then(() =>{
       this._router.navigate([decodeURI(this._location.path())]);
     });

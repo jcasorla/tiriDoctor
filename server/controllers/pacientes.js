@@ -121,7 +121,6 @@ module.exports = {
                     }                  
                 }
                 if(data.actual.length>0){
-                    // console.log(data.actual);
                     for(var i=0; i< data.actual.length; i++){
                         Actual.findOneAndDelete({ _id : data.actual[i]._id })
                         .then((data) => {
@@ -133,7 +132,6 @@ module.exports = {
                     }   
                 }
                 if(data.nopatologico.length>0){
-                    // console.log(data.nopatologico);
                     for(var i=0; i< data.nopatologico.length; i++){
                         NoPatologico.findOneAndDelete({ _id : data.nopatologico[i]._id })
                         .then((data) => {
@@ -145,7 +143,6 @@ module.exports = {
                     }               
                 }
                 if(data.familiar.length>0){
-                    // console.log(data.familiar);
                     for(var i=0; i< data.familiar.length; i++){
                         Familiar.findOneAndDelete({ _id : data.familiar[i]._id })
                         .then((data) => {
@@ -157,7 +154,6 @@ module.exports = {
                     }               
                 }
                 if(data.gineco.length>0){
-                    // console.log(data.gineco);
                     for(var i=0; i< data.gineco.length; i++){
                         Gineco.findOneAndDelete({ _id : data.gineco[i]._id })
                         .then((data) => {
@@ -169,7 +165,6 @@ module.exports = {
                     }               
                 }
                 if(data.fisico.length>0){
-                    // console.log(data.fisico);
                     for(var i=0; i< data.fisico.length; i++){
                         Fisico.findOneAndDelete({ _id : data.fisico[i]._id })
                         .then((data) => {
@@ -181,7 +176,6 @@ module.exports = {
                     }               
                 }
                 if(data.problema.length>0){
-                    // console.log(data.problema);
                     for(var i=0; i< data.problema.length; i++){
                         Problema.findOneAndDelete({ _id : data.problema[i]._id })
                         .then((data) => {
@@ -193,7 +187,6 @@ module.exports = {
                     }               
                 }
                 if(data.grid.length>0){
-                    // console.log(data.grid);
                     for(var i=0; i< data.grid.length; i++){
                         Grid.findOneAndDelete({ _id : data.grid[i]._id })
                         .then((data) => {
@@ -205,7 +198,6 @@ module.exports = {
                     }               
                 }
                 if(data.lab.length>0){
-                    // console.log(data.lab);
                     for(var i=0; i< data.lab.length; i++){
                         Lab.findOneAndDelete({ _id : data.lab[i]._id })
                         .then((data) => {
@@ -221,7 +213,6 @@ module.exports = {
                         filepath = path.join(__dirname,'../../uploads') +'/'+ data.file[i].filename;
                         File.findOneAndDelete({ _id : data.file[i]._id })
                         .then((data) => {
-                            //also need logic to delete documents
                             try{
                                 fs.unlinkSync(filepath);
                                 
@@ -244,13 +235,13 @@ module.exports = {
             });
     },
 	
-    createActual: function(req,res){//very important if you are going to copy and past this code make sure to rename Product to appropiate
+    createActual: function(req,res){
         Actual.create(req.body, function(err, data){
             if (err){
                 const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
                 res.status(422).json(errors );
             }
-            else{//note it may remove the $push. be sure to add it before : {comment: data}}
+            else{
                 Paciente.findOneAndUpdate({_id:req.params.id}, {$push : {actual: data}}, {runValidators: true, new: true}, function(err, data){
                     if (err){
                         const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
@@ -285,19 +276,7 @@ module.exports = {
                     }
                 );
 
-                // Paciente.findOneAndUpdate(
-                //     { "_id": req.body._id2, "actual._id": req.params.id },
-                //     { 
-                //         "$set": {
-                //             "actual": req.body
-                //         },
-                       
-                //     },
-                //     function(err,doc) {
-                               
-                //     }
-                // );
-                
+               
             })
             .catch(err => {
                 const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
@@ -368,9 +347,7 @@ module.exports = {
                        
                     },
                     function(err,doc) {
-                        // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
-                        // res.status(422).json(errors )
-                        // res.status(422).json(['Error inesperado']);                
+                                   
                     }
                 );
                 
@@ -416,9 +393,7 @@ module.exports = {
                        
                     },
                     function(err,doc) {
-                        // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
-                        // res.status(422).json(errors )
-                        // res.status(422).json(['Error inesperado']);                
+                           
                     }
                 );
                 
@@ -464,9 +439,7 @@ module.exports = {
                        
                     },
                     function(err,doc) {
-                        // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
-                        // res.status(422).json(errors);
-                        // res.status(422).json(['Error inesperado']);                
+                               
                     }
                 );
                 
@@ -512,9 +485,7 @@ module.exports = {
                        
                     },
                     function(err,doc) {
-                        // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
-                        // res.status(422).json(errors);
-                        // res.status(422).json(['Error inesperado']);                
+                             
                     }
                 );
                 
@@ -560,9 +531,7 @@ module.exports = {
                                         
                     },
                     function(err,doc) {
-                        // const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
-                        // res.status(422).json(errors);
-                        // res.status(422).json(['Error inesperado']);
+                       
                 
                     }
                 );
@@ -611,7 +580,6 @@ module.exports = {
                                     
                 },
                 function(err,doc) {
-                    // res.status(422).json(['Error inesperado']);
                 }
             );
             
@@ -642,7 +610,6 @@ module.exports = {
         });
         })
         .catch(err => {
-            // res.json(err);
             const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
             res.status(422).json(errors);
         });        

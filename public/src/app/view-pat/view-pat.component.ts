@@ -60,7 +60,6 @@ export class ViewPatComponent implements OnInit{
     });
   }
   showActual(): void { 
-    // console.log("in actual");
     
     this.displayIllness = true;
     this.displayFamiliar=null;
@@ -74,7 +73,6 @@ export class ViewPatComponent implements OnInit{
     this.displayPerfil=null;
   }
   showFamiliar(): void { 
-    // console.log("in familiar");
     
     this.displayFamiliar = true;
     this.displayIllness=null;
@@ -88,7 +86,6 @@ export class ViewPatComponent implements OnInit{
     this.displayPerfil=null;
   }
   showPatologico(): void { 
-    // console.log("in patologico");
     this.displayPatologico = true;
     this.displayFamiliar = null;
     this.displayIllness=null;
@@ -102,7 +99,6 @@ export class ViewPatComponent implements OnInit{
     this.displayPerfil=null;
   }
   showNoPatologico(): void { 
-    // console.log("in no patologico");
     this.displayNoPatologico = true;
     this.displayPatologico = null;
     this.displayFamiliar = null;
@@ -117,7 +113,6 @@ export class ViewPatComponent implements OnInit{
   }
 
   showGineco(): void { 
-    // console.log("in gineco");
     this.displayGineco = true;
     this.displayPatologico = null;
     this.displayNoPatologico = null;

@@ -33,11 +33,6 @@ export class ConsultaComponent implements OnInit {
     this.consulta=this.pat.actual;
   }
 
-  // showNew(){
-  //   this.shownew=true;
-  //   this.showedit=false;
-  //   this.showlist=false;
-  // }
 
   search() {
     this.consulta = this.pat.actual.filter(res=>{
@@ -47,18 +42,13 @@ export class ConsultaComponent implements OnInit {
 
   showEdit(list){
     this.editconsulta=list;
-    // console.log(this.editproblem);
     this.showedit=true;
-    // this.shownew=false;
   }
   showList(){
     this.showlist=true;
-    // this.shownew=false;
   }
   hideList(){
     this.showlist=false;
-    // this.showedit=false;
-    // this.shownew=true;
   }
 
   refresh(){
@@ -68,49 +58,16 @@ export class ConsultaComponent implements OnInit {
     });
 
   }
-  
 
-  // onCreate(pat, form: NgForm): void { 
-       
-  //   this._httpService.problema(pat, form.value).subscribe({
-  //     next: (data)=>{        
-  //       this.refresh();    
-       
-  //      },
-  //        error: error => {
-  //          this.errors=error.error; 
-  //         //  console.log(this.errors); 
-  //      }
-       
-  //    });     
-  // }
-
-  // onUpdate(form: NgForm) {
-  //   console.log(this.pat.problema);
-  //   this._httpService.updateProblema(this.pat,form.value).subscribe({
-  //     next: (data)=>{                
-  //      this.refresh();      
-      
-  //     },
-  //       error: error => {
-  //         // console.log(error);
-  //         this.errors=error.error;
-  
-  //     }
-      
-  //   });
-  // }
   onCreate(pat, form: NgForm): void { 
    
     this._httpService.actual(pat, form.value).subscribe({
       next: (data)=>{        
-        this.refresh();
-        // this.show=false;      
+        this.refresh();    
        
        },
          error: error => {
            this.errors=error.error; 
-          //  console.log(this.errors); 
        }
        
      });     
@@ -128,7 +85,6 @@ export class ConsultaComponent implements OnInit {
       
       },
         error: error => {
-          // console.log(error);
           this.errors=error.error;
   
       }

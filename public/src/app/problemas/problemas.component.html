@@ -81,13 +81,9 @@
                 <tbody *ngFor="let list of problema">
                     
                     <tr class="d-flex">
-                        <!-- <td class="col-sm-5">{{list.nombre}}</td> -->
                         <td class="col-sm-7"><button class="btn btn-outline-primary btn-sm" (click)="showEdit(list)">{{list.nombre}}</button></td>
                         <td class="col-sm-2">{{list.activo}}</td>
                         <td class="col-sm-2"><button class="btn btn-outline-danger btn-sm" (click)="onClickDelete(list)">Eliminar</button></td>
-                        <!-- <td class="col-sm-4"><button class="btn btn-outline-primary btn-sm" (click)="showEdit(list)">Editar</button><button class="btn btn-outline-danger btn-sm" (click)="onClickDelete(list)">Eliminar</button></td> -->
-                        
-                    
                     </tr> 
             
                 </tbody>

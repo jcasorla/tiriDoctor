@@ -23,38 +23,6 @@ export class ActualComponent implements OnInit {
   @Input() pat : any;
 
 
-// ngOnChanges solution for refreshing input data which did not work
-//#################################################################
-//   @Input() notifyItemProcessed: () => void;
-  
-  
-//   consulta: string;
-//   enfermedad: string;
-
-//   ngOnChanges(changes: SimpleChanges) {
-//     const currentItem: SimpleChange = changes.pat; 
-//     console.log(changes.pat.currentValue);
-//     console.log(currentItem);
-
-//     if(currentItem.currentValue){
-//       console.log("currentValue")
-//       console.log(changes.pat.currentValue);
-//       console.log("***********")
-//       console.log("pat");
-//       console.log(this.pat);
-//       this.pat=changes.pat.currentValue;
-//       this.consulta=changes.pat.currentValue.actual[0].consulta;
-//       console.log(changes.pat.currentValue.actual[0].consulta);
-
-//     }
-
-//     this.doSomething(changes.pat.currentValue);
-//     You can also use categoryId.previousValue and 
-//     categoryId.firstChange for comparing old and new values
-
-// }
-//#################################################################
-
   ngOnInit() {
     this.hideActual();
   }
@@ -87,7 +55,6 @@ export class ActualComponent implements OnInit {
        },
          error: error => {
            this.errors=error.error; 
-          //  console.log(this.errors); 
        }
        
      });     
@@ -103,7 +70,6 @@ export class ActualComponent implements OnInit {
       
       },
         error: error => {
-          // console.log(error);
           this.errors=error.error;
   
       }

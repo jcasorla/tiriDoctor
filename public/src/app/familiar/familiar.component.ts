@@ -54,7 +54,6 @@ export class FamiliarComponent implements OnInit {
        },
          error: error => {
            this.errors=error.error; 
-          //  console.log(this.errors); 
        }
        
      });     
@@ -68,9 +67,7 @@ export class FamiliarComponent implements OnInit {
       
       },
         error: error => {
-          this.errors=error.error;
-          //  console.log(this.errors); 
-  
+          this.errors=error.error;  
       }
       
     });

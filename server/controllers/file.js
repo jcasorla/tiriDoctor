@@ -42,9 +42,7 @@ module.exports = {
                             const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
                             res.status(422).json(errors );                            
                         }
-                        // else{
-                        //    res.json(data)
-                        // }
+                      
                     })
                    
                     
@@ -93,7 +91,6 @@ module.exports = {
         });
         })
         .catch(err => {
-            // res.json(err);
             const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
             res.status(422).json(errors);
         });        

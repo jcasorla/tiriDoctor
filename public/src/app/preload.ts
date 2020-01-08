@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-// import { Router,CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import { AuthService } from './auth.service';
-// import * as jwt_decode from 'jwt-decode';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
@@ -25,8 +23,6 @@ export class PreloadProvider {
           
             this._authService.getAuth().subscribe(data => {
                 this.user=data['user'];
-                // console.log("preload");
-                // console.log(data['user']);
                 resolve(true);
                     
             

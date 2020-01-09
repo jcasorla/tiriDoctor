@@ -202,6 +202,10 @@ module.exports = {
             res.redirect("/reset");
     
         }
+        else if(req.body.email==""){
+            req.flash("qform", "Correo no existe");
+            res.redirect("/reset");
+        }
 
         else{
             var generator = require('generate-password');

@@ -203,7 +203,7 @@ module.exports = {
     
         }
         else if(req.body.email==""){
-            req.flash("qform", "Correo no existe");
+            req.flash("qform", "Necesitas ingresar el correo");
             res.redirect("/reset");
         }
 
@@ -259,7 +259,8 @@ module.exports = {
             })
             .catch(err =>{
                 console.log(err);
-                req.flash("qform", "Usario no encontrado");  
+                req.flash("qform", "Usario no encontrado"); 
+                res.redirect("/reset"); 
             });
 
         }
@@ -271,6 +272,10 @@ module.exports = {
             req.flash("qform", "Codigo no es valido");
             res.redirect("/tiri256Especial");
     
+        }
+        else if(req.body.email==""){
+            req.flash("qform", "Necesitas ingresar el correo");
+            res.redirect("/reset");
         }
 
         else{
@@ -326,6 +331,7 @@ module.exports = {
             .catch(err =>{
                 console.log(err);
                 req.flash("qform", "Usario no encontrado");  
+                res.redirect("/reset"); 
             });
 
         }

@@ -19,7 +19,6 @@ export class EditPatComponent implements OnInit {
 
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
-      console.log(params['id'])
       let id=params['id'];
       this.findPatient(id)
   });
@@ -28,7 +27,6 @@ export class EditPatComponent implements OnInit {
   findPatient(id) {
     const observable = this._httpService.getPatient(id);
     observable.subscribe(data => {
-      console.log(data['paciente']);
       this.editPatient = data['paciente'];
     });
   }

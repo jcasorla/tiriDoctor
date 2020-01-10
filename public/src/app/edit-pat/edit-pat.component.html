@@ -166,9 +166,45 @@
                 </div>
 
             </div>
-            <div class="form-group col-sm-2">
-                <label class="required" for="state">Estado</label>                    
-                <input class="form-control" type="text" name="state" [(ngModel)]="editPatient.state" required #state="ngModel">
+            <div class="form-group col-sm-3">
+                <label class="required" for="state">Estado</label>
+                <select class="form-control" name="state" [(ngModel)]="editPatient.state" required #state="ngModel" >
+                    <option></option>
+                    <option>Michoacan de Ocampo</option>
+                    <option>Extranjero</option>
+                    <option>Aguascalientes</option>
+                    <option>Baja California</option>
+                    <option>Baja California Sur</option>
+                    <option>Campeche</option>
+                    <option>Chiapas</option>
+                    <option>Chihuahua</option>
+                    <option>Ciudad de México</option>
+                    <option>Coahuila de Zaragoza</option>
+                    <option>Colima</option>
+                    <option>Durango</option>
+                    <option>Estado de México</option>
+                    <option>Guanajuato</option>
+                    <option>Guerrero</option>
+                    <option>Hidalgo</option>
+                    <option>Jalisco</option>
+                    <option>Morelos</option>
+                    <option>Nayarit</option>
+                    <option>Nuevo León</option>
+                    <option>Oaxaca</option>
+                    <option>Puebla</option>
+                    <option>Querétaro</option>
+                    <option>Quintana Roo</option>
+                    <option>San Luis Potosí</option>
+                    <option>Sinaloa</option>
+                    <option>Sonora</option>
+                    <option>Tabasco</option>
+                    <option>Tamaulipas</option>
+                    <option>Tlaxcala</option>
+                    <option>Veracruz de Ignacio de la Llave</option>
+                    <option>Yucatán</option>
+                    <option>Zacatecas</option>
+                    
+                </select>
                 <div *ngIf="(state.touched || state.dirty) && state.errors">
                     <div *ngIf="state?.errors?.required" class="alert alert-danger">
                         debes ingresar el estado
@@ -178,8 +214,8 @@
                 </div>
     
             </div>
-            <div class="form-group col-sm-2">
-                <label for="zipcode">Codigo Postal</label>                    
+            <div class="form-group col-sm-1">
+                <label for="zipcode">C. P.</label>                    
                 <input class="form-control" type="text" name="zipcode" [(ngModel)]="editPatient.zip">
             </div>
         </div>

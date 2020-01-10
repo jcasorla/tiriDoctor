@@ -12,6 +12,8 @@ const Lab = mongoose.model('Lab');
 const File = mongoose.model('File');
 const path = require('path');
 const fs = require('fs');
+var bcrypt = require('bcryptjs');
+require('dotenv').config();
 
 
 
@@ -53,6 +55,7 @@ module.exports = {
             .catch(err => res.json(err));
     },
     create: (req, res) => {
+        var password=process.env.MOMENTO;
         if(req.body.email){
             var result=validateEmail(req.body.email);
             if(!result){
@@ -68,13 +71,31 @@ module.exports = {
         }
         else{
             const paciente = new Paciente(req.body); 
-            paciente.save()
-                .then((data) => {
-                    res.json({newPaciente: data});
+            async function run() {
+                const saltValue = await bcrypt.genSalt(10);
+                bcrypt
+                .hash(password, saltValue)
+                .then(hash =>{
+                    paciente.password=hash;
+                    paciente.save()
+                    .then((data) => {
+                        res.json({newPaciente: data});
+                    })
+                    .catch(err => {
+                        const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                        res.status(422).json(errors )});
+                    
+                    
+                   
+
                 })
-                .catch(err => {
-                    const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
-                    res.status(422).json(errors )});
+                .catch(err =>{
+                    console.log(err);                  
+
+                });
+            }
+            run();
+           
 
         }
        

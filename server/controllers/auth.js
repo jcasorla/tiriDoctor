@@ -108,7 +108,6 @@ module.exports = {
     
         else if(req.body.cpwd ==""){
             req.flash("qform", "Debez ingresar Confirma Contraseña");
-            console.log("in if");
             res.redirect("/register")     
     
         }
@@ -210,7 +209,7 @@ module.exports = {
         else{
             var generator = require('generate-password');
             var password = generator.generate({
-                length: 5,
+                length: 8,
                 numbers: true
             });
                 
@@ -281,7 +280,7 @@ module.exports = {
         else{
             var generator = require('generate-password');
             var password = generator.generate({
-                length: 5,
+                length: 8,
                 numbers: true
             });
                 

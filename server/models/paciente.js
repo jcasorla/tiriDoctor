@@ -75,6 +75,10 @@ const PacienteSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    password: {
+        type: String,
+        required: false
+    },
     creator: {
         type: String,
         required: false

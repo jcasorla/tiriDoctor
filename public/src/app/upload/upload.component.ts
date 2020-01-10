@@ -29,6 +29,7 @@ export class UploadComponent implements OnInit {
 
       this.uploader.onCompleteItem = (item:any, response:any , status:any, headers:any) => {
           this.attachmentList.push(JSON.parse(response));
+          this.refresh();
       }
   }
   ngOnInit() {

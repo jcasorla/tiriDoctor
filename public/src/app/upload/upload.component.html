@@ -18,7 +18,7 @@
                     <h4>Subir Documentos</h4>
                     <div id="fileSelector" *ngIf="uploader?.queue?.length < 1">
                         <input type="file" name="fileUpload" id="fileUpload"
-                        ng2FileSelect [uploader]="uploader"><!--multiple-->
+                        ng2FileSelect [uploader]="uploader">
                     </div>
                     <div>
                         <div class="row uploadList" *ngFor="let item of uploader.queue">
@@ -30,18 +30,13 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                    <button type="button" class="btn btn-dark" (click)="item.upload()" (click)="refresh()">Subir</button>
+                                    <button type="button" class="btn btn-dark" (click)="item.upload()">Subir</button>
                                     <button type="button" class="btn btn-danger" (click)="item.remove()">Cancelar</button>
                             </div>
-                            <!-- <div class="col-sm-4" *ngIf="uploader?.queue?.length > 1">
-                                <button type="button" class="btn btn-dark" (click)="item.upload()" (click)="refresh()">Subir</button>
-                                <button type="button" class="btn btn-danger" (click)="item.remove()">Cancelar</button>
-                            </div> -->
+                           
                         </div>                        
                     </div>
-                    <!-- <div class="row" *ngIf="uploader?.queue?.length > 0">
-                            <button type="button" class="btn btn-primary" (click)="uploader.uploadAll()" (click)="refresh()">Subir Todos</button>
-                    </div> -->
+                   
                 </div>                
             </div>
 
@@ -55,11 +50,8 @@
                     <tbody *ngFor="let list of pat.file; let i = index">
                         
                         <tr class="d-flex">
-                            <!-- <td class="col-sm-5">{{list.originalname}}</td> -->
                             <td class="col-sm-7"><button class="btn btn-outline-primary btn-sm" (click)="download(i)">{{list.originalname}}</button></td>
-                            <!-- <td class="col-sm-2">{{list.activo}}</td> -->
                             <td class="col-sm-2"><button class="btn btn-outline-danger btn-sm" (click)="onClickDelete(list)">Eliminar</button></td>
-                            <!-- <td class="col-sm-4"><button class="btn btn-outline-primary btn-sm" (click)="showEdit(list)">Editar</button><button class="btn btn-outline-danger btn-sm" (click)="onClickDelete(list)">Eliminar</button></td> -->
                             
                         
                         </tr> 

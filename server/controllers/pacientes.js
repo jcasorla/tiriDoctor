@@ -26,7 +26,7 @@ function validateEmail(mail)
 
 function onlyNumbers(num) 
 {
-    if (/^[0-9 -()+]+$/.test(num))
+    if (/^[0-9 \-()+]+$/.test(num))
     {
         return (true)
     }

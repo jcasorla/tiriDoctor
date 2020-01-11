@@ -102,8 +102,16 @@ module.exports = {
 
         if(!result){
             req.flash("qform", "Correo Electronico no es valido");
-            console.log("in email check");
             res.redirect("/register")     
+        }
+        var valid=validPWD(req.body.password);
+        if(!valid){
+            req.flash("qform", "Contraseña Debe tener 8 de largo");
+            req.flash("qform", "Por lo menos un numero");
+            req.flash("qform", "Por lo menos una Mayuscula y Minuscula");
+            req.flash("qform", "Por lo menos un character especial");
+            res.redirect("/register")    
+
         }
     
         else if(req.body.cpwd ==""){
@@ -340,10 +348,17 @@ module.exports = {
 
 function validateEmail(mail) 
 {
-if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
-{
-    return (true)
-}
-    return (false)
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+    {
+        return (true)
+    }
+        return (false)
 }
 
+function validPWD(pwd){
+    if (/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(pwd))
+    {
+        return (true)
+    }
+        return (false)
+}

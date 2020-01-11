@@ -106,13 +106,19 @@ module.exports = {
         
     },
 
-    updatePwd: (req, res) => {      
+    updatePwd: (req, res) => {   
+        var valid=validPWD(req.body.password);
+
+        if(!valid){
+            res.status(422).json(['contraseña debe ser 8 de largo, por lo menos una mayuscula y miniscula y character especial']);  
+        } 
+  
         
         if(req.body.password!=req.body.cpwd){
            res.status(422).json(['Contraseñas no coinciden']);
     
         }
-
+        
         else{
             User.findById({ _id : req.params.id })
             .then((user) => {
@@ -167,6 +173,13 @@ module.exports = {
 function validateEmail(mail) 
 {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+    {
+        return (true)
+    }
+        return (false)
+}
+function validPWD(pwd){
+    if (/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(pwd))
     {
         return (true)
     }

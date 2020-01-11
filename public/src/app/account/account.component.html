@@ -261,7 +261,7 @@
                     <label class="required" for="current">Contraseña Actual</label>
                     <input type="password" name="current" [ngModel]="user2.current" class="form-control"
                     required
-                    #current="ngModel" 
+                    #current="ngModel"                     
                     >
                     <div *ngIf="(current.touched || current.dirty) && current.errors">
                         <div *ngIf="current?.errors?.required" class="alert alert-danger">
@@ -276,17 +276,16 @@
                     <label class="required" for="password">Nueva Contraseña</label>
                     <input type="password" name="password" [ngModel]="user2.password" class="form-control"
                     required
-                    minlength="4" 
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"                    
                     #pwd="ngModel" 
                     >
                     <div *ngIf="(pwd.touched || pwd.dirty) && pwd.errors">
                         <div *ngIf="pwd?.errors?.required" class="alert alert-danger">
                             debes ingresar la nueva contrasena
                         </div>
-                        <div *ngIf="pwd?.errors?.minlength" class="alert alert-danger">
-                            la nueva contraseña debe tener
-                            {{ pwd?.errors?.minlength.requiredLength }} letras
-                        </div>                     
+                        <div *ngIf="pwd?.errors && pwd?.errors?.pattern" class="alert alert-danger">
+                            contraseña debe ser 8 de largo, por lo menos una mayuscula y miniscula y character especial
+                        </div>                       
                         
                     </div>
             
@@ -295,18 +294,16 @@
                     <label class="required" for="cpwd">Confirma Contraseña</label>
                     <input type="password" name="cpwd" [ngModel]="user2.cpwd" class="form-control"
                     required
-                    minlength="4" 
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
                     #cpwd="ngModel" 
                     >
                     <div *ngIf="(cpwd.touched || cpwd.dirty) && cpwd.errors">
                         <div *ngIf="cpwd?.errors?.required" class="alert alert-danger">
                             debes confirmar contraseña
                         </div>
-                        <div *ngIf="cpwd?.errors?.minlength" class="alert alert-danger">
-                            confirma contraseña debe tener
-                            {{ cpwd?.errors?.minlength.requiredLength }} letras
-                        </div>                        
-                        
+                        <div *ngIf="cpwd?.errors && cpwd?.errors?.pattern" class="alert alert-danger">
+                            confirma contraseña debe ser 8 de largo, por lo menos una mayuscula y miniscula y character especial
+                        </div> 
                     </div>
             
                 </div>

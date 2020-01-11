@@ -16,6 +16,10 @@
         .back{
             background-color:steelblue;
         }
+        label.required::after {
+            content: " *";
+            color: red;
+        }
        
         
     </style>
@@ -42,11 +46,11 @@
                                               
                     <form action='/login' method="post">
                         <div class="form-group ">
-                            <label for="username">Username o Correo</label>
+                            <label for="username" class="required">Username o Correo</label>
                             <input type="text" name="username" class="form-control"/>
                         </div>
                         <div class="form-group ">
-                            <label for="password">Contraseña</label>
+                            <label for="password" class="required">Contraseña</label>
                             <input type="password" name="password" class="form-control" />
                         </div>
                         <div class="form-group">

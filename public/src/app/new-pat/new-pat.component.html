@@ -231,9 +231,9 @@
             </div>
         </div>
         
-        <button *ngIf="!newForm.valid" class="btn btn-primary btn-sm" disabled>Añadir</button>
-        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Añadir</button>
-        <button class="btn btn-danger btn-sm" [routerLink]="['/app/list']">Cancelar</button>
+        <button *ngIf="!newForm.valid" class="btn btn-primary btn-sm btn-space" disabled>Añadir</button>
+        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm btn-space">Añadir</button>
+        <button class="btn btn-danger btn-sm btn-space" [routerLink]="['/app/list']">Cancelar</button>
         
     </form>
     <br>

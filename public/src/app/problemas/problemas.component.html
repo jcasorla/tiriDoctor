@@ -59,20 +59,26 @@
         </div>
 
         
-        <button *ngIf="!newForm.valid" class="btn btn-primary btn-sm" disabled>Añadir</button>
-        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Añadir</button>
-        <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+        <button *ngIf="!newForm.valid" class="btn btn-primary btn-sm btn-space" disabled>Añadir</button>
+        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm btn-space">Añadir</button>
+        <button class="btn btn-danger btn-sm btn-space" (click)="refresh()">Cancelar</button>
         
     </form>
     <br><br>
 </div>
 
 <div *ngIf="showlist" class="row">
-    <br>    
+     
    
     <div class="col-xl-5 scroll scrollbar-primary">
-        <input type="text" [(ngModel)]="name" (input)="search()" placeholder="Busqueda" aria-label="Search">
+        <br> 
+        
         <div class="container-fluid">
+            <div class="justify-content-center">
+                <input type="text" [(ngModel)]="name" (input)="search()" placeholder="Busqueda" aria-label="Search">
+            </div>
+            
+            <br>
             <table class="table table-light"> 
                 <thead class="table-primary">
                     <tr class="d-flex"><th class="col-sm-7">Problemas</th><th class="col-sm-2">Activos</th><th class="col-sm-2">Actiones</th></tr>  
@@ -105,6 +111,7 @@
         </div>        
 
         <div *ngIf="showedit">
+            <br><br>
             
             <form  #upForm="ngForm" (submit)="onUpdate(upForm)" >
                 <div class="form-row">
@@ -151,9 +158,9 @@
                 <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">
         
                 
-                <button *ngIf="!upForm.valid" class="btn btn-primary btn-sm" disabled>Salvar</button>
-                <button *ngIf="upForm.valid" class="btn btn-primary btn-sm">Salvar</button>
-                <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+                <button *ngIf="!upForm.valid" class="btn btn-primary btn-sm btn-space" disabled>Salvar</button>
+                <button *ngIf="upForm.valid" class="btn btn-primary btn-sm btn-space">Salvar</button>
+                <button class="btn btn-danger btn-sm btn-space" (click)="refresh()">Cancelar</button>
                 
             </form>
             <br><br>

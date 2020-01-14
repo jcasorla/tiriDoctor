@@ -116,8 +116,8 @@
                 
                     </tbody> 
                 </table>
-                <button class="btn btn-primary btn-sm">Añadir</button>
-                <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+                <button class="btn btn-primary btn-sm btn-space">Añadir</button>
+                <button class="btn btn-danger btn-sm btn-space" (click)="refresh()">Cancelar</button>
                 </form>
                 <br>
                 <br> 
@@ -225,8 +225,8 @@
                     </table>
                     <input type="hidden" name="_id" [ngModel]="list._id" class="form-control">
                     <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">
-                    <button class="btn btn-primary btn-sm">Salvar</button>
-                    <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+                    <button class="btn btn-primary btn-sm btn-space">Salvar</button>
+                    <button class="btn btn-danger btn-sm btn-space" (click)="refresh()">Cancelar</button>
                     </form>
                     <br>
                     <br> 
@@ -345,9 +345,9 @@
                     </div>
                 </div>        
         
-                <button *ngIf="!saveForm1.valid" class="btn btn-primary btn-sm" disabled>Añadir</button>
-                <button *ngIf="saveForm1.valid" class="btn btn-primary btn-sm">Añadir</button>
-                <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+                <button *ngIf="!saveForm1.valid" class="btn btn-primary btn-sm btn-space" disabled>Añadir</button>
+                <button *ngIf="saveForm1.valid" class="btn btn-primary btn-sm btn-space">Añadir</button>
+                <button class="btn btn-danger btn-sm btn-space" (click)="refresh()">Cancelar</button>
                 
             </form>
 
@@ -460,9 +460,9 @@
                     <input type="hidden" name="_id" [ngModel]="list._id" class="form-control">
                     <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">      
             
-                    <button *ngIf="!saveForm1.valid" class="btn btn-primary btn-sm" disabled>Salvar</button>
-                    <button *ngIf="saveForm1.valid" class="btn btn-primary btn-sm">Salvar</button>
-                    <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+                    <button *ngIf="!saveForm1.valid" class="btn btn-primary btn-sm btn-space" disabled>Salvar</button>
+                    <button *ngIf="saveForm1.valid" class="btn btn-primary btn-sm btn-space">Salvar</button>
+                    <button class="btn btn-danger btn-sm btn-space" (click)="refresh()">Cancelar</button>
                     
                 </form>
     

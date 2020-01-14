@@ -62,18 +62,22 @@
 
         </div>
 
-        <button *ngIf="!actualForm.valid" class="btn btn-primary btn-sm" disabled>Añadir</button>
-        <button *ngIf="actualForm.valid" class="btn btn-primary btn-sm">Añadir</button>
-        <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+        <button *ngIf="!actualForm.valid" class="btn btn-primary btn-sm btn-space" disabled>Añadir</button>
+        <button *ngIf="actualForm.valid" class="btn btn-primary btn-sm btn-space">Añadir</button>
+        <button class="btn btn-danger btn-sm btn-space" (click)="refresh()">Cancelar</button>
         
     </form>
     <br><br>
 </div>
 <div class="col-lg scroll scrollbar-primary" *ngIf="showlist">
+    <br>
+    
     <div class="row">
-        <div  class="col-md-5">
-            <input type="text" [(ngModel)]="name" (input)="search()" placeholder="Busqueda" aria-label="Search">
+        <div  class="col-md-5"> 
+                     
             <div class="container-fluid">
+                <input type="text" [(ngModel)]="name" (input)="search()" placeholder="Busqueda" aria-label="Search">
+                <br><br>     
                 <table class="table table-light"> 
                     <thead class="table-primary">
                         <tr class="d-flex"><th class="col-sm-3">Fecha</th><th class="col-sm-6">Resumen</th>
@@ -110,6 +114,7 @@
             
     
             <div *ngIf="showedit">
+                <br>
                 
                 
                 <form  #actualForm="ngForm" (submit)="onUpdate(actualForm)" >
@@ -165,9 +170,9 @@
                                                     
             
                     
-                    <button *ngIf="!actualForm.valid" class="btn btn-primary btn-sm" disabled>Salvar</button>
-                    <button *ngIf="actualForm.valid" class="btn btn-primary btn-sm">Salvar</button>
-                    <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+                    <button *ngIf="!actualForm.valid" class="btn btn-primary btn-sm btn-space" disabled>Salvar</button>
+                    <button *ngIf="actualForm.valid" class="btn btn-primary btn-sm btn-space">Salvar</button>
+                    <button class="btn btn-danger btn-sm btn-space" (click)="refresh()">Cancelar</button>
                     
                 </form>
     

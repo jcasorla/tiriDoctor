@@ -35,7 +35,7 @@ const fisicoSchema = new mongoose.Schema({
         required: [true, "IMC es obligatorio"]
     },
     cabeza: {
-        type: String,
+        type: Number,
         required: [true, "Cabeza Y Cuello es obligatorio"]
     },
        

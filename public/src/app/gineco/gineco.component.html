@@ -11,7 +11,7 @@
     <form   #newForm="ngForm" (submit)="onCreate(pat,newForm)">
       
         <div class="form-row">
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-3">
                 <label for="menarquia" class="required">Menarquia</label>                    
                 <input class="form-control" type="text" name="menarquia" [ngModel]="gineco.menarquia"
                 required
@@ -23,7 +23,7 @@
                     
                 </div>
             </div>
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-3">
                 <label for="ritmo" class="required">Ritmo</label>                    
                 <input class="form-control" type="text" name="ritmo" [ngModel]="gineco.ritmo"
                 required
@@ -151,9 +151,9 @@
         </div>   
         
         <br>
-        <button *ngIf="!newForm.valid" class="btn btn-primary btn-sm" disabled>Añadir</button>
-        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Añadir</button>
-        <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>  
+        <button *ngIf="!newForm.valid" class="btn btn-primary btn-sm btn-space" disabled>Añadir</button>
+        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm btn-space">Añadir</button>
+        <button class="btn btn-danger btn-sm btn-space" (click)="refresh()">Cancelar</button>  
         
     </form>
     <br>
@@ -166,7 +166,7 @@
         <form   #upForm="ngForm" (submit)="onUpdate(upForm)">
             
             <div class="form-row">
-                <div class="form-group col-sm-2">
+                <div class="form-group col-sm-3">
                     <label for="menarquia" class="required" class="required">Menarquia</label>                    
                     <input class="form-control" type="text" name="menarquia" [ngModel]="list.menarquia"
                     required
@@ -178,7 +178,7 @@
                         
                     </div>
                 </div>
-                <div class="form-group col-sm-2">
+                <div class="form-group col-sm-3">
                     <label for="ritmo" class="required" class="required">Ritmo</label>                    
                     <input class="form-control" type="text" name="ritmo" [ngModel]="list.ritmo"
                     required
@@ -308,9 +308,9 @@
             <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">  
             
             <br>
-            <button *ngIf="!upForm.valid" class="btn btn-primary btn-sm" disabled>Salvar</button>
-            <button *ngIf="upForm.valid" class="btn btn-primary btn-sm">Salvar</button>
-            <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>  
+            <button *ngIf="!upForm.valid" class="btn btn-primary btn-sm btn-space" disabled>Salvar</button>
+            <button *ngIf="upForm.valid" class="btn btn-primary btn-sm btn-space">Salvar</button>
+            <button class="btn btn-danger btn-sm btn-space" (click)="refresh()">Cancelar</button>  
             
         </form>
         <br>

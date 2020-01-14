@@ -11,7 +11,7 @@
     <form  #newForm="ngForm" (submit)="onCreate(pat,newForm)">
         
         <div class="form-row">
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-3">
                 <label for="taDerecho" class="required">T.A. (derecho)</label>                    
                 <input class="form-control" type="text" name="taDerecho" [ngModel]="fisico.taDerecho"
                 required
@@ -23,7 +23,7 @@
                     
                 </div>
             </div>
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-3">
                 <label for="taIzquierdo" class="required">T.A. (izquierdo)</label>                    
                 <input class="form-control" type="text" name="taIzquierdo" [ngModel]="fisico.taIzquierdo"
                 required
@@ -35,7 +35,7 @@
                     
                 </div>
             </div>
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-3">
                 <label for="freqC" class="required">F.C.</label>                    
                 <input class="form-control" type="text" name="freqC" [ngModel]="fisico.freqC"
                 required
@@ -47,7 +47,7 @@
                     
                 </div>
             </div>
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-3">
                 <label for="freqR" class="required">Frec. Resp.</label>                    
                 <input class="form-control" type="text" name="freqR" [ngModel]="fisico.freqR"
                 required
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-3">
                 <label for="temp" class="required">Temp.</label>                    
                 <input class="form-control" type="text" name="temp" [ngModel]="fisico.temp"
                 required
@@ -73,7 +73,7 @@
                     
                 </div>
             </div>
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-3">
                 <label for="peso" class="required">Peso</label>                    
                 <input class="form-control" type="text" name="peso" [ngModel]="fisico.peso"
                 required
@@ -85,7 +85,7 @@
                     
                 </div>
             </div>
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-3">
                 <label for="talla" class="required">Talla</label>                    
                 <input class="form-control" type="text" name="talla" [ngModel]="fisico.talla"
                 required
@@ -97,16 +97,19 @@
                     
                 </div>
             </div>
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-3">
                 <label for="imc" class="required">IMC</label>                    
                 <input class="form-control" type="text" name="imc" [ngModel]="fisico.imc"
                 required
+                pattern="^[0-9]+$"
                 #imc="ngModel">
                 <div *ngIf="(imc.touched || imc.dirty) && imc.errors">
                     <div *ngIf="imc?.errors?.required" class="alert alert-danger">
                         Necesario
                     </div>
-                    
+                    <div *ngIf="imc?.errors?.pattern" class="alert alert-danger">
+                        solo numeros
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -128,9 +131,9 @@
 
         </div>
         <br>
-        <button *ngIf="!newForm.valid" class="btn btn-primary btn-sm" disabled>Añadir</button>
-        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm">Añadir</button>
-        <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+        <button *ngIf="!newForm.valid" class="btn btn-primary btn-sm btn-space" disabled>Añadir</button>
+        <button *ngIf="newForm.valid" class="btn btn-primary btn-sm btn-space">Añadir</button>
+        <button class="btn btn-danger btn-sm btn-space" (click)="refresh()">Cancelar</button>
         
     </form>
     <br><br>
@@ -144,7 +147,7 @@
         <form  #upForm="ngForm" (submit)="onUpdate(upForm)">
             
             <div class="form-row">
-                <div class="form-group col-sm-2">
+                <div class="form-group col-sm-3">
                     <label for="taDerecho" class="required">T.A. (derecho)</label>                    
                     <input class="form-control" type="text" name="taDerecho" [ngModel]="list.taDerecho"
                     required
@@ -156,7 +159,7 @@
                         
                     </div>
                 </div>              
-                <div class="form-group col-sm-2">
+                <div class="form-group col-sm-3">
                     <label for="taIzquierdo" class="required">T.A. (izquierdo)</label>                    
                     <input class="form-control" type="text" name="taIzquierdo" [ngModel]="list.taIzquierdo"
                     required
@@ -168,7 +171,7 @@
                         
                     </div>
                 </div>
-                <div class="form-group col-sm-2">
+                <div class="form-group col-sm-3">
                     <label for="freqC" class="required">F.C.</label>                    
                     <input class="form-control" type="text" name="freqC" [ngModel]="list.freqC"
                     required
@@ -180,7 +183,7 @@
                         
                     </div>
                 </div>
-                <div class="form-group col-sm-2">
+                <div class="form-group col-sm-3">
                     <label for="freqR" class="required">Frec. Resp.</label>                    
                     <input class="form-control" type="text" name="freqR" [ngModel]="list.freqR"
                     required
@@ -194,7 +197,7 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-sm-2">
+                <div class="form-group col-sm-3">
                     <label for="temp" class="required">Temp.</label>                    
                     <input class="form-control" type="text" name="temp" [ngModel]="list.temp"
                     required
@@ -206,7 +209,7 @@
                         
                     </div>
                 </div>
-                <div class="form-group col-sm-2">
+                <div class="form-group col-sm-3">
                     <label for="peso" class="required">Peso</label>                    
                     <input class="form-control" type="text" name="peso" [ngModel]="list.peso"
                     required
@@ -218,7 +221,7 @@
                         
                     </div>
                 </div>
-                <div class="form-group col-sm-2">
+                <div class="form-group col-sm-3">
                     <label for="talla" class="required">Talla</label>                    
                     <input class="form-control" type="text" name="talla" [ngModel]="list.talla"
                     required
@@ -230,14 +233,18 @@
                         
                     </div>
                 </div>
-                <div class="form-group col-sm-2">
+                <div class="form-group col-sm-3">
                     <label for="imc" class="required">IMC</label>                    
                     <input class="form-control" type="text" name="imc" [ngModel]="list.imc"
                     required
+                    pattern="^[0-9]+$"
                     #imc="ngModel">
                     <div *ngIf="(imc.touched || imc.dirty) && imc.errors">
                         <div *ngIf="imc?.errors?.required" class="alert alert-danger">
                             Necesario
+                        </div>
+                        <div *ngIf="imc?.errors?.pattern" class="alert alert-danger">
+                            solo numeros
                         </div>
                         
                     </div>
@@ -264,9 +271,9 @@
             <input type="hidden" name="_id2" [ngModel]="pat._id" class="form-control">
                 
             <br>
-            <button *ngIf="!upForm.valid" class="btn btn-primary btn-sm" disabled>Salvar</button>
-            <button *ngIf="upForm.valid" class="btn btn-primary btn-sm">Salvar</button>
-            <button class="btn btn-danger btn-sm" (click)="refresh()">Cancelar</button>
+            <button *ngIf="!upForm.valid" class="btn btn-primary btn-sm btn-space" disabled>Salvar</button>
+            <button *ngIf="upForm.valid" class="btn btn-primary btn-sm btn-space">Salvar</button>
+            <button class="btn btn-danger btn-sm btn-space" (click)="refresh()">Cancelar</button>
             
         </form>
         <br><br>

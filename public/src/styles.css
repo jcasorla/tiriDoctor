@@ -47,4 +47,14 @@ background-color: #4285F4; }
     background: #007bb5;
     color: white;
   }
+
+  .centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-space {
+    margin-right: 5px;
+}
   

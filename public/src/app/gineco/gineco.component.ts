@@ -46,7 +46,7 @@ export class GinecoComponent implements OnInit {
   
 
   onCreate(pat, form: NgForm): void { 
-   
+    form.value.fum+="T00:00:00"
     this._httpService.gineco(pat, form.value).subscribe({
       next: (data)=>{        
         this.refresh();
@@ -61,6 +61,7 @@ export class GinecoComponent implements OnInit {
   }
 
   onUpdate(form: NgForm) {
+    form.value.fum+="T00:00:00"
     
     this._httpService.updateGineco(this.pat,form.value).subscribe({
       next: (data)=>{

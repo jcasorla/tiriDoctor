@@ -37,7 +37,7 @@
             </div>
             <div class="form-group col-sm-2">
                 <label for="fum" class="required">F.U.M</label>                    
-                <input class="form-control" type="text" name="fum" [ngModel]="gineco.fum"
+                <input class="form-control" type="date" name="fum" [ngModel]="gineco.fum | date:'yyyy-MM-dd'"
                 required
                 #fum="ngModel">
                 <div *ngIf="(fum.touched || fum.dirty) && fum.errors">
@@ -192,7 +192,7 @@
                 </div>
                 <div class="form-group col-sm-2">
                     <label for="fum" class="required" class="required">F.U.M</label>                    
-                    <input class="form-control" type="text" name="fum" [ngModel]="list.fum"
+                    <input class="form-control" type="date" name="fum" [ngModel]=" list.fum |date:'yyyy-MM-dd'" 
                     required
                     #fum="ngModel">
                     <div *ngIf="(fum.touched || fum.dirty) && fum.errors">

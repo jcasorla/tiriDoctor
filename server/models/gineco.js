@@ -13,7 +13,7 @@ const ginecoSchema = new mongoose.Schema({
 
     },
     fum: { 
-        type: String,
+        type: Date,
         required: [true, "F.U.M es obligatorio"]
 
     },

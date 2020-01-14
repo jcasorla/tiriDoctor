@@ -17,7 +17,7 @@
                 class="form-control" >
                 <div *ngIf="(firstName.touched || firstName.dirty) && firstName.errors">
                     <div *ngIf="firstName?.errors?.required" class="alert alert-danger">
-                        debes ingresar el primer nombre
+                        necesario
                     </div>
                     <div *ngIf="firstName?.errors?.minlength" class="alert alert-danger">
                         el primer nombre debe tener
@@ -36,7 +36,7 @@
                 >
             <div *ngIf="(lastName.touched || lastName.dirty) && lastName.errors">
                 <div *ngIf="lastName?.errors?.required" class="alert alert-danger">
-                    debes ingresar el apellido
+                    necesario
                 </div>
                 <div *ngIf="lastName?.errors?.minlength" class="alert alert-danger">
                     el primer appellido debe tener
@@ -56,7 +56,7 @@
                 
                 <div *ngIf="(sLastName.touched || sLastName.dirty) && sLastName.errors">
                     <div *ngIf="sLastName?.errors?.required" class="alert alert-danger">
-                        debes ingresar el segundo apellido
+                        necesario
                     </div>
                     <div *ngIf="sLastName?.errors?.minlength" class="alert alert-danger">
                         el primer appellido debe tener
@@ -72,25 +72,28 @@
                 <div class="form-group col-md-1">
                     <label class="required" for="sex">Sexo</label>
                     <select class="form-control" name="sexo" [(ngModel)]="editPatient.sex" required #sex="ngModel">
-                        <option>O</option>
+                        <option></option>
                         <option>M</option>
                         <option>F</option>
                         
                     </select>
                     <div *ngIf="(sex.touched || sex.dirty) && sex.errors">
                         <div *ngIf="sex?.errors?.required" class="alert alert-danger">
-                            ingresa el sexo
+                            necesario
                         </div>                
                         
                     </div>
                 </div>
                 <div class="form-group col-md-1">
                     <label class="required" for="age">Edad</label>
-                    <input type="number" class="form-control"  name="age" [(ngModel)]="editPatient.age" required #age="ngModel">
+                    <input type="text" class="form-control"  name="age" [(ngModel)]="editPatient.age" required #age="ngModel" pattern="^[0-9]+$">
                     <div *ngIf="(age.touched || age.dirty) && age.errors">
                         <div *ngIf="age?.errors?.required" class="alert alert-danger">
-                            ingresa la edad
-                        </div>                
+                            necesario
+                        </div>
+                        <div *ngIf="age?.errors?.pattern" class="alert alert-danger">
+                            solo numeros
+                        </div>                  
                         
                     </div>
                 </div>
@@ -105,7 +108,7 @@
     
                     <div *ngIf="(phone.touched || phone.dirty) && phone.errors">
                         <div *ngIf="phone?.errors?.required" class="alert alert-danger">
-                            debes ingresar el telefono
+                            necesario
                         </div>
                         <div *ngIf="phone?.errors?.minlength" class="alert alert-danger">
                             el telefono debe tener
@@ -156,7 +159,7 @@
 
                 <div *ngIf="(city.touched || city.dirty) && city.errors">
                     <div *ngIf="city?.errors?.required" class="alert alert-danger">
-                        debes ingresar la ciudad
+                        necesario
                     </div>
                     <div *ngIf="city?.errors?.minlength" class="alert alert-danger">
                         la ciudad debe tener
@@ -216,7 +219,13 @@
             </div>
             <div class="form-group col-sm-1">
                 <label for="zipcode">C. P.</label>                    
-                <input class="form-control" type="text" name="zipcode" [(ngModel)]="editPatient.zip">
+                <input class="form-control" type="text" name="zipcode" [(ngModel)]="editPatient.zip" minlength="5" pattern="^[0-9]+$" #zip="ngModel">
+                <div *ngIf="zip?.errors?.pattern" class="alert alert-danger">
+                    solo numeros
+                </div>
+                <div *ngIf="zip?.errors?.minlength" class="alert alert-danger">                    
+                    {{ zip?.errors?.minlength.requiredLength }} numeros
+                </div>     
             </div>
         </div>
         

@@ -68,8 +68,9 @@ const PacienteSchema = new mongoose.Schema({
         required: [true, "Estado es obligatorio"],
     }, 
     zip: {
-        type: String,
-        required: false
+        type: Number,
+        required: false,
+        minlength: [5, 'C.P. - Por lo menos 5 numeros']
     }, 
     occupation: {
         type: String,

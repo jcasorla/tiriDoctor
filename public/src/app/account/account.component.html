@@ -67,7 +67,7 @@
                     class="form-control" >
                     <div *ngIf="(firstName.touched || firstName.dirty) && firstName.errors">
                         <div *ngIf="firstName?.errors?.required" class="alert alert-danger">
-                            debes ingresar el primer nombre
+                            necesario
                         </div>
                         <div *ngIf="firstName?.errors?.minlength" class="alert alert-danger">
                             el primer nombre debe tener
@@ -86,7 +86,7 @@
                     >
                     <div *ngIf="(lastName.touched || lastName.dirty) && lastName.errors">
                         <div *ngIf="lastName?.errors?.required" class="alert alert-danger">
-                            debes ingresar el apellido
+                            necesario
                         </div>
                         <div *ngIf="lastName?.errors?.minlength" class="alert alert-danger">
                             el primer appellido debe tener
@@ -105,7 +105,7 @@
                     >
                     <div *ngIf="(slastName.touched || slastName.dirty) && slastName.errors">
                         <div *ngIf="slastName?.errors?.required" class="alert alert-danger">
-                            debes ingresar el segundo apellido
+                            necesario
                         </div>
                         <div *ngIf="slastName?.errors?.minlength" class="alert alert-danger">
                             el segundo appellido debe tener
@@ -146,7 +146,7 @@
                     >
                     <div *ngIf="(email.touched || email.dirty) && email.errors">
                         <div *ngIf="email?.errors?.required" class="alert alert-danger">
-                            debes ingresar el correo
+                            necesario
                         </div>
                         <div *ngIf="email?.errors && email?.errors?.pattern" class="alert alert-danger">
                             el correo es invalido
@@ -163,7 +163,7 @@
                     >
                     <div *ngIf="(pwd.touched || pwd.dirty) && pwd.errors">
                         <div *ngIf="pwd?.errors?.required" class="alert alert-danger">
-                            debes ingresar la contraseña
+                            necesario
                         </div>                        
                         
                     </div>
@@ -206,7 +206,7 @@
                     >
                     <div *ngIf="(username.touched || username.dirty) && username.errors">
                         <div *ngIf="username?.errors?.required" class="alert alert-danger">
-                            debes ingresar el username
+                            necesario
                         </div>
                         <div *ngIf="username?.errors?.minlength" class="alert alert-danger">
                             el username debe tener
@@ -224,7 +224,7 @@
                     >
                     <div *ngIf="(pwd.touched || pwd.dirty) && pwd.errors">
                         <div *ngIf="pwd?.errors?.required" class="alert alert-danger">
-                            debes ingresar la contraseña
+                            necesario
                         </div>                        
                         
                     </div>
@@ -265,7 +265,7 @@
                     >
                     <div *ngIf="(current.touched || current.dirty) && current.errors">
                         <div *ngIf="current?.errors?.required" class="alert alert-danger">
-                            debes ingresar la contraseña
+                            necesario
                         </div>
                         
                         
@@ -281,7 +281,7 @@
                     >
                     <div *ngIf="(pwd.touched || pwd.dirty) && pwd.errors">
                         <div *ngIf="pwd?.errors?.required" class="alert alert-danger">
-                            debes ingresar la nueva contrasena
+                            necesario
                         </div>
                         <div *ngIf="pwd?.errors && pwd?.errors?.pattern" class="alert alert-danger">
                             contraseña debe ser 8 de largo, por lo menos una mayuscula y miniscula y character especial
@@ -299,7 +299,7 @@
                     >
                     <div *ngIf="(cpwd.touched || cpwd.dirty) && cpwd.errors">
                         <div *ngIf="cpwd?.errors?.required" class="alert alert-danger">
-                            debes confirmar contraseña
+                            necesario
                         </div>
                         <div *ngIf="cpwd?.errors && cpwd?.errors?.pattern" class="alert alert-danger">
                             confirma contraseña debe ser 8 de largo, por lo menos una mayuscula y miniscula y character especial

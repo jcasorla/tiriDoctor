@@ -76,8 +76,9 @@
                 
         </div>
         <div class="form-check form-check-inline">
-            <input class="col-sm-6" type="text" name="hermanos" [ngModel]="familiar.hermanos"
+            <input class="col-sm-6" type="text" name="hermanos" [ngModel]="familiar.hermanos "
             required
+            pattern="^[0-9]+$"
             #hermanos="ngModel">         
                 
         </div>
@@ -96,6 +97,9 @@
             <div *ngIf="hermanos?.errors?.required" class="alert alert-danger">
                 Es necesario ingresar cuantos hermanos
             </div>
+            <div *ngIf="hermanos?.errors?.pattern" class="alert alert-danger">
+                solo numeros
+            </div>  
             
         </div>
         <br>
@@ -191,6 +195,7 @@
             <div class="form-check form-check-inline ">
                 <input class="col-sm-6" type="text" name="hermanos" [ngModel]="list.hermanos"
                 required
+                pattern="^[0-9]+$"
                 #hermanos="ngModel">     
                     
             </div>
@@ -209,6 +214,9 @@
                 <div *ngIf="hermanos?.errors?.required" class="alert alert-danger">
                     Es necesario ingresar cuantos hermanos
                 </div>
+                <div *ngIf="hermanos?.errors?.pattern" class="alert alert-danger">
+                    solo numeros
+                </div> 
                 
             </div>
             <br>

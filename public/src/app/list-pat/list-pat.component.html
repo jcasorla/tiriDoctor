@@ -14,7 +14,7 @@
             <tbody *ngFor="let pat of patients">
                 
                 <tr>
-                    <th scope="row">{{pat.id}}</th>
+                    <th scope="row">{{pat.pid}}</th>
                     <td><button [routerLink]="['/app/view/' + pat._id]" type="button" class="btn btn-link btn-sm">{{pat.firstName}} {{pat.lastName}} {{pat.sLastName}}</button></td>   
                     <td> <button [routerLink]="['/app/edit/' + pat._id]" type="button" class="btn btn-link btn-sm">Editar</button> | <button (click)="onClickDelete(pat)" type="button" class="btn btn-link btn-sm">Eliminar</button> </td>
                 

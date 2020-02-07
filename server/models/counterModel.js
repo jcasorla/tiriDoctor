@@ -15,7 +15,7 @@ const autoIncrementModelID = function (modelName, doc, next) {
       function(error, counter) {           // The callback
         if(error) return next(error);
   
-        doc.id = counter.seq;
+        doc.pid = counter.seq;
         next();
       }
     );                                     // ** Method call ends **

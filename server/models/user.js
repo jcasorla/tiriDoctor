@@ -35,6 +35,16 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, "debes ingresar la contraseña"],
     },
+    level: {
+        type: String,
+        default: 6,
+        required: false     
+    },
+    active: { 
+        type: Boolean,
+        default: true,
+        required: false
+    },
     
         
 }, {timestamps: true });

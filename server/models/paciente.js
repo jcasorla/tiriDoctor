@@ -13,12 +13,17 @@ const fileSchema = mongoose.model('File').schema;
 
 
 const PacienteSchema = new mongoose.Schema({
-    id: { type: Number, unique: true, min: 1 },
+    pid: { type: Number, unique: true, min: 1 },
     firstName: { 
         type: String,
         required: [true, "Primer Nombre es obligatorio"],
         minlength: [3, 'Primer Nombre -Por lo menos 3 letras']
 
+    },
+
+    sid: {
+        type: String,
+        required: false
     },
     lastName: { 
         type: String,

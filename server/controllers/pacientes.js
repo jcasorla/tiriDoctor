@@ -70,7 +70,8 @@ module.exports = {
             res.status(422).json(['Telefono debe tener solo digitos']);  
         }
         else{
-            const paciente = new Paciente(req.body); 
+            const paciente = new Paciente(req.body);
+            
             async function run() {
                 const saltValue = await bcrypt.genSalt(10);
                 bcrypt
@@ -79,7 +80,17 @@ module.exports = {
                     paciente.password=hash;
                     paciente.save()
                     .then((data) => {
-                        res.json({newPaciente: data});
+                        paciente.sid=paciente._id.toString();
+                        Paciente.findByIdAndUpdate(paciente._id , paciente, {runValidators: true, new: true} )
+                        .then((data) => {
+                            res.json({updatedPaciente: data});
+                        })
+                        .catch(err => {
+                            const errors = Object.keys(err.errors).map(key => err.errors[key].message) 
+                            res.status(422).json(errors )});
+                        
+                        // res.json({newPaciente: data});
+                        
                     })
                     .catch(err => {
                         const errors = Object.keys(err.errors).map(key => err.errors[key].message) 

@@ -74,9 +74,6 @@ export class ConsultaComponent implements OnInit {
   }
 
   onUpdate(form: NgForm) {
-    console.log('trigger?');
-    
-    console.log(form.value);
     this._httpService.updateActual(this.pat,form.value).subscribe({
       next: (data)=>{
         

@@ -279,7 +279,6 @@ module.exports = {
     },
 
     updateActual: (req, res) => {
-        console.log('wrong place');
         Actual.findByIdAndUpdate(req.params.id , req.body, {runValidators: true, new: true} )
             .then((data) => {
                 res.json({updatedActual: data});
@@ -305,7 +304,6 @@ module.exports = {
     },
 
     deleteActual: (req, res) => {
-        console.log('enter delete?')
         
         Actual.findOneAndDelete({ _id : req.params.id })
         .then((data) => {

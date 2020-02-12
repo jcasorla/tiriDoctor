@@ -27,8 +27,6 @@ deletePatient(id) {
 
 actual(pat,actual){
   let url='/api/pacientes/' + pat._id + '/actual/';
-  console.log(actual);
-  console.log("I am in actual in service");
   return this._http.post(url,actual);
 }
 

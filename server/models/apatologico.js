@@ -12,6 +12,11 @@ const patologicoSchema = new mongoose.Schema({
         required: false
 
     },
+    renal: { 
+        type: Boolean,
+        required: false
+
+    },
     digestivo: { 
         type: Boolean,
         required: false

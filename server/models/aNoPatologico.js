@@ -35,7 +35,7 @@ const NoPatologicoSchema = new mongoose.Schema({
 
     },  
     immuno: { 
-        type: String,
+        type: Boolean,
         required: false
 
     },

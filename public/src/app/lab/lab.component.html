@@ -297,7 +297,7 @@
                     <div class="form-group col-lg">
                         <label for="abdomen">Abdomen</label>
                         
-                        <textarea class="form-control"  name="consulta" [ngModel]="lab.abdomen" cols="5" rows="5" 
+                        <textarea class="form-control"  name="abdomen" [ngModel]="lab.abdomen" cols="5" rows="5" 
                         minlength="10"
                         #abdomen="ngModel"></textarea>
                         <div *ngIf="(abdomen.touched || abdomen.dirty) && abdomen.errors">                      
@@ -410,7 +410,7 @@
                         <div class="form-group col-lg">
                             <label for="abdomen">Abdomen</label>
                             
-                            <textarea class="form-control"  name="consulta" [ngModel]="list.abdomen" cols="5" rows="5" 
+                            <textarea class="form-control"  name="abdomen" [ngModel]="list.abdomen" cols="5" rows="5" 
                             minlength="10"
                             #abdomen="ngModel"></textarea>
                             <div *ngIf="(abdomen.touched || abdomen.dirty) && abdomen.errors">                      
